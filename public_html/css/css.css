@@ -1,0 +1,29 @@
+.pop-close{
+    cursor: pointer;
+
+}
+.pop-close:hover{
+   color: red;
+
+}
+.bbt{
+    display: inline-block;
+    cursor: pointer;
+}
+label.error{
+    color: red;
+}
+
+/* .square1:focus {
+    animation-name: zoom;
+    animation-duration: 200ms;
+  } */
+
+  @keyframes zoom {
+    from {
+
+    }
+    to {
+      transform: scale(2);
+    }
+  }
