@@ -356,7 +356,7 @@ window.onload = function() {
               return false;
             }
 
-         
+
 
 
             var form_data = new FormData($('#signupForm')[0]);
@@ -509,7 +509,7 @@ $(document).on("keyup", '.square1', function(e) {
                 success:function (data) {
                     console.log(data);
                     code=data.code
-                    alert(code)
+                    // alert(code)
                     noty('         کد ورود با موفقیت ارسال شد    ', 'green', '');
                     $('#code_box').show(400)
                     $('#check_code').show(400)
@@ -517,6 +517,7 @@ $(document).on("keyup", '.square1', function(e) {
                     $('.square1 ').eq(0).focus()
                 },
                 error: function (request, status, error) {
+                    console.log(request)
                 }
           })
 

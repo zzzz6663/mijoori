@@ -7,6 +7,7 @@ use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Notifications\SendKaveCode;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,9 @@ class HomeController extends Controller
         return redirect()->route('login');
     }
     public function index (){
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
         // $mobile= session()->get('mobile');
         // $user=User::create(['mobile'=>$mobile,'level'=>'customer']);
 
@@ -34,7 +38,7 @@ class HomeController extends Controller
         $rand= rand(pow(10, $digits-1), pow(10, $digits)-1);
         session()->put('mobile',$request->mobile);
         $invitedUser = new User;
-        // $invitedUser->notify(new SendKaveCode( $request->mobile,'login',$rand,'','','',''));
+        $invitedUser->notify(new SendKaveCode( $request->mobile,'login',$rand,'','','',''));
         return response()->json([
             'status'=>'ok',
             'code'=>$rand,
@@ -45,7 +49,7 @@ class HomeController extends Controller
         $mobile= session()->get('mobile');
         $user=User::whereMobile($mobile)->first();
         if(!$user){
-            
+
             $user=User::create(['mobile'=>$mobile,'level'=>'customer']);
             $user->assignRole( 'customer');
 
