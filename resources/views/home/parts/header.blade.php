@@ -199,7 +199,7 @@
                                     <li>
                                         <a href="{{route('logout')}}">
 
-                                            <span class="text"> s خروج </span>
+                                            <span class="text"> sss خروج </span>
                                         </a>
                                     </li>
                                 </ul>
