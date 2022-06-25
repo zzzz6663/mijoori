@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Travel;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -180,6 +182,7 @@ return redirect()->route('user.index');
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
+        $data = $validator->safe()->all();
         if ($request->hasFile('p_avatar')) {
             $avatar = $request->file('p_avatar');
             $name_img = 'p_avatar_' . $user->id . '.' . $avatar->getClientOriginalExtension();
@@ -203,6 +206,7 @@ return redirect()->route('user.index');
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
+        $data = $validator->safe()->all();
         if ($request->hasFile('melli_front')) {
             $avatar = $request->file('melli_front');
             $name_img = 'melli_front_' . $user->id . '.' . $avatar->getClientOriginalExtension();
@@ -233,6 +237,7 @@ return redirect()->route('user.index');
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
+        $data = $validator->safe()->all();
         if ($request->hasFile('tourism')) {
             $avatar = $request->file('tourism');
             $name_img = 'tourism_' . $user->id . '.' . $avatar->getClientOriginalExtension();
@@ -245,5 +250,68 @@ return redirect()->route('user.index');
             'all' => $request->all(),
             'status' => 'ok',
         ]);
+    }
+    public function new_travel(Request $request)
+    {
+        $user = auth()->user();
+        $validator = Validator::make($request->all(), [
+            'city_id' => 'required|exists:cities,name',
+            'start' => 'required',
+            'end' => 'required',
+            'count' => 'required',
+            'gender' => 'required',
+        ]);
+
+
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        $data = $validator->safe()->all();
+        $data['province_id']=City::whereName( $data['city_id'] )->first()->province->id;
+        $data['city_id']=City::whereName( $data['city_id'] )->first()->id;
+        $data['start'] = $user->convert_date($data['start']);
+        $data['end'] = $user->convert_date($data['end']);
+        $user->travels()->create($data);
+        return response()->json([
+            'all' => $request->all(),
+            'status' => 'ok',
+        ]);
+    }
+    public function my_travels(Request $request)
+    {
+        $user= auth()->user();
+        $travels=$user->travels()->latest()->get();
+        return view('home.my_travels', compact(['user','travels']));
+    }
+    public function travel_active(Request $request ,Travel $travel)
+    {
+        $user= auth()->user();
+
+        if($user->id != $travel->user->id){
+            alert()->error('سازنده این سفر شما نیستید');
+            return back();
+        }
+        if($travel->active){
+            $travel->update(['active'=>'0']);
+            alert()->success('سفر با موفقیت غیر فعال شد ');
+
+        }else{
+            $travel->update(['active'=>'1']);
+            alert()->success('سفر با موفقیت  فعال شد ');
+        }
+     return redirect()->back();
+    }
+    public function travel_destroy(Request $request ,Travel $travel)
+    {
+        $user= auth()->user();
+
+        if($user->id != $travel->user->id){
+            alert()->error('سازنده این سفر شما نیستید');
+            return back();
+        }
+        $travel->delete();
+        alert()->success('سفر با موفقیت حذف شد');
+     return redirect()->back();
     }
 }

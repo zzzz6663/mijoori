@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/home/css/style.css">
     <link rel="stylesheet" href="/css/iziToast.css">
-    <link rel="stylesheet" href="/css/persian-datepicker.css">
+    {{-- <link rel="stylesheet" href="/css/persian-datepicker.min.css"> --}}
     <link rel="stylesheet" href="/css/jquery.loadingModal.css">
     <link rel="stylesheet" href="/css/css.css">
 

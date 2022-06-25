@@ -11,16 +11,155 @@
 
 window.onload = function() {
     if (window.jQuery) {
-        // $('.img_pre').onchange = evt => {
-        // console.log(11)
+        $('#new_travel').click(function(){
+            $(".error").html('');
+            $(".error").removeClass("error");
+            var validator=   $("#travel_form").validate({
+                rules: {
+                    city_id: {
+                        required: true,
 
-        //     const [file] = $(this).files
-        //     let par = $(this).closest('.avatar-pop')
-        //     if (file) {
-        //         console.log(22)
-        //         $('#bl').src = URL.createObjectURL(file)
-        //     }
-        //   }
+                    },
+                    start: {
+                        required: true,
+
+                    },
+                    end: {
+                        required: true,
+
+                    },
+                    count: {
+                        required: true,
+
+                    },
+                    gender: {
+                        required: true,
+
+                    },
+                },
+                messages: {
+                    city_id: {
+                        required: "     شهر مقصد خود را  انتخاب کنید  ",
+                    },
+                    start: {
+                        required: "         تاریخ شروع سفر را  انتخاب کنید  ",
+                    },
+                    end: {
+                        required: "         تاریخ پایان سفر را  انتخاب کنید  ",
+                    },
+                    count: {
+                        required: "               تعداد همراه خود را   انتخاب کنید  ",
+                    },
+                    gender: {
+                        required: "       جنسیت را انتخاب کنید   ",
+                    },
+                    }
+
+            });
+
+            if(!$("#travel_form").valid()){   // test for validity
+                noty('       همه ورودی ها را به درستی وارد کنید   ', 'red', '');
+              return false;
+            }
+
+            var form_data = new FormData($('#travel_form')[0]);
+
+            console.log(form_data);
+            load_animation()
+            $.ajax('/admin/new_travel',{
+                headers:{
+                    'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
+                    // 'Content-Type':'application/json,charset=utf-8'
+                },
+                type:'post',
+                data:  form_data,
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false,
+                datatype:'json',
+                success:function (data) {
+                    stop_animation()
+                    console.log(data);
+                    if(data.status=='ok'){
+                        noty('    اطلاعات با موفقیت ثبت شد', 'green', '');
+                        setTimeout(
+                            function()
+                            {
+                                location.href = '/my_travels';
+                            }, 2000);
+                    }else{
+                        for (const item in  data) {
+                            console.log(item);
+                            console.log( data[item]);
+                            noty(   data[item], 'red', '');
+                            break;
+                        }
+                    }
+
+                },
+                error: function (request, status, error) {
+                    console.log(request);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
+                }
+          })
+
+
+
+         })
+
+
+
+
+        if ($('.range_to').length) {
+            console.log(80)
+
+            var to, from;
+            to = $(".range_to").persianDatepicker({
+                initialValue: false,
+                persianDigit: false,
+                format: 'YYYY-MM-DD',
+                autoClose: true,
+                initialValueType: 'gregorian',
+                calendar: {
+                  persian: {
+                    local: 'fa'
+                  }
+                },
+                onSelect: function (unix) {
+                    to.touched = true;
+                    if (from && from.options && from.options.maxDate != unix) {
+                        var cachedValue = from.getState().selected.unixDate;
+                        from.options = {maxDate: unix};
+                        if (from.touched) {
+                            from.setDate(cachedValue);
+                        }
+                    }
+                }
+            });
+            from = $(".range_from").persianDatepicker({
+                initialValue: false,
+                persianDigit: false,
+                format: 'YYYY-MM-DD',
+                autoClose: true,
+                initialValueType: 'gregorian',
+                calendar: {
+                  persian: {
+                    local: 'fa'
+                  }
+                },
+                onSelect: function (unix) {
+                    from.touched = true;
+                    if (to && to.options && to.options.minDate != unix) {
+                        var cachedValue = to.getState().selected.unixDate;
+                        to.options = {minDate: unix};
+                        if (to.touched) {
+                            to.setDate(cachedValue);
+                        }
+                    }
+                }
+            });
+
+        }
         if ($('.persian').length) {
             console.log(8080)
             $(".persian").persianDatepicker({
@@ -37,6 +176,9 @@ window.onload = function() {
             });
           }
 
+        $('#travel_pop_but').click(function(){
+            $('#make_travel').show(400)
+        });
         $('#send_be_guid3').click(function(){
             $(".error").html('');
             $(".error").removeClass("error");

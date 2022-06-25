@@ -120,20 +120,6 @@
 
                         </div>
                     </div>
-                    @if ($user->travels()->count()>0)
-                    <div class="row">
-                        <div class="col-lg-3">
-                               سفر ها
-                        </div>
-                        <div class="col-lg-9">
-                            <span class="text-center">
-                                <a class="btn btn-warning curve" href="{{route('travel.index',['mobile'=>$user->mobile])}}">سفر ها</a>
-                            </span>
-                        </div>
-                    </div>
-                    @endif
-                    <br>
-
                     <div class="row">
                         <div class="col-lg-3">
                              وضعیت  راهنما

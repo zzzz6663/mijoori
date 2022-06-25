@@ -74,6 +74,9 @@
                               @role('admin|manager')
                                    <a class="btn btn-info curve" href="{{route('user.edit',$user->id)}}">ویرایش</a>
                                 @endrole
+                                @if ($user->travels()->count()>0)
+                                <a class="btn btn-warning curve" href="{{route('travel.index',['mobile'=>$user->mobile])}}">سفر ها</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

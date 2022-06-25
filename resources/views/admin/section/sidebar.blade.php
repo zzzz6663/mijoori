@@ -81,6 +81,13 @@
 
             </li>
             <li>
+                <a href="{{route('travel.index')}}" class="{{Request::url()== route( 'travel.index')?'current':''}}">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>  سفر ها</span>
+                </a>
+
+            </li>
+            <li>
                 <a href="{{route('logout')}}" class="{{Request::url()== route( 'logout')?'current':''}}">
                     <span aria-hidden="true" class="icon-logout"></span>
                     <span>  خروج</span>

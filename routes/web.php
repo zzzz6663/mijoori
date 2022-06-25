@@ -21,6 +21,14 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::post('/be_guid_form_1', 'UserController@be_guid_form_1')->name('user.be.guid.form.1');
     Route::post('/be_guid_form_2', 'UserController@be_guid_form_2')->name('user.be.guid.form.2');
     Route::post('/be_guid_form_3', 'UserController@be_guid_form_3')->name('user.be.guid.form.3');
+    Route::post('/new_travel', 'UserController@new_travel')->name('user.new.travel');
+});
+
+Route::namespace('admin')->middleware(['auth'])->group(function () {
+    Route::get('/my_travels', 'UserController@my_travels')->name('user.my.travels');
+    Route::get('/travel_active/{travel}', 'UserController@travel_active')->name('user.travel.active');
+    Route::get('/travel_destroy/{travel}', 'UserController@travel_destroy')->name('user.travel.destroy');
+
 });
 
 
@@ -30,6 +38,10 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::resource('user', 'UserController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('province', 'ProvinceController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('agent', 'AgentController')->middleware(['role:admin|manager|analyzer']);
+
+    Route::get('/travel_confirm/{travel}', 'TravelController@travel_confirm')->name('travel.confirm')->middleware(['role:admin|manager']);
+    Route::resource('travel', 'TravelController')->middleware(['role:admin|manager|analyzer']);
+    Route::resource('chat', 'ChatController')->middleware(['role:admin|manager|analyzer']);
 });
 
 
@@ -39,3 +51,5 @@ Route::get('/clear', 'HomeController@clear')->name('clear');
 Route::post('/send_verify_code', 'HomeController@send_verify_code');
 Route::post('/auth_login', 'HomeController@auth_login');
 Route::get('/logout', 'HomeController@logout')->name('logout');
+
+

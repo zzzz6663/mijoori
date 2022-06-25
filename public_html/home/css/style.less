@@ -1681,42 +1681,7 @@ body{
 		overflow: auto;
 		box-shadow: 0 3px 6px rgba(0, 0, 0, 1.0);
 		position: relative;
-		.error{
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			border-radius: 34px;
-			background: rgba(135, 135, 135, .9);
-			z-index: 2;
-			.error-close{
-				position: absolute;
-				width: 22px;
-				height: 22px;
-				background: #fff;
-				border-radius: 50%;
-				left: 20px;
-				top: 20px;
-				line-height: 22px;
-			}
-			.text{
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 50%;
-				line-height: 38px;
-				transform: translateY(-50%);
-				span{
-					display: inline-block;
-					background: #fff;
-					padding: 0 55px;
-					border-radius: 19px;
-					font-size: 16px;
-					color: #662683;
-				}
-			}
-		}
+		
 		&.class-list-pop{
 
 			width: 1290px;
@@ -4913,6 +4878,7 @@ body{
 		}
 		label{
 			font-size: 14px !important;
+			cursor: pointer;
 		}
 		.rect{
 			display: inline-block;
@@ -4922,6 +4888,24 @@ body{
 			border: 1px solid #b4b4b4;
 			vertical-align: middle;
 			background: #fff;
+			position: relative;
+			&:before{
+				content: "";
+				width: 10px;
+				height: 5px;
+				border-right: 2px solid #fff;
+				border-top: 2px solid #fff;
+				position: absolute;
+				left: 5px;
+				top: 6px;
+				transform: rotate(135deg);
+
+			}
+		}
+		input:checked ~ label{
+			.rect{
+				background: @theme;
+			}
 		}
 	}
 }
@@ -5871,7 +5855,7 @@ body{
 	}
 	.make-offer-content{
 		margin-right: 420px;
-
+		overflow: hidden;
 		background: #fff;
 		box-shadow: 0 3px 6px rgba(180, 180, 180, 1.0);
 		margin-bottom: 30px;
@@ -6277,6 +6261,25 @@ body{
 				color: #B4B4B4;
 			}
 		}
+		&.rev{
+			direction: ltr;
+			.img{
+				float: left;
+			}
+			.left{
+				margin-right: 0px;
+				margin-left: 106px;
+				.msg{
+					direction: rtl;
+					&:before{
+					transform: rotate(135deg);
+						
+						right: unset;
+						left: -5px;
+					}
+				}
+			}
+		}
 	}
 	@media @media1300{
 		margin-right: 380px;
@@ -6308,6 +6311,47 @@ body{
 					font-size: 15px;
 				}
 			}
+			&.rev{
+				.left{
+				margin-left: 82px;
+
+				}
+
+			}
+		}
+	}
+}
+.guide-notifs{
+	margin-right: 420px;
+	padding-bottom: 100px;
+	text-align: center;
+	.guide-notif{
+		display: inline-block;
+		background: #8c5ca2;
+		color: #fff;
+		padding: 15px 20px;
+		margin-bottom: 48px;
+		min-width: 490px;
+		p{
+			text-align: center;
+		color: #fff;
+		font-size: 18px;
+		}
+		.date{
+			display: block;
+			text-align: left;
+			font-size: 14px;
+		}
+	}
+	@media @media1300{
+		margin-right: 380px;
+	}
+	@media @media1000{
+		margin-right: 0px;
+		padding-bottom: 40px;
+		.guide-notif{
+			min-width: 100%;
+
 		}
 	}
 }
@@ -6566,3 +6610,189 @@ body{
 
 }
 // End Messages
+
+// Start My trips And Exps
+#myexps,
+#mytrips{
+	padding: 50px 0;
+}
+.bg-center-title{
+	text-align: center;
+	padding: 23px 15px;
+	background: #e6e6e6;
+	line-height: 40px;
+	margin-bottom: 52px;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6{
+		margin-bottom: 0;
+		font-size: 22px;
+		color: #000000;
+	}
+}
+.singl-my-exp,
+.single-my-trip{
+	margin-bottom: 50px;
+	div.img{
+		position: relative;
+		img{
+			width: 100%;
+		}
+		.cap{
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 20px 40px;
+			line-height: 36px;
+			background: rgba(62, 62, 62, .6);
+			overflow: hidden;
+					color: #fff;
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6{
+				margin-bottom: 0;
+				font-size: 22px;
+				float: right;
+					color: #fff;
+				a{
+					color: #fff;
+				}
+			}
+			.icon{
+				float: left;
+			}
+		}
+	}
+	.dets{
+		border: 1px solid #b4b4b4;
+		border-top: none;
+		padding: 0px 32px;
+		.date-action{
+			border-bottom: 1px solid #b4b4b4;
+			overflow: hidden;
+			padding: 10px 0;
+			line-height: 34px;
+			color: #757575;
+			.date{
+				float: right;
+				font-size: 17px;
+				font-weight: bold;
+			}
+			.actions{
+				float: left;
+				font-size: 17px;
+				font-weight: bold;
+				color: #B4B4B4;
+				a,button{
+					color: #B4B4B4;
+					border: none;
+					display: inline-block;
+					padding: 0;
+					border: none;
+					&:hover{
+						color: @theme;
+					}
+				}
+				span{
+					display: inline-block;
+					padding: 0 10px;
+				}
+			}
+
+		}
+		.numbers{
+			border-bottom: 1px solid #b4b4b4;
+			overflow: hidden;
+			padding: 10px 0;
+			line-height: 34px;
+			color: #757575;
+			font-weight: bold;
+				font-size: 17px;
+			.title{
+				color: #b4b4b4;
+			}
+		}
+		.offers{
+			padding: 10px 0;
+			h4{
+				font-size: 17px;
+				color: #662683;
+			}
+			ul{
+				li{
+					display: inline-block;
+					margin: 0 0 10px 8px;
+					img{
+						width: 60px;
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+	}
+	@media @media1000{
+		margin-bottom: 30px;
+		div.img{
+			
+			.cap{
+				padding: 10px 20px;
+				line-height: 30px;
+				h1,
+				h2,
+				h3,
+				h4,
+				h5,
+				h6{
+					font-size: 18px;
+				}
+			}
+		}
+		.dets{
+			padding: 0px 20px;
+			.date-action{
+				padding: 5px 0;
+				line-height: 30px;
+				.date{
+					font-size: 15px;
+				}
+				.actions{
+					font-size: 15px;
+				}
+
+			}
+			.numbers{
+				overflow: hidden;
+				padding: 5px 0;
+				line-height: 30px;
+					font-size: 15px;
+			}
+			.offers{
+				padding: 5px 0;
+				h4{
+					font-size: 15px;
+				}
+				ul{
+					li{
+						margin: 0 0 7px 5px;
+						img{
+							width: 40px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.singl-my-exp{
+	.dets .numbers{
+		border-bottom: none;
+	}
+}
+// End My trips And Exps

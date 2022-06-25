@@ -15,4 +15,7 @@ class City extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+    public function travel(){
+        return $this->hasOne(Travel::class);
+    }
 }

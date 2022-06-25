@@ -71,6 +71,12 @@ class User extends Authenticatable
     public function province(){
         return $this->belongsTo(Province::class);
     }
+    public function host_travels(){
+        return $this->hasMany(Travel::class,'host_id');
+    }
+    public function travels(){
+        return $this->hasMany(Travel::class);
+    }
 
 
 

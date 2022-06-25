@@ -1977,7 +1977,9 @@ body {
   box-shadow: 0 3px 6px #000000;
   position: relative;
 }
-/* .pop .pop-content .error {
+/* }
+
+.pop .pop-content .error {
   position: absolute;
   left: 0;
   right: 0;
@@ -1986,7 +1988,7 @@ body {
   border-radius: 34px;
   background: rgba(135, 135, 135, 0.9);
   z-index: 2;
-} */
+}
 .pop .pop-content .error .error-close {
   position: absolute;
   width: 22px;
@@ -2012,7 +2014,7 @@ body {
   border-radius: 19px;
   font-size: 16px;
   color: #662683;
-}
+} */
 .pop .pop-content.class-list-pop {
   width: 1290px;
   max-width: 96%;
@@ -5202,6 +5204,7 @@ body {
 }
 .checkbox-list .checkcontainer label {
   font-size: 14px !important;
+  cursor: pointer;
 }
 .checkbox-list .checkcontainer .rect {
   display: inline-block;
@@ -5211,6 +5214,21 @@ body {
   border: 1px solid #b4b4b4;
   vertical-align: middle;
   background: #fff;
+  position: relative;
+}
+.checkbox-list .checkcontainer .rect:before {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-right: 2px solid #fff;
+  border-top: 2px solid #fff;
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  transform: rotate(135deg);
+}
+.checkbox-list .checkcontainer input:checked ~ label .rect {
+  background: #01b97f;
 }
 .icon-input {
   position: relative;
@@ -6093,6 +6111,7 @@ body {
 }
 #make-offer .make-offer-content {
   margin-right: 420px;
+  overflow: hidden;
   background: #fff;
   box-shadow: 0 3px 6px #b4b4b4;
   margin-bottom: 30px;
@@ -6489,6 +6508,24 @@ body {
   font-weight: bold;
   color: #B4B4B4;
 }
+.make-offer-content-msg .offer-content-msg.rev {
+  direction: ltr;
+}
+.make-offer-content-msg .offer-content-msg.rev .img {
+  float: left;
+}
+.make-offer-content-msg .offer-content-msg.rev .left {
+  margin-right: 0px;
+  margin-left: 106px;
+}
+.make-offer-content-msg .offer-content-msg.rev .left .msg {
+  direction: rtl;
+}
+.make-offer-content-msg .offer-content-msg.rev .left .msg:before {
+  transform: rotate(135deg);
+  right: unset;
+  left: -5px;
+}
 @media only screen and (max-width: 1300px) {
   .make-offer-content-msg {
     margin-right: 380px;
@@ -6519,6 +6556,46 @@ body {
   }
   .make-offer-content-msg .offer-content-msg .left .msg-time {
     font-size: 15px;
+  }
+  .make-offer-content-msg .offer-content-msg.rev .left {
+    margin-left: 82px;
+  }
+}
+.guide-notifs {
+  margin-right: 420px;
+  padding-bottom: 100px;
+  text-align: center;
+}
+.guide-notifs .guide-notif {
+  display: inline-block;
+  background: #8c5ca2;
+  color: #fff;
+  padding: 15px 20px;
+  margin-bottom: 48px;
+  min-width: 490px;
+}
+.guide-notifs .guide-notif p {
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+.guide-notifs .guide-notif .date {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+}
+@media only screen and (max-width: 1300px) {
+  .guide-notifs {
+    margin-right: 380px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .guide-notifs {
+    margin-right: 0px;
+    padding-bottom: 40px;
+  }
+  .guide-notifs .guide-notif {
+    min-width: 100%;
   }
 }
 #make-offer .pop-content {
@@ -6754,4 +6831,232 @@ body {
     font-size: 16px;
     padding-right: 0px;
   }
+}
+#myexps,
+#mytrips {
+  padding: 50px 0;
+}
+.bg-center-title {
+  text-align: center;
+  padding: 23px 15px;
+  background: #e6e6e6;
+  line-height: 40px;
+  margin-bottom: 52px;
+}
+.bg-center-title h1,
+.bg-center-title h2,
+.bg-center-title h3,
+.bg-center-title h4,
+.bg-center-title h5,
+.bg-center-title h6 {
+  margin-bottom: 0;
+  font-size: 22px;
+  color: #000000;
+}
+.singl-my-exp,
+.single-my-trip {
+  margin-bottom: 50px;
+}
+.singl-my-exp div.img,
+.single-my-trip div.img {
+  position: relative;
+}
+.singl-my-exp div.img img,
+.single-my-trip div.img img {
+  width: 100%;
+}
+.singl-my-exp div.img .cap,
+.single-my-trip div.img .cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 40px;
+  line-height: 36px;
+  background: rgba(62, 62, 62, 0.6);
+  overflow: hidden;
+  color: #fff;
+}
+.singl-my-exp div.img .cap h1,
+.single-my-trip div.img .cap h1,
+.singl-my-exp div.img .cap h2,
+.single-my-trip div.img .cap h2,
+.singl-my-exp div.img .cap h3,
+.single-my-trip div.img .cap h3,
+.singl-my-exp div.img .cap h4,
+.single-my-trip div.img .cap h4,
+.singl-my-exp div.img .cap h5,
+.single-my-trip div.img .cap h5,
+.singl-my-exp div.img .cap h6,
+.single-my-trip div.img .cap h6 {
+  margin-bottom: 0;
+  font-size: 22px;
+  float: right;
+  color: #fff;
+}
+.singl-my-exp div.img .cap h1 a,
+.single-my-trip div.img .cap h1 a,
+.singl-my-exp div.img .cap h2 a,
+.single-my-trip div.img .cap h2 a,
+.singl-my-exp div.img .cap h3 a,
+.single-my-trip div.img .cap h3 a,
+.singl-my-exp div.img .cap h4 a,
+.single-my-trip div.img .cap h4 a,
+.singl-my-exp div.img .cap h5 a,
+.single-my-trip div.img .cap h5 a,
+.singl-my-exp div.img .cap h6 a,
+.single-my-trip div.img .cap h6 a {
+  color: #fff;
+}
+.singl-my-exp div.img .cap .icon,
+.single-my-trip div.img .cap .icon {
+  float: left;
+}
+.singl-my-exp .dets,
+.single-my-trip .dets {
+  border: 1px solid #b4b4b4;
+  border-top: none;
+  padding: 0px 32px;
+}
+.singl-my-exp .dets .date-action,
+.single-my-trip .dets .date-action {
+  border-bottom: 1px solid #b4b4b4;
+  overflow: hidden;
+  padding: 10px 0;
+  line-height: 34px;
+  color: #757575;
+}
+.singl-my-exp .dets .date-action .date,
+.single-my-trip .dets .date-action .date {
+  float: right;
+  font-size: 17px;
+  font-weight: bold;
+}
+.singl-my-exp .dets .date-action .actions,
+.single-my-trip .dets .date-action .actions {
+  float: left;
+  font-size: 17px;
+  font-weight: bold;
+  color: #B4B4B4;
+}
+.singl-my-exp .dets .date-action .actions a,
+.single-my-trip .dets .date-action .actions a,
+.singl-my-exp .dets .date-action .actions button,
+.single-my-trip .dets .date-action .actions button {
+  color: #B4B4B4;
+  display: inline-block;
+  padding: 0;
+  border: none;
+}
+.singl-my-exp .dets .date-action .actions a:hover,
+.single-my-trip .dets .date-action .actions a:hover,
+.singl-my-exp .dets .date-action .actions button:hover,
+.single-my-trip .dets .date-action .actions button:hover {
+  color: #01b97f;
+}
+.singl-my-exp .dets .date-action .actions span,
+.single-my-trip .dets .date-action .actions span {
+  display: inline-block;
+  padding: 0 10px;
+}
+.singl-my-exp .dets .numbers,
+.single-my-trip .dets .numbers {
+  border-bottom: 1px solid #b4b4b4;
+  overflow: hidden;
+  padding: 10px 0;
+  line-height: 34px;
+  color: #757575;
+  font-weight: bold;
+  font-size: 17px;
+}
+.singl-my-exp .dets .numbers .title,
+.single-my-trip .dets .numbers .title {
+  color: #b4b4b4;
+}
+.singl-my-exp .dets .offers,
+.single-my-trip .dets .offers {
+  padding: 10px 0;
+}
+.singl-my-exp .dets .offers h4,
+.single-my-trip .dets .offers h4 {
+  font-size: 17px;
+  color: #662683;
+}
+.singl-my-exp .dets .offers ul li,
+.single-my-trip .dets .offers ul li {
+  display: inline-block;
+  margin: 0 0 10px 8px;
+}
+.singl-my-exp .dets .offers ul li img,
+.single-my-trip .dets .offers ul li img {
+  width: 60px;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 1000px) {
+  .singl-my-exp,
+  .single-my-trip {
+    margin-bottom: 30px;
+  }
+  .singl-my-exp div.img .cap,
+  .single-my-trip div.img .cap {
+    padding: 10px 20px;
+    line-height: 30px;
+  }
+  .singl-my-exp div.img .cap h1,
+  .single-my-trip div.img .cap h1,
+  .singl-my-exp div.img .cap h2,
+  .single-my-trip div.img .cap h2,
+  .singl-my-exp div.img .cap h3,
+  .single-my-trip div.img .cap h3,
+  .singl-my-exp div.img .cap h4,
+  .single-my-trip div.img .cap h4,
+  .singl-my-exp div.img .cap h5,
+  .single-my-trip div.img .cap h5,
+  .singl-my-exp div.img .cap h6,
+  .single-my-trip div.img .cap h6 {
+    font-size: 18px;
+  }
+  .singl-my-exp .dets,
+  .single-my-trip .dets {
+    padding: 0px 20px;
+  }
+  .singl-my-exp .dets .date-action,
+  .single-my-trip .dets .date-action {
+    padding: 5px 0;
+    line-height: 30px;
+  }
+  .singl-my-exp .dets .date-action .date,
+  .single-my-trip .dets .date-action .date {
+    font-size: 15px;
+  }
+  .singl-my-exp .dets .date-action .actions,
+  .single-my-trip .dets .date-action .actions {
+    font-size: 15px;
+  }
+  .singl-my-exp .dets .numbers,
+  .single-my-trip .dets .numbers {
+    overflow: hidden;
+    padding: 5px 0;
+    line-height: 30px;
+    font-size: 15px;
+  }
+  .singl-my-exp .dets .offers,
+  .single-my-trip .dets .offers {
+    padding: 5px 0;
+  }
+  .singl-my-exp .dets .offers h4,
+  .single-my-trip .dets .offers h4 {
+    font-size: 15px;
+  }
+  .singl-my-exp .dets .offers ul li,
+  .single-my-trip .dets .offers ul li {
+    margin: 0 0 7px 5px;
+  }
+  .singl-my-exp .dets .offers ul li img,
+  .single-my-trip .dets .offers ul li img {
+    width: 40px;
+  }
+}
+.singl-my-exp .dets .numbers {
+  border-bottom: none;
 }

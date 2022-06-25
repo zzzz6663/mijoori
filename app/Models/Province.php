@@ -19,6 +19,9 @@ class Province extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+    public function travel(){
+        return $this->hasOne(Travel::class);
+    }
     public function image(){
         if($this->image){
             return asset('/media/province/'.$this->image);
