@@ -1,4 +1,14 @@
-var path='/chapapp/'
+
+
+
+
+
+
+
+
+
+
+
 function escapeHtml(text) {
     if (text.length>0){
         return text.trim()

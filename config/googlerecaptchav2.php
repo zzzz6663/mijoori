@@ -46,7 +46,7 @@ return [
     | Google reCAPTCHA host name, https://www.google.com/recaptcha/admin
     |
     */
-    'host_name' => '127.0.0.1:8000',
+    'host_name' => 'https://www.mejoori.com/',
     /*
     |--------------------------------------------------------------------------
     | Secret Key

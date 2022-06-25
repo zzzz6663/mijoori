@@ -1,14 +1,14 @@
 
 @extends('main.manager')
    @section('content')
-    @include('main.breadcrumbs')
+   {{ Breadcrumbs::render('province.index') }}
     <div class="col-lg-12">
         <div class="portlet box border shadow">
             <div class="portlet-heading">
                 <div class="portlet-title">
                     <h3 class="title">
                         <i class="icon-frane"></i>
-                        جدول کاربران
+                        جدول استان ها
                     </h3>
                 </div><!-- /.portlet-title -->
                 <div class="buttons-box">
@@ -63,10 +63,11 @@
                             </td>
                             <td>
 
-
+                                @role('admin|manager')
                                 <a class="btn btn-primary curve" href="{{route('province.edit',$province->id)}}">
                                     عکس
                                 </a>
+@endrole
                                 @if ($province->image())
                                 <a  class="btn btn-secondary curve" href="{{$province->image()}}" data-lightbox="image-1" data-title="My caption">مشاهده   </a>
 
@@ -89,5 +90,5 @@
         </div><!-- /.portlet -->
     </div>
 
-    
+
    @endsection

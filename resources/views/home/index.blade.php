@@ -1,5 +1,6 @@
-@extends('main.home')
+@extends('main.site')
    @section('content')
+
    <div id="search-section" class="rows">
     <div class="container">
         <div class="row">
@@ -32,6 +33,7 @@
                         </form>
                         <div class="caption">
                             <p>
+
                                 پربازدیدترین مقصدها:
                                 <span>تهران، اصفهان، شیراز، مشهد، کیش</span>
                             </p>
@@ -60,12 +62,14 @@
             </div>
         </div>
         <div class="row">
+@foreach ($guids as $guid )
+
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div>
                     <div class="single-host-det">
                         <div class="img">
                             <a href="#">
-                                <img src="/home/images/mizb1.jpg" alt="">
+                                <img src="{{$guid->avatar()}}" alt="">
                             </a>
                             <button class="like">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="27.721" height="25.217" viewBox="0 0 27.721 25.217">
@@ -75,8 +79,8 @@
 
                             <div class="info">
                                 <div class="top">
-                                    <h4><a href="#">مونا اژدری پاک</a></h4>
-                                    <span class="city">کرمانشاه</span>
+                                    <h4><a href="#">    {{$guid->name}} {{$guid->family}}</a></h4>
+                                    <span class="city">{{$guid->province?$guid->province->name:''}}</span>
                                 </div>
                                 <ul>
                                     <li>
@@ -124,202 +128,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div>
-                    <div class="single-host-det">
-                        <div class="img">
-                            <a href="#">
-                                <img src="/home/images/mizb2.jpg" alt="">
-                            </a>
-
-                            <button class="like">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="27.721" height="25.217" viewBox="0 0 27.721 25.217">
-                                    <path id="Path_30" data-name="Path 30" d="M308.094,370.632l-10.486,10.487-10.486-10.487c-3.964-3.636-3.507-9.605-.249-12.147,2.831-2.209,7.735-1.8,10.735,1.661,2.978-3.563,8.109-3.874,11.021-1.361C311.806,361.527,311.973,367.313,308.094,370.632Z" transform="translate(-283.789 -356.608)" fill="#fff" stroke="#000" stroke-width="1"></path>
-                                </svg>
-                            </button>
-                            <div class="info">
-                                <div class="top">
-                                    <h4><a href="#">مونا اژدری پاک</a></h4>
-                                    <span class="city">کرمانشاه</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <span class="right">
-                                            <span class="rate">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="price"> 50/000 تومان</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="right">
-                                            <span class="day">
-                                                6 دیدگاه
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="time">
-                                                روزانه
-                                            </span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <p>این مجموعه پس از سال ها جمع آوری و کنار هم قراردادن از بهترین ها، ایجاد شده است</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@endforeach
 
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div>
-                    <div class="single-host-det">
-                        <div class="img">
-                            <a href="#">
-                                <img src="/home/images/mizb3.jpg" alt="">
-                            </a>
-                            <button class="like">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="27.721" height="25.217" viewBox="0 0 27.721 25.217">
-                                    <path id="Path_30" data-name="Path 30" d="M308.094,370.632l-10.486,10.487-10.486-10.487c-3.964-3.636-3.507-9.605-.249-12.147,2.831-2.209,7.735-1.8,10.735,1.661,2.978-3.563,8.109-3.874,11.021-1.361C311.806,361.527,311.973,367.313,308.094,370.632Z" transform="translate(-283.789 -356.608)" fill="#fff" stroke="#000" stroke-width="1"></path>
-                                </svg>
-                            </button>
-
-                            <div class="info">
-                                <div class="top">
-                                    <h4><a href="#">مونا اژدری پاک</a></h4>
-                                    <span class="city">کرمانشاه</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <span class="right">
-                                            <span class="rate">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="price"> 50/000 تومان</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="right">
-                                            <span class="day">
-                                                6 دیدگاه
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="time">
-                                                روزانه
-                                            </span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <p>این مجموعه پس از سال ها جمع آوری و کنار هم قراردادن از بهترین ها، ایجاد شده است</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div>
-                    <div class="single-host-det">
-                        <div class="img">
-                            <a href="#">
-                                <img src="/home/images/mizb4.jpg" alt="">
-                            </a>
-
-                            <button class="like">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="27.721" height="25.217" viewBox="0 0 27.721 25.217">
-                                    <path id="Path_30" data-name="Path 30" d="M308.094,370.632l-10.486,10.487-10.486-10.487c-3.964-3.636-3.507-9.605-.249-12.147,2.831-2.209,7.735-1.8,10.735,1.661,2.978-3.563,8.109-3.874,11.021-1.361C311.806,361.527,311.973,367.313,308.094,370.632Z" transform="translate(-283.789 -356.608)" fill="#fff" stroke="#000" stroke-width="1"></path>
-                                </svg>
-                            </button>
-                            <div class="info">
-                                <div class="top">
-                                    <h4><a href="#">مونا اژدری پاک</a></h4>
-                                    <span class="city">کرمانشاه</span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <span class="right">
-                                            <span class="rate">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                    <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="price"> 50/000 تومان</span>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="right">
-                                            <span class="day">
-                                                6 دیدگاه
-                                            </span>
-                                        </span>
-                                        <span class="left">
-                                            <span class="time">
-                                                روزانه
-                                            </span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="text">
-                            <p>این مجموعه پس از سال ها جمع آوری و کنار هم قراردادن از بهترین ها، ایجاد شده است</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -345,13 +156,15 @@
             <div class="col-lg-12">
                 <div>
                     <ul class="fave-hosts-list owl-carousel owl-theme side-nav">
+                        @foreach ($provinces as $province )
+
                         <li>
                             <div class="single-city">
                                 <div class="img">
                                     <a href="#">
-                                        <img src="/home/images/city1.jpg" alt="">
+                                        <img src="{{$province->image()}}" alt="">
                                     </a>
-                                    <h4><a href="#">تهارن</a></h4>
+                                    <h4><a href="#">{{$province->name}}</a></h4>
                                 </div>
 
                             </div>
@@ -360,29 +173,7 @@
                             <div class="single-city">
                                 <div class="img">
                                     <a href="#">
-                                        <img src="/home/images/city2.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">مشهد</a></h4>
-                                </div>
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="/home/images/city3.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">شیراز</a></h4>
-                                </div>
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="/home/images/city4.jpg" alt="">
+                                        <img src="images/city4.jpg" alt="">
                                     </a>
                                     <h4><a href="#">اصفهان</a></h4>
                                 </div>
@@ -393,46 +184,16 @@
                             <div class="single-city">
                                 <div class="img">
                                     <a href="#">
-                                        <img src="/home/images/city1.jpg" alt="">
+                                        <img src="images/city1.jpg" alt="">
                                     </a>
                                     <h4><a href="#">تهارن</a></h4>
                                 </div>
 
                             </div>
                         </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="/home/images/city2.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">مشهد</a></h4>
-                                </div>
+                        @endforeach
 
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="/home/images/city3.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">شیراز</a></h4>
-                                </div>
 
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="/home/images/city4.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">اصفهان</a></h4>
-                                </div>
-
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>

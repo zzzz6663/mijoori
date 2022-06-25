@@ -41,6 +41,7 @@ class User extends Authenticatable
         'melli_back',//عکس پشت کارت ملی
         'tourism',//عکس کارت گردشکری
         'p_avatar',//تصویر پرسنلی
+        'active',//تایید راهنما
 
     ];
 

@@ -176,7 +176,37 @@
                             </div>
                         </div>
                     </div>
+                    @auth
+                    <div class="urusea v2">
+                        <a href="#">
+                            <span class="icon">
+                                <img src="{{auth()->user()->avatar()}}" alt="">
+                            </span>
+                            <span class="name">
+                                {{auth()->user()->name}}
+                                {{auth()->user()->family}}
 
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6">
+                              <path id="Polygon_3" data-name="Polygon 3" d="M4,0,8,6H0Z" transform="translate(8 6) rotate(180)" fill="#3e3e3e"></path>
+                            </svg>
+
+                        </a>
+                        <div class="drop">
+                            <div class="drop-container">
+
+                                <ul>
+                                    <li>
+                                        <a href="{{route('logout')}}">
+
+                                            <span class="text">  خروج </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @endauth
                     <div class="toggle-side-menu">
                         <a href="#menus" class="mmenu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="12"

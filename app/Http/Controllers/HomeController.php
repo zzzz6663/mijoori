@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
+    public  function  clear()
+    {
+   Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('optimize:clear');
+        Artisan::call('config:clear');
+        Artisan::call('optimize');
+    }
     public  function  logout()
     {
         alert()->success('خروج با موفقیت انجام شد ');
@@ -18,19 +27,20 @@ class HomeController extends Controller
         return redirect()->route('login');
     }
     public function index (){
-        Artisan::call('cache:clear');
-        Artisan::call('config:cache');
-        Artisan::call('view:clear');
+
         // $mobile= session()->get('mobile');
         // $user=User::create(['mobile'=>$mobile,'level'=>'customer']);
 
-
         $invitedUser = new User;
         // $invitedUser->notify(new SendKaveCode( '09373699317','login','1212','','','',''));
+$guids=User::whereLevel('customer')->where('guid','1')->where('active','1')->latest()->get();
+$provinces=Province::whereHas('users',function($query) {
+    $query->where('guid','1')->where('active','1');
 
+})->get();
+        $user= auth()->user();
 
-
-        return view('home.index');
+        return view('home.index',compact('user','guids','provinces'));
     }
     public function send_verify_code (Request $request){
         //            ارسال پیامک

@@ -8,16 +8,15 @@
             <div class="portlet-title">
                 <h3 class="title">
                     <i class="icon-frane"></i>
-                    جدول کاربران
+                    جدول همکاران
                 </h3>
             </div><!-- /.portlet-title -->
             <div class="buttons-box">
-
+                <a href="{{route('agent.create')}}" class="btn btn-success curve">همکار جدید</a>
             </div><!-- /.buttons-box -->
         </div><!-- /.portlet-heading -->
         <div class="portlet-body">
-            <form action="">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-3">
                         <div class="form-group row">
                             <label class="col-sm-3">جست و جو</label>
@@ -35,9 +34,8 @@
                         </div>
                     </div>
                 </form>
-                </div>
+                </div> --}}
 
-            </form>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -47,8 +45,9 @@
                             <th><i class="icon-energy"></i></th>
                             <th>نام</th>
                             <th>همراه </th>
+                            <th>رمز </th>
+                            <th>سطح</th>
                             <th>ایمیل</th>
-                            <th>مکان </th>
                             <th>بیشتر</th>
 
                         </tr>
@@ -63,16 +62,23 @@
                                 {{$user->family}}
                             </td>
                             <td>{{$user->mobile}}</td>
+                            <td>{{$user->password}}</td>
+                            <td>{{__('arr.'.$user->level)}}</td>
                             <td>{{$user->email}}</td>
-                            <td>
-                                {{$user->province?$user->province->name:''}}
-                                {{$user->city?$user->city->name:''}}
-                            </td>
-                            <td>
 
-                            <a class="btn btn-primary curve" href="{{route('user.show',$user->id)}}">پروفایل</a>
-                              @role('admin|manager')
-                                   <a class="btn btn-info curve" href="{{route('user.edit',$user->id)}}">ویرایش</a>
+                            <td>
+                                @if ($user->avatar())
+                                <a  class="btn btn-secondary curve" href="{{$user->avatar()}}" data-lightbox="image-1" data-title="My caption">مشاهده   </a>
+                                @endif
+                                @role('admin|manager')
+                            <a class="btn btn-primary curve" href="{{route('agent.edit',$user->id)}}">ویرایش</a>
+                            @endrole
+                            @role('admin')
+                                <form action="{{route('agent.destroy' ,$user->id)}}" method="POST" style="display:inline" >
+                                @csrf
+                                @method('delete')
+                                <input type="submit"   onclick="return confirm('مایل به حذف هستید؟')" value="حذف" class="btn btn-danger curve">
+                                </form>
                                 @endrole
                             </td>
                         </tr>

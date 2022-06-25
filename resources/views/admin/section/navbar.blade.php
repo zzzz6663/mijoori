@@ -211,7 +211,7 @@
 
                 <li class="dropdown dropdown-user">
                     <a href="#" class="dropdown-toggle dropdown-hover" data-bs-toggle="dropdown">
-                        <img src="assets/images/user/48.png" alt="عکس پرفایل" class="img-circle img-responsive">
+                        <img src="{{auth()->user()->avatar()}}" alt="عکس پرفایل" class="img-circle img-responsive">
                         <span>.
 
                          {{auth()->user()->name}}

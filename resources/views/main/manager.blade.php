@@ -5,7 +5,6 @@
     <title>@yield('title')</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{{--    <meta name="csrf-token" content="{{@csrf_token()}}">--}}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -29,6 +28,7 @@
    <link href="/admin/assets/css/style.css" rel="stylesheet">
    <link href="/admin/assets/css/colors.css" rel="stylesheet">
    <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/persian-datepicker.css">
    <!-- END CSS -->
     {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
@@ -76,8 +76,12 @@
 <script src="/admin/assets/plugins/switchery/dist/switchery.js"></script>
 <script src="/admin/assets/js/core.js"></script>
 <script src="/admin/assets/js/lightbox.min.js"></script>
-
+<script src="/js/persian-date.min.js"></script>
+<script src="/js/persian-datepicker.min.js"></script>
   <script src="/admin/assets/js/pages/login.js"></script>
+  <script src="/js/fun.js"></script>
+  <script src="/js/js.js"></script>
+
   @include('sweetalert::alert')
 @yield('script')
 </body>

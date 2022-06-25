@@ -21,6 +21,21 @@ window.onload = function() {
         //         $('#bl').src = URL.createObjectURL(file)
         //     }
         //   }
+        if ($('.persian').length) {
+            console.log(8080)
+            $(".persian").persianDatepicker({
+              initialValue: true,
+              persianDigit: false,
+              format: 'YYYY-MM-DD',
+              autoClose: true,
+              initialValueType: 'gregorian',
+              calendar: {
+                persian: {
+                  local: 'fa'
+                }
+              }
+            });
+          }
 
         $('#send_be_guid3').click(function(){
             $(".error").html('');
@@ -50,6 +65,7 @@ window.onload = function() {
             form_data.append('file', file);
 
             console.log(form_data);
+            load_animation()
             $.ajax('/admin/be_guid_form_3',{
                 headers:{
                     'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
@@ -61,6 +77,8 @@ window.onload = function() {
                 processData: false,
                 datatype:'json',
                 success:function (data) {
+                    stop_animation()
+
                     console.log(data);
                     if(data.status=='ok'){
 
@@ -82,6 +100,8 @@ window.onload = function() {
                 },
                 error: function (request, status, error) {
                     console.log(error);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
 
@@ -155,6 +175,7 @@ window.onload = function() {
             var file =$('#melli_back')[0].files[0];;
             form_data.append('file', file);
             console.log(form_data);
+            load_animation()
             $.ajax('/admin/be_guid_form_2',{
                 headers:{
                     'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
@@ -167,6 +188,8 @@ window.onload = function() {
                 datatype:'json',
                 success:function (data) {
                     console.log(data);
+                    stop_animation()
+
                     if(data.status=='ok'){
                         $('.pop').hide(200);
                         $('#be_guid_pop_3').show(400);
@@ -182,6 +205,8 @@ window.onload = function() {
                 },
                 error: function (request, status, error) {
                     console.log(error);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
 
@@ -253,6 +278,7 @@ window.onload = function() {
             var file =$('#p_avatar')[0].files[0];;
             form_data.append('file', file);
             console.log(form_data);
+            load_animation()
             $.ajax('/admin/be_guid_form_1',{
                 headers:{
                     'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
@@ -265,6 +291,7 @@ window.onload = function() {
                 datatype:'json',
                 success:function (data) {
                     console.log(data);
+                    stop_animation()
                     if(data.status=='ok'){
                         $('.pop').hide(200);
                         $('#be_guid_pop_2').show(400);
@@ -280,6 +307,8 @@ window.onload = function() {
                 },
                 error: function (request, status, error) {
                     console.log(error);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
 
@@ -363,6 +392,7 @@ window.onload = function() {
             var file =$('#avatar')[0].files[0];;
             form_data.append('file', file);
             console.log(form_data);
+            load_animation()
             $.ajax('/admin/user_basic_info_update',{
                 headers:{
                     'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
@@ -375,6 +405,8 @@ window.onload = function() {
 
                 datatype:'json',
                 success:function (data) {
+                    stop_animation()
+
                     console.log(data);
                     if(data.status=='ok'){
                         noty('    اطلاعات با موفقیت ثبت شد', 'green', '');
@@ -398,6 +430,8 @@ window.onload = function() {
                       console.log(request);
                     console.log(status);
                     console.log(status);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
 
@@ -491,13 +525,16 @@ $(document).on("keyup", '.square1', function(e) {
         let code
 
         $('#send_code').click(function(){
-
             let mobile=$('#mobile').val();
             if(mobile.length !=11){
                 noty('        شماره همراه را به درستی وارد کنید  ', 'red', '');
                 return
             }
             let str={'mobile':mobile}
+            // console.log(document.head.querySelector('meta[name="csrf-token"]').content)
+            console.log(8080)
+            load_animation()
+
             $.ajax('/send_verify_code',{
                 type:'post',
                 data:  str,
@@ -507,6 +544,7 @@ $(document).on("keyup", '.square1', function(e) {
                 },
                 datatype:'json',
                 success:function (data) {
+                    stop_animation()
                     console.log(data);
                     code=data.code
                     // alert(code)
@@ -518,6 +556,8 @@ $(document).on("keyup", '.square1', function(e) {
                 },
                 error: function (request, status, error) {
                     console.log(request)
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
 
@@ -540,6 +580,7 @@ $(document).on("keyup", '.square1', function(e) {
                 },
                 datatype:'json',
                 success:function (data) {
+                    stop_animation()
                     console.log(data);
                     noty(' ورود با موفقیت انجام شد   ', 'green', '');
                    if(data.status==1){
@@ -560,6 +601,8 @@ $(document).on("keyup", '.square1', function(e) {
                     console.log(request);
                     console.log(status);
                     console.log(status);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
                 }
           })
            }else{

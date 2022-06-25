@@ -9,6 +9,19 @@ use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+Breadcrumbs::for('agent.index', function (BreadcrumbTrail $trail) {
+    // $trail->parent('admin.provinces');
+    $trail->push('لیست همکاران', route('agent.index'));
+});
+Breadcrumbs::for('agent.create', function (BreadcrumbTrail $trail ) {
+    $trail->parent('agent.index');
+    $trail->push('تعرفه همکار جدید ', route('agent.create'));
+});
+Breadcrumbs::for('agent.edit', function (BreadcrumbTrail $trail,User $user) {
+    $trail->parent('agent.index');
+    $trail->push('ویرایش همکار  ', route('agent.edit',$user->id));
+});
+
 // Home
 Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail) {
     // $trail->parent('admin.provinces');
@@ -18,6 +31,10 @@ Breadcrumbs::for('user.show', function (BreadcrumbTrail $trail,User $user) {
 
     $trail->parent('user.index');
     $trail->push('پروفایل کاربر  ', route('user.show',$user->id));
+});
+Breadcrumbs::for('user.edit', function (BreadcrumbTrail $trail,User $user) {
+    $trail->parent('user.index');
+    $trail->push('ویرایش مشتری  ', route('user.edit',$user->id));
 });
 Breadcrumbs::for('province.index', function (BreadcrumbTrail $trail) {
     $trail->push('لیست استان ها', route('province.index'));

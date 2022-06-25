@@ -19,6 +19,7 @@ class AdminController extends Controller
         return view('admin.provinces.all');
     }
    public function login(){
+
     $user=auth()->user();
     if($user){
         alert()->success('ورود با موفقیت نجام شد ');
@@ -32,8 +33,8 @@ class AdminController extends Controller
            'password' => 'required',
         //    'g-recaptcha-response' => [new GoogleReCaptchaV2ValidationRule()]
        ]);
-       $user=User::whereEmail($request->email)->whereLevel('admin')->first();
-       $user->assignRole('admin');
+       $user=User::whereEmail($request->email)->whereIn('level',['admin','manager','analyzer'])->first();
+    //    $user->assignRole('admin');
        if(!$user){
         alert()->error('   اطلاعات ارسال شده صحیح نمی باشد');
            return back();

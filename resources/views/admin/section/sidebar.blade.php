@@ -15,7 +15,7 @@
         </div><!-- /.search-box --> --}}
         <div class="user-box">
             <a href="#">
-                <img src="assets/images/user/128.png" alt="عکس پروفایل" class="img-circle img-responsive">
+                <img src="{{auth()->user()->avatar()}}" alt="عکس پروفایل" class="img-circle img-responsive">
             </a>
             <div class="user-details">
                 <h4>
@@ -62,7 +62,7 @@
             <li>
                 <a href="{{route('user.index')}}" class="{{Request::url()== route( 'user.index')?'current':''}}">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    <span>کاربران</span>
+                    <span>مشتری ها</span>
                 </a>
 
             </li>
@@ -70,6 +70,13 @@
                 <a href="{{route('province.index')}}" class="{{Request::url()== route( 'province.index')?'current':''}}">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span>استان ها</span>
+                </a>
+
+            </li>
+            <li>
+                <a href="{{route('agent.index')}}" class="{{Request::url()== route( 'agent.index')?'current':''}}">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>  همکاران</span>
                 </a>
 
             </li>
