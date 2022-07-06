@@ -117,7 +117,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-mobile" aria-hidden="true"></i>
                             </span>
-                            <input type="number" name="code" value="{{old('code',$user->code)}}" class="form-control" placeholder="کدملی">
+                            <input type="tel" name="code" value="{{old('code',$user->code)}}" class="form-control" placeholder="کدملی">
                         </div><!-- /.input-group -->
                     </div><!-- /.form-group -->
 
@@ -127,7 +127,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-mobile" aria-hidden="true"></i>
                             </span>
-                            <input type="number" name="shaba" value="{{old('shaba',$user->shaba)}}" class="form-control" placeholder="شبا">
+                            <input type="tel" name="shaba" value="{{old('shaba',$user->shaba)}}" class="form-control" placeholder="شبا">
                         </div><!-- /.input-group -->
                     </div><!-- /.form-group -->
                     <div class="form-group">

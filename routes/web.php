@@ -22,6 +22,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::post('/be_guid_form_2', 'UserController@be_guid_form_2')->name('user.be.guid.form.2');
     Route::post('/be_guid_form_3', 'UserController@be_guid_form_3')->name('user.be.guid.form.3');
     Route::post('/new_travel', 'UserController@new_travel')->name('user.new.travel');
+    // Route::post('/new_adventure', 'UserController@new_adventure')->name('user.new.adventure');
 });
 
 Route::namespace('admin')->middleware(['auth'])->group(function () {
@@ -37,6 +38,7 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::get('/active_guid/{user}', 'UserController@active_guid')->name('user.active.guid')->middleware(['role:admin|manager|analyzer']);
     Route::resource('user', 'UserController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('province', 'ProvinceController')->middleware(['role:admin|manager|analyzer']);
+    Route::resource('city', 'CityController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('agent', 'AgentController')->middleware(['role:admin|manager|analyzer']);
 
     Route::get('/travel_confirm/{travel}', 'TravelController@travel_confirm')->name('travel.confirm')->middleware(['role:admin|manager']);
@@ -46,8 +48,20 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
 
 
 Route::post('/get_city/{province}', 'HomeController@get_city');
-Route::get('/', 'HomeController@index')->name('login');
 Route::get('/clear', 'HomeController@clear')->name('clear');
+
+//صفحات وب سایت
+Route::get('/', 'HomeController@index')->name('login');
+Route::get('/guides', 'HomeController@guides')->name('guides');
+
+//ثبت اطلاعات ماجراجویی جدید
+Route::any('/new_adventure1', 'HomeController@new_adventure1')->name('new.adventure1');
+Route::any('/new_adventure2/{adventure}', 'HomeController@new_adventure2')->name('new.adventure2');
+Route::any('/new_adventure3/{adventure}', 'HomeController@new_adventure3')->name('new.adventure3');
+Route::any('/new_adventure4/{adventure}', 'HomeController@new_adventure4')->name('new.adventure4');
+Route::get('/my_adventures', 'HomeController@my_adventures')->name('my.adventures');
+
+// ورود و خروج
 Route::post('/send_verify_code', 'HomeController@send_verify_code');
 Route::post('/auth_login', 'HomeController@auth_login');
 Route::get('/logout', 'HomeController@logout')->name('logout');

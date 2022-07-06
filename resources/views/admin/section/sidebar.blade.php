@@ -74,6 +74,13 @@
 
             </li>
             <li>
+                <a href="{{route('city.index')}}" class="{{Request::url()== route( 'city.index')?'current':''}}">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>شهر ها</span>
+                </a>
+
+            </li>
+            <li>
                 <a href="{{route('agent.index')}}" class="{{Request::url()== route( 'agent.index')?'current':''}}">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span>  همکاران</span>

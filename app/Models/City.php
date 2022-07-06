@@ -9,6 +9,9 @@ class City extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = [
+        'image',
+    ];
     public function province(){
         return $this->belongsTo(Province::class);
     }
@@ -17,5 +20,11 @@ class City extends Model
     }
     public function travel(){
         return $this->hasOne(Travel::class);
+    }
+    public function image(){
+        if($this->image){
+            return asset('/media/city/'.$this->image);
+        }
+        return false;
     }
 }

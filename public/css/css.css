@@ -1,3 +1,17 @@
+#er{
+padding:20px;
+box-sizing: border-box;
+border:1px solid rgb(252, 19, 19);
+background-color:rgb(242, 191, 161);
+}
+#er span{
+    display: inline-block;
+margin-bottom: 10px;
+color: #000;
+font-weight: bold;
+font-size:14px;
+ }
+
 .pop-close{
     cursor: pointer;
 

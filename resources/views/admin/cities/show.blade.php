@@ -1,7 +1,7 @@
 
 @extends('main.manager')
    @section('content')
-   {{ Breadcrumbs::render('province.show',$province) }}
+   {{ Breadcrumbs::render('city.show',$city) }}
     <div class="col-lg-12">
         <div class="portlet box border shadow">
             <div class="portlet-heading">

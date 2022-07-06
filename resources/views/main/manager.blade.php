@@ -80,7 +80,7 @@
 <script src="/js/persian-datepicker.min.js"></script>
   <script src="/admin/assets/js/pages/login.js"></script>
   <script src="/js/fun.js"></script>
-  <script src="/js/js.js"></script>
+  <script src="/js/js1.js"></script>
 
   @include('sweetalert::alert')
 @yield('script')

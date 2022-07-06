@@ -47,6 +47,8 @@
                             <th><i class="icon-energy"></i></th>
                             <th>نام</th>
                             <th>همراه </th>
+                            <th>میجوری بان </th>
+                            <th>  تایید ادمین </th>
                             <th>ایمیل</th>
                             <th>مکان </th>
                             <th>بیشتر</th>
@@ -63,6 +65,20 @@
                                 {{$user->family}}
                             </td>
                             <td>{{$user->mobile}}</td>
+                            <td>
+                                @if ($user->guid)
+                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                @else
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($user->active && $user->guid)
+                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                @else
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                                @endif
+                            </td>
                             <td>{{$user->email}}</td>
                             <td>
                                 {{$user->province?$user->province->name:''}}

@@ -1,4 +1,4 @@
- 
+
 (function ($) {
     $(document).ready(function () {
 
@@ -42,7 +42,7 @@ $('.program-list').owlCarousel({
         }
     }
 })
- 
+
 
 $('.exp-cats-list').owlCarousel({
     rtl: true,
@@ -90,6 +90,28 @@ $('.fave-hosts-list').owlCarousel({
         }
     }
 })
+$('.fave-guid-list').owlCarousel({
+    rtl: true,
+    nav: true,
+    margin:28,
+    responsiveClass:true,
+    navText: ["<svg xmlns='http://www.w3.org/2000/svg' width='5.948' height='8.922' viewBox='0 0 5.948 8.922'><path id='_3994400_arrow_forward_navigation_next_right_icon' data-name='3994400_arrow_forward_navigation_next_right_icon' d='M24.262,15.884l4.461-3.717a.744.744,0,1,1,.953,1.143L25.9,16.455,29.675,19.6a.744.744,0,0,1-.953,1.143l-4.461-3.717a.745.745,0,0,1,0-1.143Z' transform='translate(-23.995 -11.994)'/></svg>",
+    "<svg xmlns='http://www.w3.org/2000/svg' width='5.948' height='8.922' viewBox='0 0 5.948 8.922'><path id='_3994400_arrow_forward_navigation_next_right_icon' data-name='3994400_arrow_forward_navigation_next_right_icon' d='M29.675,15.884l-4.461-3.717a.744.744,0,1,0-.953,1.143l3.775,3.146L24.262,19.6a.744.744,0,1,0,.953,1.143l4.461-3.717a.745.745,0,0,0,0-1.143Z' transform='translate(-23.995 -11.994)'/></svg>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        900:{
+            items:2
+        },
+        1400:{
+            items:3
+        },
+        1800:{
+            items:4
+        }
+    }
+})
 
 $('.guide-pic ul').owlCarousel({
     loop:true,
@@ -104,7 +126,7 @@ $('.guide-pic ul').owlCarousel({
             dote: true,
     navText: ["<svg xmlns='http://www.w3.org/2000/svg' width='5.948' height='8.922' viewBox='0 0 5.948 8.922'><path id='_3994400_arrow_forward_navigation_next_right_icon' data-name='3994400_arrow_forward_navigation_next_right_icon' d='M24.262,15.884l4.461-3.717a.744.744,0,1,1,.953,1.143L25.9,16.455,29.675,19.6a.744.744,0,0,1-.953,1.143l-4.461-3.717a.745.745,0,0,1,0-1.143Z' transform='translate(-23.995 -11.994)'/></svg>",
     "<svg xmlns='http://www.w3.org/2000/svg' width='5.948' height='8.922' viewBox='0 0 5.948 8.922'><path id='_3994400_arrow_forward_navigation_next_right_icon' data-name='3994400_arrow_forward_navigation_next_right_icon' d='M29.675,15.884l-4.461-3.717a.744.744,0,1,0-.953,1.143l3.775,3.146L24.262,19.6a.744.744,0,1,0,.953,1.143l4.461-3.717a.745.745,0,0,0,0-1.143Z' transform='translate(-23.995 -11.994)'/></svg>"],
-    
+
     nav:true
 })
 
@@ -122,7 +144,7 @@ $('.guide-pic ul').owlCarousel({
     var a= $('.datepicker-container:not(.pwt-hide)')
         a.addClass('sdd');
 }, 10);
-        
+
     },
     initialValue: false,
 });

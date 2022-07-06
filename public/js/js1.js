@@ -11,6 +11,12 @@
 
 window.onload = function() {
     if (window.jQuery) {
+        if ($('#er').length) {
+
+ $('html, body').animate({
+        scrollTop: $("#er").offset().top-200
+    }, 1000);
+        }
         $('#new_travel').click(function(){
             $(".error").html('');
             $(".error").removeClass("error");
@@ -110,6 +116,7 @@ window.onload = function() {
 
 
 
+
         if ($('.range_to').length) {
             console.log(80)
 
@@ -134,7 +141,14 @@ window.onload = function() {
                             from.setDate(cachedValue);
                         }
                     }
-                }
+                },     onShow: function(){
+                    setTimeout(function(){
+                 var a= $('.datepicker-container:not(.pwt-hide)')
+                     a.addClass('sdd');
+             }, 10);
+
+                 },
+
             });
             from = $(".range_from").persianDatepicker({
                 initialValue: false,
@@ -156,7 +170,14 @@ window.onload = function() {
                             to.setDate(cachedValue);
                         }
                     }
-                }
+                },
+                onShow: function(){
+                    setTimeout(function(){
+                 var a= $('.datepicker-container:not(.pwt-hide)')
+                     a.addClass('sdd');
+             }, 10);
+
+                 },
             });
 
         }
@@ -176,8 +197,8 @@ window.onload = function() {
             });
           }
 
-        $('#travel_pop_but').click(function(){
-            $('#make_travel').show(400)
+        $('.travel_pop_but').click(function(){
+            $('#make_travel').fadeIn()
         });
         $('#send_be_guid3').click(function(){
             $(".error").html('');
@@ -333,8 +354,8 @@ window.onload = function() {
                     stop_animation()
 
                     if(data.status=='ok'){
-                        $('.pop').hide(200);
-                        $('#be_guid_pop_3').show(400);
+                        $('.pop').fadeOut();
+                        $('#be_guid_pop_3').fadeIn();
                     }else{
                         for (const item in  data) {
                             console.log(item);
@@ -357,7 +378,7 @@ window.onload = function() {
          })
 
             $('#be_guid').click(function(){
-                $('#be_guid_pop_1').show(400);
+                $('#be_guid_pop_1').fadeIn();
            });
           $('#send_be_guid1').click(function(){
             $(".error").html('');
@@ -435,8 +456,8 @@ window.onload = function() {
                     console.log(data);
                     stop_animation()
                     if(data.status=='ok'){
-                        $('.pop').hide(200);
-                        $('#be_guid_pop_2').show(400);
+                        $('.pop').fadeOut();
+                        $('#be_guid_pop_2').fadeIn();
                     }else{
                         for (const item in  data) {
                             console.log(item);
@@ -645,6 +666,18 @@ $(document).on("keyup", '.square1', function(e) {
     // $(this).css(' animation-name', 'zoom');
     // $(this).css(' animation-duration', '200ms');
   });
+
+
+  $("#advfile").on('change',function(){
+    console.log( this.files.length)
+    $('#image_count').text(this.files.length + 'عکس انتخاب شد')
+    for (var i = 0; i < this.files.length; i++)
+    {
+        console.log(this.files[i].name);
+        console.log(this.files.item(i).name); // alternatively
+    }
+
+});
         $('#province').on('change', function (e) {
             var ele=$(this)
             var str= {'ostan':ele.val()}
@@ -655,13 +688,13 @@ $(document).on("keyup", '.square1', function(e) {
 
 
 
-        $('#register').click(function(){
-           $('#register_pop').show(400);
+        $('.register').click(function(){
+           $('#register_pop').fadeIn();
         })
 
 
         $('.pop-close').click(function(){
-            $(this).closest('.pop').hide(200);
+            $(this).closest('.pop').fadeOut();
 
         })
         let code
@@ -691,9 +724,9 @@ $(document).on("keyup", '.square1', function(e) {
                     code=data.code
                     // alert(code)
                     noty('         کد ورود با موفقیت ارسال شد    ', 'green', '');
-                    $('#code_box').show(400)
-                    $('#check_code').show(400)
-                    $('#send_code').hide(400)
+                    $('#code_box').fadeIn()
+                    $('#check_code').fadeIn()
+                    $('#send_code').fadeOut()
                     $('.square1 ').eq(0).focus()
                 },
                 error: function (request, status, error) {
@@ -732,8 +765,8 @@ $(document).on("keyup", '.square1', function(e) {
                             location.reload();
                         }, 2000);
                    }else{
-                    $('.pop-close').closest('.pop').hide(200);
-                    $('#get_user_info').show(400)
+                    $('.pop-close').closest('.pop').fadeOut();
+                    $('#get_user_info').fadeIn()
 
                    }
 

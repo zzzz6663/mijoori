@@ -1977,44 +1977,6 @@ body {
   box-shadow: 0 3px 6px #000000;
   position: relative;
 }
-/* }
-
-.pop .pop-content .error {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 34px;
-  background: rgba(135, 135, 135, 0.9);
-  z-index: 2;
-}
-.pop .pop-content .error .error-close {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background: #fff;
-  border-radius: 50%;
-  left: 20px;
-  top: 20px;
-  line-height: 22px;
-}
-.pop .pop-content .error .text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  line-height: 38px;
-  transform: translateY(-50%);
-}
-.pop .pop-content .error .text span {
-  display: inline-block;
-  background: #fff;
-  padding: 0 55px;
-  border-radius: 19px;
-  font-size: 16px;
-  color: #662683;
-} */
 .pop .pop-content.class-list-pop {
   width: 1290px;
   max-width: 96%;
@@ -6860,14 +6822,24 @@ body {
 .singl-my-exp div.img,
 .single-my-trip div.img {
   position: relative;
+  overflow: hidden;
+  padding-top: 65%;
 }
 .singl-my-exp div.img img,
 .single-my-trip div.img img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  overflow: hidden;
+  transform: translateY(-50%);
   width: 100%;
+  min-height: 100%;
 }
 .singl-my-exp div.img .cap,
 .single-my-trip div.img .cap {
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
   bottom: 0;
@@ -7059,4 +7031,287 @@ body {
 }
 .singl-my-exp .dets .numbers {
   border-bottom: none;
+}
+#profileheader {
+  text-align: center;
+  background: #cecece;
+  margin-top: -30px;
+  padding: 80px 0 30px;
+}
+#profileheader h1,
+#profileheader h2,
+#profileheader h3,
+#profileheader h4,
+#profileheader h5,
+#profileheader h6 {
+  font-size: 24px;
+  color: #3E3E3E;
+  margin-bottom: 8px;
+}
+#profileheader p {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #000000;
+}
+.adv-title h1,
+.adv-title h2,
+.adv-title h3,
+.adv-title h4,
+.adv-title h5,
+.adv-title h6 {
+  font-size: 16px;
+  color: #662683;
+  margin-bottom: 30px;
+}
+input.sq,
+select.sq {
+  width: 100%;
+  height: 53px;
+  line-height: 53px;
+  padding: 0 30px;
+  background: #f5f5f5;
+  border: none;
+  color: #878787;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+input.sq.number,
+select.sq.number {
+  max-width: 180px;
+}
+input.sq.price,
+select.sq.price {
+  max-width: 310px;
+}
+textarea.sq {
+  width: 100%;
+  box-sizing: border-box;
+  height: 136px;
+  padding: 0 30px;
+  background: #f5f5f5;
+  border: none;
+  color: #878787;
+  margin-bottom: 20px;
+  line-height: 30px;
+}
+textarea.sq.full {
+  height: 348px;
+}
+#make-adventure {
+  background: #d8d8d8;
+  padding: 40px 0;
+}
+#make-adventure .clr {
+  width: 100%;
+  height: 50px;
+  clear: both;
+}
+#make-adventure .clr.half {
+  height: 20px;
+}
+.tow-line-label {
+  min-height: 57px;
+  overflow: hidden;
+}
+.tow-line-label label {
+  font-size: 16px;
+  color: #3E3E3E;
+  margin-bottom: 0px;
+}
+.tow-line-label label .star {
+  color: #662683;
+}
+.tow-line-label > span {
+  display: block;
+  font-size: 14px;
+  color: #878787;
+  margin-bottom: 7px;
+}
+.one-line-label {
+  min-height: 37px;
+  overflow: hidden;
+}
+.one-line-label label {
+  font-size: 16px;
+  color: #3E3E3E;
+  margin-bottom: 0px;
+}
+.one-line-label label .star {
+  color: #662683;
+}
+#mapadv {
+  height: 350px;
+  background: #01b97f;
+  margin-bottom: 30px;
+}
+.fileuplad {
+  margin-bottom: 30px;
+  position: relative;
+}
+.fileuplad img {
+  width: 100%;
+}
+.fileuplad input {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.fileuplad label {
+  position: absolute;
+  right: 30px;
+  bottom: 60px;
+  margin-bottom: 0;
+  padding: 0 15px;
+  line-height: 40px;
+  border-radius: 7px;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: #3E3E3E;
+  transition: all .3s;
+}
+.fileuplad label:hover {
+  color: #01b97f;
+}
+.fileuplad label .icon {
+  margin-right: 7px;
+}
+.fileuplad .caption {
+  line-height: 30px;
+  font-size: 14px;
+  color: #878787;
+}
+.fileuplad .caption .small {
+  font-size: 12px;
+  margin-right: 8px;
+}
+.text-center {
+  text-align: center;
+}
+.next {
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #662683;
+  line-height: 40px;
+  border-radius: 7px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 20px;
+}
+.next:hover {
+  background: #471b5b;
+}
+#my-adventures {
+  margin-top: -30px;
+  background: #d8d8d8;
+  padding: 100px 0;
+}
+.adv-table .header {
+  line-height: 82px;
+  width: 100%;
+  background: #c7c7c7;
+  text-align: center;
+}
+.adv-table .header h1,
+.adv-table .header h2,
+.adv-table .header h3,
+.adv-table .header h4,
+.adv-table .header h5,
+.adv-table .header h6 {
+  font-size: 20px;
+  color: #3E3E3E;
+  margin-bottom: 0px;
+}
+.my-single-adv {
+  overflow: hidden;
+  background: #f5f5f5;
+  border-bottom: 1px solid #b4b4b4;
+  padding: 20px 30px;
+}
+.my-single-adv:last-child {
+  border-bottom: none;
+}
+.my-single-adv .right {
+  float: right;
+  overflow: hidden;
+}
+.my-single-adv .right .pic {
+  float: right;
+  width: 74px;
+}
+.my-single-adv .right .info {
+  margin-right: 87px;
+}
+.my-single-adv .right .info h4 {
+  font-size: 14px;
+  color: #3E3E3E;
+  margin-bottom: 5px;
+}
+.my-single-adv .right .info .disc {
+  font-size: 12px;
+  font-weight: bold;
+  color: #B4B4B4;
+  display: block;
+  margin-bottom: 5px;
+}
+.my-single-adv .right .info .stat {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+}
+.my-single-adv .right .info .stat.violet {
+  color: #662683;
+  opacity: .75;
+}
+.my-single-adv .right .info .stat.green {
+  color: #00E143;
+}
+@media only screen and (max-width: 720px) {
+  .my-single-adv .right {
+    float: none;
+  }
+}
+.my-single-adv .left {
+  float: left;
+  padding-top: 27px;
+}
+.my-single-adv .left * {
+  display: inline-block;
+  margin-right: 6px;
+  border: none;
+  width: 75px;
+  line-height: 23px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.my-single-adv .left .edit {
+  background: #662683;
+}
+.my-single-adv .left .edit:hover {
+  background: #471b5b;
+}
+.my-single-adv .left .demo {
+  background: #9368a7;
+}
+.my-single-adv .left .demo:hover {
+  background: #79518b;
+}
+@media only screen and (max-width: 720px) {
+  .my-single-adv .left {
+    float: none;
+    text-align: center;
+  }
+  .my-single-adv .left * {
+    margin: 0 10px 5px;
+  }
 }

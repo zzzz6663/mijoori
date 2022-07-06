@@ -1,15 +1,15 @@
 
 @extends('main.manager')
    @section('content')
-   {{ Breadcrumbs::render('province.edit',$province) }}
+   {{ Breadcrumbs::render('city.edit',$city) }}
     <div class="col-lg-6">
         <div class="portlet box border shadow">
             <div class="portlet-heading">
                 <div class="portlet-title">
                     <h3 class="title">
                         <i class="icon-frane"></i>
-                        به روز رسانی تصویر  استان
-                        {{$province->name}}
+                        به روز رسانی تصویر  شهر
+                        {{$city->name}}
                     </h3>
                 </div><!-- /.portlet-title -->
                 <div class="buttons-box">
@@ -18,7 +18,7 @@
             </div><!-- /.portlet-heading -->
             <div class="portlet-body">
                 @include('main.error')
-                <form action="{{route('province.update',$province->id)}}" method="post"  enctype="multipart/form-data">
+                <form action="{{route('city.update',$city->id)}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="row">

@@ -77,6 +77,13 @@ class User extends Authenticatable
     public function travels(){
         return $this->hasMany(Travel::class);
     }
+    public function adventures(){
+        return $this->hasMany(Adventure::class);
+    }
+
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
 
 
 

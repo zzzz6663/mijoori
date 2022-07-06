@@ -44,7 +44,7 @@
 <script src="/js/fun.js"></script>
 <script src="/js/simpleupload.js"></script>
 <script src="/js/jquery.validate.min.js"></script>
-<script src="/js/js.js"></script>
+<script src="/js/js1.js"></script>
 
 
 {{-- {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!} --}}

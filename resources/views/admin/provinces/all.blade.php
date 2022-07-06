@@ -18,7 +18,7 @@
             <div class="portlet-body">
                 <form action="">
                     <div class="row">
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="form-group row">
                                 <label class="col-sm-3">نام</label>
                                 <div class="col-sm-9">
@@ -33,7 +33,7 @@
                                     <input type="text" class="form-control" placeholder="نام">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </form>

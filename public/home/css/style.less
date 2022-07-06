@@ -6638,11 +6638,21 @@ body{
 	margin-bottom: 50px;
 	div.img{
 		position: relative;
+		overflow: hidden;
+		padding-top: 65%;
 		img{
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			overflow: hidden;
+			transform: translateY(-50%);
 			width: 100%;
+			min-height: 100%;
 		}
 		.cap{
 			position: absolute;
+			z-index: 2;
 			left: 0;
 			right: 0;
 			bottom: 0;
@@ -6796,3 +6806,291 @@ body{
 	}
 }
 // End My trips And Exps
+
+// Start Make Adventure
+#profileheader{
+	text-align: center;
+	background: #cecece;
+	margin-top: -30px;
+	padding: 80px 0 30px;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6{
+		font-size: 24px;
+		color: #3E3E3E;
+		margin-bottom: 8px;
+	}
+	p{
+		text-align: center;
+		font-size: 16px;
+		margin-bottom: 8px;
+		color:#000000;
+	}
+}
+.adv-title{
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6{
+		font-size: 16px;
+		color: #662683;
+		margin-bottom: 30px;
+	}
+}
+input.sq,
+select.sq{
+	width: 100%;
+	height: 53px;
+	line-height: 53px;
+	padding: 0 30px;
+	background: #f5f5f5;
+	border: none;
+	color: #878787;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	&.number{
+		max-width: 180px;
+	}
+	&.price{
+		max-width: 310px;
+	}
+}
+textarea.sq{
+	width: 100%;
+	box-sizing: border-box;
+	height: 136px;
+	padding: 0 30px;
+	background: #f5f5f5;
+	border: none;
+	color: #878787;
+	margin-bottom: 20px;
+	line-height: 30px;
+	&.full{
+		height: 348px;
+	}
+}
+#make-adventure{
+	background: #d8d8d8;
+	padding: 40px 0;
+
+	.clr{
+		width: 100%;
+		height: 50px;
+		clear: both;
+		&.half{
+			height: 20px;
+		}
+	}
+}
+.tow-line-label{
+	min-height: 57px;
+	overflow: hidden;
+	label{
+		font-size: 16px;
+		color: #3E3E3E;
+		margin-bottom: 0px;
+		.star{
+		color: #662683;
+
+		}
+	}
+	>span{
+		display: block;
+		font-size: 14px;
+		color: #878787;
+		margin-bottom: 7px;
+	}
+}
+.one-line-label{
+	min-height: 37px;
+	overflow: hidden;
+	label{
+		font-size: 16px;
+		color: #3E3E3E;
+		margin-bottom: 0px;
+		.star{
+		color: #662683;
+
+		}
+	}
+}
+#mapadv{
+	height: 350px;
+	background: @theme;
+	margin-bottom: 30px;
+}
+.fileuplad{
+	margin-bottom: 30px;
+	img{
+		width: 100%;
+	}
+	position: relative;
+	input{
+		width: 0;
+		height: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
+	}
+	label{
+		position: absolute;
+		right: 30px;
+		bottom: 60px;
+		margin-bottom: 0;
+		padding: 0 15px;
+		line-height: 40px;
+		border-radius: 7px;
+		background: #ffffff;
+		cursor: pointer;
+		font-size: 18px;
+		font-weight: bold;
+		color: #3E3E3E;
+		transition: all .3s;
+		&:hover{
+			color: @theme;
+		}
+		.icon{
+			margin-right: 7px;
+		}
+	}
+	.caption{
+		line-height: 30px;
+		font-size: 14px;
+		color: #878787;
+		.small{
+			font-size: 12px;
+			margin-right: 8px;
+		}
+	}
+}
+.text-center{
+	text-align: center;
+}
+.next{
+	display: inline-block;
+	padding: 0 40px;
+	color: #fff;
+	background: #662683;
+	line-height: 40px;
+	border-radius: 7px;
+	font-size: 18px;
+	font-weight: bold;
+	border: none;
+	margin-bottom: 20px;
+	&:hover{
+		background: darken(#662683, 10%);
+	}
+}
+#my-adventures{
+	margin-top: -30px;
+	background: #d8d8d8;
+	padding: 100px 0;
+}
+.adv-table{
+	.header{
+		line-height: 82px;
+		width: 100%;
+		background: #c7c7c7;
+		text-align: center;
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6{
+			font-size: 20px;
+			color: #3E3E3E;
+			margin-bottom: 0px;
+		}
+	}
+}
+.my-single-adv{
+	overflow: hidden;
+	background: #f5f5f5;
+	border-bottom: 1px solid #b4b4b4;
+	padding: 20px 30px;
+	&:last-child{
+		border-bottom: none;
+	}
+	.right{
+		float: right;
+		overflow: hidden;
+		.pic{
+			float: right;
+			width: 74px;
+		}
+		.info{
+			margin-right: 87px;
+			h4{
+				font-size: 14px;
+				color: #3E3E3E;
+				margin-bottom: 5px;
+			}
+			.disc{
+				font-size: 12px;
+				font-weight: bold;
+				color: #B4B4B4;
+				display: block;
+				margin-bottom: 5px;
+			}
+			.stat{
+				display: block;
+				font-size: 12px;
+				font-weight: bold;
+				&.violet{
+					color: #662683;
+					opacity: .75;
+				}
+				&.green{
+					color: #00E143;
+				}
+			}
+		}
+		@media @media720{
+			float: none;
+		}
+	}
+	.left{
+		float: left;
+		padding-top: 27px;
+		*{
+			display: inline-block;
+			margin-right: 6px;
+			border: none;
+			width: 75px;
+			line-height: 23px;
+			font-size: 12px;
+			color: #fff;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+		.edit{
+			background: #662683;
+			&:hover{
+				background: darken(#662683, 10%);
+			}
+		}
+		.demo{
+			background: #9368a7;
+			&:hover{
+				background: darken(#9368a7, 10%);
+			}
+		}
+		@media @media720{
+			float: none;
+			text-align: center;
+			*{
+				margin: 0 10px 5px;
+			}
+		}
+	}
+}
+// End Make Adventure

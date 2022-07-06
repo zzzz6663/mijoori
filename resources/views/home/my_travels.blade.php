@@ -42,11 +42,10 @@
                     <div class="single-my-trip">
                         <div class="img">
                             <a href="#">
-                                <img src="images/trip1.jpg" alt="">
+                                <img src="{{$travel->city->province->image()}}" alt="">
                             </a>
                             <div class="cap">
                                 <h4>سفر به
-
                                     {{$travel->city->name}}
                                 </h4>
                                 <span class="icon">

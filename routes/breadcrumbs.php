@@ -2,6 +2,9 @@
 
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
 // this import. This is nice for IDE syntax and refactoring.
+
+use App\Models\City;
+use App\Models\Province;
 use App\Models\User;
 
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
@@ -46,6 +49,27 @@ Breadcrumbs::for('user.edit', function (BreadcrumbTrail $trail,User $user) {
 });
 Breadcrumbs::for('province.index', function (BreadcrumbTrail $trail) {
     $trail->push('لیست استان ها', route('province.index'));
+});
+Breadcrumbs::for('province.show', function (BreadcrumbTrail $trail,Province $province) {
+    $trail->parent('province.index');
+    $trail->push('لیست اشخاص     ', route('province.show',$province->id));
+});
+Breadcrumbs::for('province.edit', function (BreadcrumbTrail $trail,Province $province) {
+    $trail->parent('province.index');
+    $trail->push('ویرایش استان        ', route('province.edit',$province->id));
+});
+
+
+Breadcrumbs::for('city.index', function (BreadcrumbTrail $trail) {
+    $trail->push('لیست شهر  ها', route('province.index'));
+});
+Breadcrumbs::for('city.show', function (BreadcrumbTrail $trail,City $city) {
+    $trail->parent('city.index');
+    $trail->push('لیست اشخاص     ', route('city.show',$city->id));
+});
+Breadcrumbs::for('city.edit', function (BreadcrumbTrail $trail,City $city) {
+    $trail->parent('city.index');
+    $trail->push('ویرایش شهر       ', route('city.edit',$city->id));
 });
 
 // // Home > Blog
