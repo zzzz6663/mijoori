@@ -137,7 +137,7 @@ $provinces=Province::all();
 
             if ($files= $request->file('images')) {
              foreach($files as $file){
-                 $name_img = 'adventure_' . $adventure->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+                 $name_img = 'adventure_' . $adventure->id.'_'.rand ( 10000 , 99999 ) . '.' . $file->getClientOriginalExtension();
                  $file->move(public_path('/media/adventure/'), $name_img);
                  $images[]=$name_img;
                  $user->images()->create([
