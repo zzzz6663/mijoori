@@ -21,6 +21,9 @@ class City extends Model
     public function travel(){
         return $this->hasOne(Travel::class);
     }
+    public function adventure(){
+        return $this->hasOne(Adventure::class);
+    }
     public function image(){
         if($this->image){
             return asset('/media/city/'.$this->image);

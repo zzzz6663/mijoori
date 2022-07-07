@@ -13,7 +13,7 @@
                 <div>
                     @include('main.error')
 
-                    <form action="{{route('new.adventure1')}}" method="post" enctype= multipart/form-data>
+                    <form action="{{route('new.adventure1',$adventure->id)}}" method="post" enctype= multipart/form-data>
                         @csrf
                         @method('post')
 
@@ -38,15 +38,15 @@
                                     </div>
                                     <select class="sq" name="cat" id="cat">
                                         <option value="">برای انتخاب کلیک  کنید</option>
-                                        <option {{old('cat')=='walking'?'selected':''}} value="walking">پیاده روی</option>
-                                        <option {{old('cat')=='mountaineering'?'selected':''}} value="mountaineering">کوه نوردی</option>
-                                        <option {{old('cat')=='offroad'?'selected':''}} value="offroad">آفرود</option>
-                                        <option {{old('cat')=='rock_climbing'?'selected':''}} value="rock_climbing">صخره نوردی</option>
-                                        <option {{old('cat')=='snow_skiing'?'selected':''}} value="snow_skiing">اسکی روی برف</option>
-                                        <option {{old('cat')=='skiing_on_grass'?'selected':''}} value="skiing_on_grass">اسکی روی چمن</option>
-                                        <option {{old('cat')=='snowboard'?'selected':''}} value="snowboard">اسنوبرد</option>
-                                        <option {{old('cat')=='rafting_river'?'selected':''}} value="rafting_river">رفتینگ روی رودخانه</option>
-                                        <option {{old('cat')=='other'?'selected':''}} value="other">سایر</option>
+                                        <option {{old('cat',$adventure->cat)=='walking'?'selected':''}} value="walking">پیاده روی</option>
+                                        <option {{old('cat',$adventure->cat)=='mountaineering'?'selected':''}} value="mountaineering">کوه نوردی</option>
+                                        <option {{old('cat',$adventure->cat)=='offroad'?'selected':''}} value="offroad">آفرود</option>
+                                        <option {{old('cat',$adventure->cat)=='rock_climbing'?'selected':''}} value="rock_climbing">صخره نوردی</option>
+                                        <option {{old('cat',$adventure->cat)=='snow_skiing'?'selected':''}} value="snow_skiing">اسکی روی برف</option>
+                                        <option {{old('cat',$adventure->cat)=='skiing_on_grass'?'selected':''}} value="skiing_on_grass">اسکی روی چمن</option>
+                                        <option {{old('cat',$adventure->cat)=='snowboard'?'selected':''}} value="snowboard">اسنوبرد</option>
+                                        <option {{old('cat',$adventure->cat)=='rafting_river'?'selected':''}} value="rafting_river">رفتینگ روی رودخانه</option>
+                                        <option {{old('cat',$adventure->cat)=='other'?'selected':''}} value="other">سایر</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,11 +58,11 @@
                                     </div>
                                     <select class="sq" name="hardness" id="hardness">
                                         <option value="">برای انتخاب کلیک  کنید</option>
-                                        <option {{old('hardness') == 'easy'?'selected':''}} value="easy">آسان</option>
-                                        <option {{old('hardness') == 'normal'?'selected':''}} value="normal">متوسط</option>
-                                        <option {{old('hardness') == 'challenge'?'selected':''}} value="challenge">چالشی</option>
-                                        <option {{old('hardness') == 'hard'?'selected':''}} value="hard">سخت</option>
-                                        <option {{old('hardness') == 'very_hard'?'selected':''}} value="very_hard">خیلی سخت</option>
+                                        <option {{old('hardness' ,$adventure->hardness) == 'easy'?'selected':''}} value="easy">آسان</option>
+                                        <option {{old('hardness' ,$adventure->hardness) == 'normal'?'selected':''}} value="normal">متوسط</option>
+                                        <option {{old('hardness' ,$adventure->hardness) == 'challenge'?'selected':''}} value="challenge">چالشی</option>
+                                        <option {{old('hardness' ,$adventure->hardness) == 'hard'?'selected':''}} value="hard">سخت</option>
+                                        <option {{old('hardness' ,$adventure->hardness) == 'very_hard'?'selected':''}} value="very_hard">خیلی سخت</option>
                                     </select>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                         <label for="">تعداد شرکت کننده <span class="star">*</span></label>
                                         <span>(حداقل: 1 حداکثر: 50) چند نفر شرکت کننده می توانند شما را همراه کنند</span>
                                     </div>
-                                    <input class="sq" name="members" type="number"  value="{{old('members')}}" >
+                                    <input class="sq" name="members" type="number"  value="{{old('members',$adventure->members)}}" >
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -84,7 +84,7 @@
                                     <select class="sq" name="city_id" id="">
                                         <option value="">برای انتخاب کلیک  کنید</option>
                                         @foreach ( App\Models\City::all() as $city)
-                                        <option  {{old('city_id') ==   $city->id?'selected':''}} value="{{$city->id}}">{{$city->name}}</option>
+                                        <option  {{old('city_id',$adventure->city_id) ==   $city->id?'selected':''}} value="{{$city->id}}">{{$city->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -114,7 +114,7 @@
                                         <label for="name"> نام رویداد  <span class="star">*</span></label>
                                         <span>چه عنوانی برای رویداد خود در نظر گرفتید</span>
                                     </div>
-                                    <input class="sq" type="text" name="name" id="name"  value="{{old('name')}}" >
+                                    <input class="sq" type="text" name="name" id="name"  value="{{old('name',$adventure->name)}}" >
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@
                                         <label for="short">خلاصه فعالیت</label>
                                         <span>درباره ماجراجویی خود و جزییات آن مختصرا توضیح دهید</span>
                                     </div>
-                                    <textarea class="sq" name="short"  id="short" cols="30" rows="10">{{old('short')}}</textarea>
+                                    <textarea class="sq" name="short"  id="short" cols="30" rows="10">{{old('short',$adventure->short)}}</textarea>
                                 </div>
                             </div>
 
@@ -134,7 +134,7 @@
                                         <label for="action_include">چه فعالیت هایی را در برمی گیرد</label>
                                         <span>لیست فعالیت.هایی که ماجراجویی در بر می گیرد</span>
                                     </div>
-                                    <textarea class="sq" name="action_include"    id="action_include" cols="30" rows="10">{{old('action_include')}}</textarea>
+                                    <textarea class="sq" name="action_include"    id="action_include" cols="30" rows="10">{{old('action_include',$adventure->action_include)}}</textarea>
                                 </div>
                             </div>
 
@@ -144,7 +144,7 @@
                                         <label for="action_not_include">چه فعالیت هایی را در برنمی گیرد</label>
                                         <span>لیست فعالیت هایی که در این ماجراجویی وجود ندارد</span>
                                     </div>
-                                    <textarea class="sq" name="action_not_include"    id="action_not_include" cols="30" rows="10">{{old('action_not_include')}}</textarea>
+                                    <textarea class="sq" name="action_not_include"    id="action_not_include" cols="30" rows="10">{{old('action_not_include',$adventure->action_not_include)}}</textarea>
                                 </div>
                             </div>
 
@@ -162,6 +162,13 @@
                                                 <span>برای آپلود فایل کلیک کنید</span>
                                                 <span class="small">(png,jpeg,gif,bmp)</span>
                                                 <h1 style="color:red" id="image_count"></h1>
+                                                @foreach ($adventure->images as $image)
+                                                <a  class="" href="{{$image->image()}}" data-lightbox="image-1" data-title="My caption">
+                                                            عکس
+                                                    {{ $loop->iteration}}
+                                                   </a>
+
+                                                @endforeach
                                             </div>
                                         </div>
                                         <input type="file" id="advfile" name="images[]" accept="image/*" multiple="multiple" >

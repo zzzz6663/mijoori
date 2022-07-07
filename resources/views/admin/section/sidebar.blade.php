@@ -90,7 +90,14 @@
             <li>
                 <a href="{{route('travel.index')}}" class="{{Request::url()== route( 'travel.index')?'current':''}}">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <span>  سفر ها</span>
+                    <span>  سفر </span>
+                </a>
+
+            </li>
+            <li>
+                <a href="{{route('adventure.index')}}" class="{{Request::url()== route( 'adventure.index')?'current':''}}">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>  مـاجراجـویی </span>
                 </a>
 
             </li>

@@ -2,19 +2,39 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\adventure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
-class AdventureController extends Controller
+class ADventureController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user= auth()->user();
+        $adventures = Adventure::query();
+        if ($request->search) {
+            $search = $request->search;
+            $adventures->whereHas('user',function ($query) use ($search){
+                $query->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('family', 'LIKE', "%{$search}%")
+                ->orWhere('mobile', 'LIKE', "%{$search}%");
+            })
+                ->orWhereHas('province', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                })
+                ->orWhereHas('city', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                });
+        }
+        $adventures = $adventures->latest()->paginate(10);
+        return view('admin.adventures.all', compact(['adventures','user']));
     }
 
     /**
@@ -22,9 +42,8 @@ class AdventureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
     }
 
     /**
@@ -44,9 +63,9 @@ class AdventureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Adventure $adventure)
     {
-        //
+     return view('admin.adventures.show',compact(['adventure']));
     }
 
     /**
@@ -81,5 +100,16 @@ class AdventureController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function adventure_confirm(Adventure $adventure)
+    {
+        if($adventure->confirm){
+            $adventure->update(['confirm'=>'0']);
+            alert()->success('سفر با موفقیت رد  شد ');
+        }else{
+            $adventure->update(['confirm'=>'1']);
+            alert()->success('سفر با موفقیت  تایید شد ');
+        }
+     return redirect()->back();
     }
 }

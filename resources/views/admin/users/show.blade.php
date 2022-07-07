@@ -132,6 +132,19 @@
                         </div>
                     </div>
                     @endif
+                    @if ($user->adventures()->count()>0)
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3">
+                                 ماجراجویی ها
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="text-center">
+                                <a class="btn btn-secondary  curve" href="{{route('adventure.index',['mobile'=>$user->mobile])}}">ماجراجویی ها</a>
+                            </span>
+                        </div>
+                    </div>
+                    @endif
                     <br>
 
                     <div class="row">

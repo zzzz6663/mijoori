@@ -1,3 +1,21 @@
+#envelope{
+position: relative;
+}
+#envelope .cir{
+ background-color: red;
+ color: #fff;
+ font-size: 15px;
+display: inline-block;
+position: absolute;
+width: 30px;
+height: 30px;
+line-height: 30px;
+border: 1px solid red;
+border-radius:100%;
+left:-20px;
+text-align: center;
+top:-20px;
+}
 #er{
 padding:20px;
 box-sizing: border-box;

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('hardness')->nullable();
             $table->integer('members')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
             $table->string('name',500)->nullable();
             $table->text('short')->nullable();
             $table->text('action_include')->nullable();
@@ -40,8 +41,8 @@ return new class extends Migration
             $table->text('return_mony')->nullable();
             $table->string('place',500)->nullable();
             $table->string('address',500)->nullable();
-            $table->string('Latitude',256)->nullable();
-            $table->string('Longitude',256)->nullable();
+            $table->string('latitude',256)->nullable();
+            $table->string('longitude',256)->nullable();
             $table->text('plan')->nullable();
             $table->string('stage')->default(1)->nullable();
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
+use App\Models\City;
 use App\Models\User;
+use App\Models\Travel;
 use App\Models\Province;
 use App\Models\Adventure;
 use Illuminate\Http\Request;
@@ -98,7 +101,7 @@ $provinces=Province::all();
 
 
 
-    public function new_adventure1(Request $request){
+    public function new_adventure1(Request $request, Adventure $adventure){
         $user=auth()->user();
         if ( $request->isMethod('post')) {
            $data=$request->validate([
@@ -112,25 +115,43 @@ $provinces=Province::all();
                     'action_not_include'=>"nullable|string|min:5",
                     'images'=>"nullable",
            ]);
-           $data['stge']=2;
-          $adventure= $user->adventures()->create($data);
+           $data['province_id']=City::whereName( $data['city_id'] )->first()->province->id;
+           $data['stage']=2;
+           $data['confirm']=0;
+           if($adventure){
+          $adventure->update($data);
+            if ($files= $request->file('images')) {
+             foreach($files as $file){
+                 $name_img = 'adventure_' . $adventure->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+                 $file->move(public_path('/media/adventure/'), $name_img);
+                 $images[]=$name_img;
+                 $user->images()->create([
+                     'image'=> $name_img,
+                     'imageable_id'=>     $adventure->id,
+                     'imageable_type'=>     get_class($adventure),
+                 ]);
+             }
+           }
+           }else{
+            $adventure= $user->adventures()->create($data);
 
-           if ($files= $request->file('images')) {
-            foreach($files as $file){
-                $name_img = 'adventure_' . $adventure->id.'_'.time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('/media/adventure/'), $name_img);
-                $images[]=$name_img;
-                $user->images()->create([
-                    'image'=> $name_img,
-                    'imageable_id'=>     $adventure->id,
-                    'imageable_type'=>     get_class($adventure),
-                ]);
-            }
-          }
+            if ($files= $request->file('images')) {
+             foreach($files as $file){
+                 $name_img = 'adventure_' . $adventure->id.'_'.time() . '.' . $file->getClientOriginalExtension();
+                 $file->move(public_path('/media/adventure/'), $name_img);
+                 $images[]=$name_img;
+                 $user->images()->create([
+                     'image'=> $name_img,
+                     'imageable_id'=>     $adventure->id,
+                     'imageable_type'=>     get_class($adventure),
+                 ]);
+             }
+           }
+           }
           alert()->success('اطلاعات با موفقیت ثبت شد ');
           return redirect()->route('new.adventure2',[$adventure->id]);
         }
-        return view('home.new_adventure1',compact('user'));
+        return view('home.new_adventure1',compact(['user','adventure']));
     }
 
 
@@ -144,7 +165,8 @@ $provinces=Province::all();
                     'type_period'=>"nullable|max:256",
                     'time_period'=>"required|max:256",
            ]);
-           $data['stge']=3;
+           $data['stage']=3;
+           $data['confirm']=0;
           $adventure->update($data);
           alert()->success('اطلاعات با موفقیت ثبت شد ');
           return redirect()->route('new.adventure3',[$adventure->id]);
@@ -165,7 +187,8 @@ $provinces=Province::all();
                     'more'=>"nullable",
                     'return_mony'=>"required",
            ]);
-           $data['stge']=4;
+           $data['stage']=4;
+           $data['confirm']=0;
           $adventure->update($data);
           alert()->success('اطلاعات با موفقیت ثبت شد ');
           return redirect()->route('new.adventure4',[$adventure->id]);
@@ -178,27 +201,61 @@ $provinces=Province::all();
         $user=auth()->user();
         if ( $request->isMethod('post')) {
            $data=$request->validate([
-                    'count'=>"required|max:256",
-                    'price'=>"required|integer|between:50000,5000000",
-                    'facility'=>"nullable|max:500",
-                    'benefit'=>"nullable|max:500",
-                    'info'=>"nullable",
-                    'more'=>"nullable",
-                    'return_mony'=>"required",
+                    'place'=>"required|max:500",
+                    'address'=>"nullable|max:500",
+                    'latitude'=>"nullable",
+                    'longitude'=>"required",
+                    'plan'=>"nullable",
            ]);
-           $data['stge']=5;
+           $data['stage']=5;
+           $data['confirm']=0;
           $adventure->update($data);
           alert()->success('اطلاعات با موفقیت ثبت شد ');
-          return redirect()->route('new.adventure4',[$adventure->id]);
+          return redirect()->route('my.adventures');
           }
 
         return view('home.new_adventure4',compact(['adventure','user']));
     }
 
+    public function related_travel(Request $request){
+        $user=auth()->user();
+        $travels=$user->related_travel();
+        return view('home.related_travel',compact(['travels','user']));
+    }
+    public function travel_chat(Request $request ,Travel $travel){
+        $user=auth()->user();
+        return view('home.travel_chat',compact(['travel','user']));
+    }
     public function my_adventures(Request $request){
         $user=auth()->user();
         $adventures=$user->adventures()->latest()->get();
         return view('home.my_adventures',compact(['adventures','user']));
+    }
+
+    public function send_chat(Request $request)
+    {
+        $user = auth()->user();
+        if( $user->id==$request->to){
+            alert()->warning('شما نمیتوانید به خودتان پیام بدهید');
+            return redirect()->route('related.chat',$request->travel);
+        }
+        $request->validate([
+            'chat'=>'required|min:3'
+        ]);
+        Chat::create(
+            [
+                'from_id'=>$user->id,
+                'type' => 'text',
+                'to_id' => $request->to,
+                'chat' =>  $request->chat,
+                'travel_id' => $request->travel,
+            ]
+            );
+
+        $data = ['from_id' => $user->id, 'to_id' => $request->to ]; // sending from and to user id when pressed enter
+        alert()->success('پیام با موفقیت ثبت شد ');
+        return redirect()->route('related.chat',$request->travel);
+
     }
 
 }

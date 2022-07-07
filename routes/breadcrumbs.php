@@ -4,12 +4,13 @@
 // this import. This is nice for IDE syntax and refactoring.
 
 use App\Models\City;
-use App\Models\Province;
 use App\Models\User;
+use App\Models\Travel;
 
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
-use App\Models\Travel;
+use App\Models\Province;
+use App\Models\Adventure;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
@@ -27,6 +28,17 @@ Breadcrumbs::for('agent.edit', function (BreadcrumbTrail $trail,User $user) {
 });
 
 // Home
+
+
+
+Breadcrumbs::for('adventure.index', function (BreadcrumbTrail $trail) {
+    $trail->push('لیست  ماجراجویی ها', route('adventure.index'));
+});
+Breadcrumbs::for('adventure.show', function (BreadcrumbTrail $trail,Adventure $adventure) {
+    $trail->parent('adventure.index');
+    $trail->push('اطلاعات ماجراجویی   ', route('adventure.show',$adventure->id));
+});
+
 Breadcrumbs::for('travel.index', function (BreadcrumbTrail $trail) {
     $trail->push('لیست سفرها', route('travel.index'));
 });

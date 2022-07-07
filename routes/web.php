@@ -38,6 +38,9 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::get('/active_guid/{user}', 'UserController@active_guid')->name('user.active.guid')->middleware(['role:admin|manager|analyzer']);
     Route::resource('user', 'UserController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('province', 'ProvinceController')->middleware(['role:admin|manager|analyzer']);
+
+    Route::get('/adventure_confirm/{adventure}', 'AdventureController@adventure_confirm')->name('adventure.confirm')->middleware(['role:admin|manager']);
+    Route::resource('adventure', 'AdventureController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('city', 'CityController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('agent', 'AgentController')->middleware(['role:admin|manager|analyzer']);
 
@@ -53,9 +56,13 @@ Route::get('/clear', 'HomeController@clear')->name('clear');
 //صفحات وب سایت
 Route::get('/', 'HomeController@index')->name('login');
 Route::get('/guides', 'HomeController@guides')->name('guides');
+Route::get('/related_travel', 'HomeController@related_travel')->name('related.travel');
+Route::get('/travel_chat/{travel}', 'HomeController@travel_chat')->name('related.chat');
+Route::post('/send_chat', 'HomeController@send_chat')->name('send.chat');
+
 
 //ثبت اطلاعات ماجراجویی جدید
-Route::any('/new_adventure1', 'HomeController@new_adventure1')->name('new.adventure1');
+Route::any('/new_adventure1/{adventure?}', 'HomeController@new_adventure1')->name('new.adventure1');
 Route::any('/new_adventure2/{adventure}', 'HomeController@new_adventure2')->name('new.adventure2');
 Route::any('/new_adventure3/{adventure}', 'HomeController@new_adventure3')->name('new.adventure3');
 Route::any('/new_adventure4/{adventure}', 'HomeController@new_adventure4')->name('new.adventure4');

@@ -15,6 +15,19 @@ class Chat extends Model
         'type',
         'file',
         'seen',
-        're_ichatd',
+        'chat',
+        'travel_id',
     ];
+    public function from(){
+        return $this->belongsTo(User::class,'from_id');
+    }
+    public function to(){
+        return $this->belongsTo(User::class,'to_id');
+    }
+    public function customer(){
+        return $this->belongsTo(User::class,'customer_id');
+    }
+    public function travel(){
+        return $this->belongsTo(Travel::class);
+    }
 }

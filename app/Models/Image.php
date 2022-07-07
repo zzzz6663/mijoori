@@ -20,8 +20,25 @@ class Image extends Model
     {
         return $this->morphTo();
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+
+    public function image()
+    {
+        $folder='';
+        if($this->image){
+            switch($this->imageable_type){
+                case 'App\Models\Adventure':
+                    $folder='adventure';
+                    break;
+            }
+            return asset("/media/$folder/".$this->image);
+        }
+        return '';
     }
 }

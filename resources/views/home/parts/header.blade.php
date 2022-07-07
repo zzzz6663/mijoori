@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div>
+
                     @guest
 
                     <div class="urusea">
@@ -44,6 +45,16 @@
                     @endguest
 
                     @auth
+                    <div class="msg">
+                        <a href="{{route('related.travel')}}" id="envelope">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25.026" height="17.083" viewBox="0 0 25.026 17.083">
+                              <path id="Path_212" data-name="Path 212" d="M672.726,436.316V420.284s0,0,0,0a.328.328,0,0,0-.019-.109l-.006-.01a.27.27,0,0,0-.018-.033.328.328,0,0,0-.048-.07.292.292,0,0,0-.03-.029.361.361,0,0,0-.07-.046c-.012-.006-.023-.013-.035-.017a.357.357,0,0,0-.124-.024H648.351a.357.357,0,0,0-.124.024c-.013,0-.023.011-.035.017a.36.36,0,0,0-.07.046.316.316,0,0,0-.031.029.327.327,0,0,0-.048.069.264.264,0,0,0-.018.033s0,.006-.006.01a.326.326,0,0,0-.019.109s0,0,0,0v16.1a.346.346,0,0,0,.351.342h24.023a.346.346,0,0,0,.351-.342v-.068Zm-10.08-7.986,8.807,7.63H649.272l8.807-7.63,2.063,1.614a.359.359,0,0,0,.44,0ZM648.7,435.539V421l8.822,6.9Zm14.5-7.643,8.822-6.9v14.542Zm8.176-7.271-11.015,8.614-11.015-8.614Z" transform="translate(-647.85 -419.792)" fill="#757575" stroke="#707070" stroke-width="0.3"></path>
+                            </svg>
+                            @if (auth()->user()->related_travel() && auth()->user()->related_travel()->count()>0)
+                                <span   class="cir">1</span>
+                            @endif
+                        </a>
+                    </div>
                         <div class="urusea v2">
                             <a href="#">
                                 <span class="icon">
@@ -107,12 +118,14 @@
 
                     <div class="mainmenu">
                         <ul>
-                            @auth
-                                <li><a id="{{ auth()->user()->guid ? '' : 'be_guid' }}" class="active " href="#">
+                                   @auth
+                                 <li><a id="{{ auth()->user()->guid ? '' : 'be_guid' }}" class="active " href="#"></a>
                                     @endauth
 
                                     @guest
-                                <li><a   class="active register " href="#">
+
+                                <li>
+                                    <a   class="active register " href="#">
                                     @endguest
 
                                     @auth
@@ -123,7 +136,8 @@
                                     @guest
                                         ثبت نام /ورود
                                     @endguest
-                                </a></li>
+                                </a>
+                            </li>
                             <li><a href="#" class="travel_pop_but">سفر سفارشی</a></li>
                             <li><a href="#">سفر مستقیم</a></li>
                         </ul>

@@ -72,9 +72,9 @@
                                         <label for="">موقعیت جغرافیایی</label>
                                         <span>برنامه روز به روز سفر شامل مکانهایی که بازدید میکنید، فعالیت هایی که صورت میدهید و تجربیاتی که ایجاد میکنید را شرح دهید</span>
                                     </div>
-                                    <input id="latitude" name="latitude" type="text"  hidden>
-                                    <input id="longitude" name="longitude" type="text"  hidden>
-                                    <div id="map" height="400" width="200"></div>
+                                    <input id="latitude" name="latitude" value="{{old('latitude' ,$adventure->latitude)}}" type="text"  hidden>
+                                    <input id="longitude" name="longitude" value="{{old('longitude' ,$adventure->longitude)}}" type="text"  hidden>
+                                    <div id="map" style="height:400px ;width:100%"></div>
                                     {{-- <input class="sq" type="hidden"> --}}
 
                                     <link href="https://static.neshan.org/sdk/leaflet/1.4.0/leaflet.css" rel="stylesheet" type="text/css">
@@ -87,12 +87,19 @@
                                     , maptype: 'dreamy'
                                     , poi: true
                                     , traffic: false
+                                    @if ($adventure->latitude)
+                                    , center: [{{$adventure->latitude}}, {{$adventure->longitude}}]
+                                    @else
                                     , center: [35.69195363716694, 51.40228271484376]
+                                    @endif
                                      , zoom: 8
                                 , });
 
                                          var marker;
                                          var array =[]
+                                         @if (old('latitude' ,$adventure->latitude))
+                                         L.marker([{{old('latitude' ,$adventure->latitude)}},{{ old('longitude' ,$adventure->longitude)}}],{   title:''}).addTo(myMap);
+                                         @endif
 
                                         myMap.on('click', function(e) {
                                          for(i=0;i<array.length;i++) {

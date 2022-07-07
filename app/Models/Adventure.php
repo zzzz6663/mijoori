@@ -15,10 +15,12 @@ class Adventure extends Model
         'hardness',//میزان سختی
         'members',//تعداد شرکت کننده
         'city_id',//شهر مقصد
-        'title',//عنوان
+        'province_id',//استان مقصد
+        'name',//عنوان
         'short',//خلاصه
         'action_include',//فعالیت هایی که در بردارد
         'action_not_include',//فعالیت هایی که در بر ندارد
+        'count',//تعداد
         'location',//محل
         'period',//مدت زمان
         'type_period',// نوع مدت زمان  ساعت یا روز
@@ -33,8 +35,8 @@ class Adventure extends Model
         'stage',//مرحله فرم که سه مرحله میباشد
         'place',//محل قرار
         'address',//آدرس
-        'Latitude',//طول جغرافیایی
-        'Longitude',//عرض جغرافیایی
+        'latitude',//طول جغرافیایی
+        'longitude',//عرض جغرافیایی
         'plan',//برنامه سفر
         'stage',//مرحله
     ];
@@ -42,7 +44,12 @@ class Adventure extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+    public function province(){
+        return $this->belongsTo(Province::class);
+    }
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');

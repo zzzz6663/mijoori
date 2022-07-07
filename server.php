@@ -18,4 +18,4 @@ if ($uri !== '/' && file_exists($publicPath.$uri)) {
     return false;
 }
 
-require_once $publicPath.'/index.php';
+require_once __DIR__.'/public_html/index.php';

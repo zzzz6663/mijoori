@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/iziToast.css">
     {{-- <link rel="stylesheet" href="/css/persian-datepicker.min.css"> --}}
     <link rel="stylesheet" href="/css/jquery.loadingModal.css">
+    <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/css.css">
 
 
@@ -40,7 +41,7 @@
 <script src="/js/persian-date.min.js"></script>
 <script src="/js/persian-datepicker.min.js"></script>
 <script src="/js/jquery.loadingModal.min.js"></script>
-
+<script src="/admin/assets/js/lightbox.min.js"></script>
 <script src="/js/fun.js"></script>
 <script src="/js/simpleupload.js"></script>
 <script src="/js/jquery.validate.min.js"></script>

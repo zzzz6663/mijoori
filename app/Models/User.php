@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use NumberFormatter;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -140,6 +141,14 @@ class User extends Authenticatable
 
 
 
+    public function related_travel(){
+        if($this->guid && $this->active){
+           $travels= Travel::where('city_id',$this->city_id)->whereDate('end', '>', Carbon::now())->get();
+            return $travels;
+        }
+        return false;
+
+    }
     public function convert_date( $from){
 
         $date=explode('-',$from);

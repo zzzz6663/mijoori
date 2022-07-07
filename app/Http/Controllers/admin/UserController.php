@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Chat;
 use App\Models\City;
 use App\Models\User;
+use App\Models\Travel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Travel;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -314,4 +315,8 @@ return redirect()->route('user.index');
         alert()->success('سفر با موفقیت حذف شد');
      return redirect()->back();
     }
+
+
+
+
 }
