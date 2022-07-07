@@ -115,10 +115,10 @@ $provinces=Province::all();
                     'action_not_include'=>"nullable|string|min:5",
                     'images'=>"nullable",
            ]);
-           $data['province_id']=City::whereName( $data['city_id'] )->first()->province->id;
+           $data['province_id']=City::find($data['city_id'])->province->id;
            $data['stage']=2;
            $data['confirm']=0;
-           if($adventure){
+           if($adventure->id){
           $adventure->update($data);
             if ($files= $request->file('images')) {
              foreach($files as $file){

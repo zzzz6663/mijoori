@@ -23,9 +23,9 @@
                                 <div class="info">
                                     <h4>  {{$adventure->name}}</h4>
                                     <span class="disc">
-                                        {{$adventure->cat}}
+                                        {{__('arr.'.$adventure->cat)}}
                                         -
-                                        {{$adventure->hardness}}
+                                        {{__('arr.'.$adventure->hardness)}}
 
                                         </span>
                                         @if ($adventure->stage==5)
