@@ -143,7 +143,7 @@ class User extends Authenticatable
 
     public function related_travel(){
         if($this->guid && $this->active){
-           $travels= Travel::where('city_id',$this->city_id)->whereDate('end', '>', Carbon::now())->get();
+           $travels= Travel::where('city_id',$this->city_id)->whereDate('start', '<', Carbon::now())->get();
             return $travels;
         }
         return false;
