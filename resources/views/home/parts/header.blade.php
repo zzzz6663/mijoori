@@ -1,4 +1,4 @@
-<div id="header2" class="rows" style="padding:20px 0">
+<div id="header2" style="z-index:9999999" class="rows" style="padding:20px 0">
     <div class="container">
         <div class="row">
             <div class="col-lg-7">
