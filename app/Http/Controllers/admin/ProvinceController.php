@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use Gumlet\ImageResize;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class ProvinceController extends Controller
 {
@@ -15,6 +17,13 @@ class ProvinceController extends Controller
      */
     public function index()
     {
+        $filename = public_path('/media/province/lg.jpg');
+
+        $image = new ImageResize($filename);
+        $image->scale(1000);
+
+$image->save(public_path('/media/province/lg1.jpg'));
+
         return view('admin.provinces.all');
     }
 
@@ -79,6 +88,12 @@ class ProvinceController extends Controller
         $image = $request->file('image');
         $name_img = 'image_' . $province->id . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('/media/province/'), $name_img);
+        $path = public_path('/media/province/' . $name_img);
+        if (file_exists($path)) {
+            Image::make($path)->fit(667, 389)->save(public_path('/media/province/large' . $name_img));
+            Image::make($path)->fit(362, 253)->save(public_path('/media/province/small' . $name_img));
+            Image::make($path)->fit(362, 353)->save(public_path('/media/city/small' . $name_img));
+        }
         $data['image'] = $name_img;
       }
       $province->update($data);

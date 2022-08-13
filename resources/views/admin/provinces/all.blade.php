@@ -65,7 +65,7 @@
 
                                 @role('admin|manager')
                                 <a class="btn btn-primary curve" href="{{route('province.edit',$province->id)}}">
-                                    عکس
+                                    تغییر عکس
                                 </a>
 @endrole
                                 @if ($province->image())

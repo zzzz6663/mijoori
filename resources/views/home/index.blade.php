@@ -73,7 +73,7 @@
                                     <div>
                                         <div class="single-host-det">
                                             <div class="img">
-                                                <a href="#">
+                                                <a href="{{route('profile',$guid->id)}}">
                                                     <img src="{{$guid->avatar()}}" alt="">
                                                 </a>
                                                 <button class="like">
@@ -84,28 +84,14 @@
 
                                                 <div class="info">
                                                     <div class="top">
-                                                        <h4><a href="#">    {{$guid->name}} {{$guid->family}}</a></h4>
+                                                        <h4><a href="{{route('profile',$guid->id)}}">    {{$guid->name}} {{$guid->family}}</a></h4>
                                                         <span class="city">{{$guid->province?$guid->province->name:''}}</span>
                                                     </div>
                                                     <ul>
                                                         <li>
                                                             <span class="right">
                                                                 <span class="rate">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                                        <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                                        <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                                        <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                                        <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.326" height="11.723" viewBox="0 0 12.326 11.723">
-                                                                        <path id="Path_38" data-name="Path 38" d="M111.1,70.7l-1.448,4.487-4.715-.009,3.819,2.763-1.466,4.481,3.809-2.78,3.809,2.779-1.466-4.48,3.82-2.764-4.715.01Z" transform="translate(-104.94 -70.701)" fill="#662683" fill-rule="evenodd"></path>
-                                                                    </svg>
+                                                                    @include('home.parts.rate',['rate'=>$guid ->rates()])
                                                                 </span>
                                                             </span>
                                                             <span class="left">
@@ -115,7 +101,8 @@
                                                         <li>
                                                             <span class="right">
                                                                 <span class="day">
-                                                                    6 دیدگاه
+                                                                    {{$guid ->comments_count()->count()}}
+                                                                     دیدگاه
                                                                 </span>
                                                             </span>
                                                             <span class="left">
@@ -154,7 +141,7 @@
                     <div class="title-more">
                         <h3>مقاصد گردشگری</h3>
                         <div class="more">
-                            <a href="#">همه ی شهرها</a>
+                            <a href="{{route('all.cities')}}">همه ی شهرها</a>
                         </div>
                     </div>
 
@@ -165,37 +152,14 @@
             <div class="col-lg-12">
                 <div>
                     <ul class="fave-hosts-list owl-carousel owl-theme side-nav">
-                        @foreach ($provinces as $province )
-
+                        @foreach ($cities as $city )
                         <li>
                             <div class="single-city">
                                 <div class="img">
-                                    <a href="#">
-                                        <img src="{{$province->image()}}" alt="">
+                                    <a href="{{route('single.city',$city->id)}}">
+                                        <img src="{{$city->image('small')}}" alt="">
                                     </a>
-                                    <h4><a href="#">{{$province->name}}</a></h4>
-                                </div>
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="images/city4.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">اصفهان</a></h4>
-                                </div>
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="single-city">
-                                <div class="img">
-                                    <a href="#">
-                                        <img src="images/city1.jpg" alt="">
-                                    </a>
-                                    <h4><a href="#">تهارن</a></h4>
+                                    <h4><a href="{{route('single.city',$city->id)}}">{{$city->name}}</a></h4>
                                 </div>
 
                             </div>
@@ -254,7 +218,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="link">
-                        <a class="btn travel_pop_but" href="#">سفر سفارشی بسازید</a>
+                        <a class="btn " href="{{route('custom.travel')}}">سفر سفارشی بسازید</a>
                     </div>
                 </div>
             </div>
@@ -262,7 +226,95 @@
     </div>
 </div>
 
-<div id="new-exp" class="rows">
+@if ($last_travels->count()>0)
+
+<div id="new-reserve" class="rows">
+    <div class="fullcontainer">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+
+                    <div class="title-more">
+                        <h3>رزروهای اخیر</h3>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="reserves">
+
+
+            <div class="row">
+@foreach ($last_travels as  $ls)
+
+                <div class="col-lg-4 col-md-12">
+                    <div>
+                        <div class="single-erserv">
+                            <div class="top">
+                                <div class="img">
+                                    <img src="{{$ls->host->city?$ls->host->city->image():''}}">
+                                </div>
+                                <div class="user">
+                                   <a href="{{route('profile',$ls->host->id)}}">
+                                    <img src="{{$ls->host->avatar()}}" alt="">
+                                   </a>
+                                </div>
+                                <div class="price">
+                                    <div>
+
+                                    <span>
+                                        250/000
+                                    </span>
+                                    <span>تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <h4>
+                                    {{$ls->host->name}}
+                                    {{$ls->host->family}}
+                                </h4>
+                                <span class="city"> {{$ls->host->city?$ls->host->city->name:''}}</span>
+                            </div>
+                            <div class="bot">
+                                <div class="right">
+                                    <div class="img">
+                                        <img src="{{$ls->user->avatar()}}" alt="">
+                                    </div>
+                                    <h5>
+
+                                        {{$ls->user->name}}
+                                        {{$ls->user->family}}
+                                    </h5>
+                                    <div class="star">
+                                        @include('home.parts.rate',['rate'=>$ls->host->rates()])
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <p>
+                                        @php
+                                            $chat=$ls->chats()->oldest()->first();
+                                        @endphp
+                                        {{$chat->chat}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+{{-- <div id="new-exp" class="rows">
     <div class="fullcontainer">
 
         <div class="row">
@@ -372,7 +424,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
    @endsection

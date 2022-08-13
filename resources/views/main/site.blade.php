@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/home/css/style.css">
     <link rel="stylesheet" href="/css/iziToast.css">
-    {{-- <link rel="stylesheet" href="/css/persian-datepicker.min.css"> --}}
+    <link rel="stylesheet" href="/css/persian-datepicker.min.css">
     <link rel="stylesheet" href="/css/jquery.loadingModal.css">
-    <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet">
+    {{-- <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="/css/css.css">
 
 
@@ -30,8 +30,8 @@
 <script src="/home/js/jquery-2.2.0.min.js"></script>
 <script src="/home/js/owl.carousel.min.js"></script>
 <script src="/home/js/aos.js"></script>
-<script src="/home/js/persian-date.min.js"></script>
-<script src="/home/js/persian-datepicker.min.js"></script>
+{{-- <script src="/home/js/persian-date.min.js"></script>
+<script src="/home/js/persian-datepicker.min.js"></script> --}}
 <script src="/home/js/glightbox.min.js"></script>
 <script src="/home/js/nouislider.min.js"></script>
 <script src="/home/js/wNumb.min.js"></script>

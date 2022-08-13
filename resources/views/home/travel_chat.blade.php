@@ -9,29 +9,39 @@
             رزرو کنید
         {{-- {{auth()->user()->id}} --}}
         </h3>
+        @if ($travel->host_accept)
+        @php
+        $to=$travel->host->id;
+               if ($travel->host->id==auth()->user()->id){
+                $to=$travel->user->id;
+               }
 
+
+        @endphp
         @include('main.error')
         <form action="{{route('send.chat')}}" method="post">
             @csrf
             @method('post')
             <textarea  id="" cols="30" rows="10" name="chat" placeholder="پیام شخصی"></textarea>
-            <input type="text" name="to" value="{{$travel->user->id}}" hidden>
+            <input type="text" name="to" value="{{$to}}" hidden>
             <input type="text" name="travel" value="{{$travel->id}}" hidden>
             <button class="btn">ارسال پیام</button>
         </form>
+        @endif
     </div>
 </div>
+
 <div id="make-offer" class="rows">
     <div class="fullcontainer">
         <div class="make-offer-side">
             <div class="top">
                 <div class="img">
-                    <img src="images/mijoorban1.png" alt="">
+                    <img src="{{$travel->host->avatar()}}" alt="">
                 </div>
                 <div class="name">
                     <h4>
-                        {{$travel->user->name}}
-                        {{$travel->user->family}}
+                          {{$travel->host->name}}
+                          {{$travel->host->family}}
                     </h4>
                 </div>
                 <div class="price">
@@ -39,12 +49,10 @@
                     <span>تومان</span>
                 </div>
                 <div class="city">
-                    <span>
-                        {{$travel->user->city->name}}
-                    </span>
+                    <span>{{$travel->city->name}}</span>
                 </div>
                 <div class="view">
-                    <a href="#">مشاهده پروفایل</a>
+                    <a href="{{route('profile',$travel->host->id)}}">مشاهده پروفایل</a>
                 </div>
                 <div class="stat">
                     <div class="views">
@@ -56,31 +64,7 @@
                             امتیاز
                         </span>
                         <span class="stars">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17.2" height="16.339" viewBox="0 0 17.2 16.339">
-                              <g id="Group_209" data-name="Group 209" transform="translate(0 0)">
-                                <path id="Path_46" data-name="Path 46" d="M1459.668,226.78a.053.053,0,0,1,0-.032l.327-1.4q.173-.745.346-1.49.18-.77.359-1.539t.359-1.544a.047.047,0,0,0-.019-.054l-1.824-1.58-1.417-1.229-1.359-1.177-.069-.061.125-.01c.126-.012.253-.021.379-.031l.484-.043.379-.031.373-.034.374-.031.378-.033.258-.022.387-.033.258-.022.392-.034.364-.031.392-.034.365-.031.391-.034.36-.031.4-.034c.032,0,.064-.006.1-.007a.054.054,0,0,0,.053-.04c.094-.226.19-.451.286-.677l2.094-4.942.02-.043c.007.014.012.024.016.034l1.619,3.819q.383.9.763,1.8a.065.065,0,0,0,.064.046c.086.006.172.014.258.021l.392.034.359.031.4.034.374.031.378.033.263.022.387.034.263.022.383.033.263.022.387.034.369.031.388.034.258.022.387.033.254.022.365.03s0,0,.008.005-.015.021-.025.029l-1.9,1.647-1.841,1.6q-.434.376-.869.751a.086.086,0,0,0-.034.1c.117.5.232.993.348,1.49s.233,1,.349,1.5q.191.824.383,1.647l.309,1.323a.036.036,0,0,1,0,.023.106.106,0,0,1-.04-.021l-4.561-2.75c-.225-.136-.451-.272-.676-.409a.058.058,0,0,0-.07,0l-2.747,1.657-2.5,1.506C1459.69,226.771,1459.681,226.78,1459.668,226.78Z" transform="translate(-1456.373 -210.442)" fill="currentColor"></path>
-                              </g>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17.2" height="16.339" viewBox="0 0 17.2 16.339">
-                              <g id="Group_209" data-name="Group 209" transform="translate(0 0)">
-                                <path id="Path_46" data-name="Path 46" d="M1459.668,226.78a.053.053,0,0,1,0-.032l.327-1.4q.173-.745.346-1.49.18-.77.359-1.539t.359-1.544a.047.047,0,0,0-.019-.054l-1.824-1.58-1.417-1.229-1.359-1.177-.069-.061.125-.01c.126-.012.253-.021.379-.031l.484-.043.379-.031.373-.034.374-.031.378-.033.258-.022.387-.033.258-.022.392-.034.364-.031.392-.034.365-.031.391-.034.36-.031.4-.034c.032,0,.064-.006.1-.007a.054.054,0,0,0,.053-.04c.094-.226.19-.451.286-.677l2.094-4.942.02-.043c.007.014.012.024.016.034l1.619,3.819q.383.9.763,1.8a.065.065,0,0,0,.064.046c.086.006.172.014.258.021l.392.034.359.031.4.034.374.031.378.033.263.022.387.034.263.022.383.033.263.022.387.034.369.031.388.034.258.022.387.033.254.022.365.03s0,0,.008.005-.015.021-.025.029l-1.9,1.647-1.841,1.6q-.434.376-.869.751a.086.086,0,0,0-.034.1c.117.5.232.993.348,1.49s.233,1,.349,1.5q.191.824.383,1.647l.309,1.323a.036.036,0,0,1,0,.023.106.106,0,0,1-.04-.021l-4.561-2.75c-.225-.136-.451-.272-.676-.409a.058.058,0,0,0-.07,0l-2.747,1.657-2.5,1.506C1459.69,226.771,1459.681,226.78,1459.668,226.78Z" transform="translate(-1456.373 -210.442)" fill="currentColor"></path>
-                              </g>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17.2" height="16.339" viewBox="0 0 17.2 16.339">
-                              <g id="Group_209" data-name="Group 209" transform="translate(0 0)">
-                                <path id="Path_46" data-name="Path 46" d="M1459.668,226.78a.053.053,0,0,1,0-.032l.327-1.4q.173-.745.346-1.49.18-.77.359-1.539t.359-1.544a.047.047,0,0,0-.019-.054l-1.824-1.58-1.417-1.229-1.359-1.177-.069-.061.125-.01c.126-.012.253-.021.379-.031l.484-.043.379-.031.373-.034.374-.031.378-.033.258-.022.387-.033.258-.022.392-.034.364-.031.392-.034.365-.031.391-.034.36-.031.4-.034c.032,0,.064-.006.1-.007a.054.054,0,0,0,.053-.04c.094-.226.19-.451.286-.677l2.094-4.942.02-.043c.007.014.012.024.016.034l1.619,3.819q.383.9.763,1.8a.065.065,0,0,0,.064.046c.086.006.172.014.258.021l.392.034.359.031.4.034.374.031.378.033.263.022.387.034.263.022.383.033.263.022.387.034.369.031.388.034.258.022.387.033.254.022.365.03s0,0,.008.005-.015.021-.025.029l-1.9,1.647-1.841,1.6q-.434.376-.869.751a.086.086,0,0,0-.034.1c.117.5.232.993.348,1.49s.233,1,.349,1.5q.191.824.383,1.647l.309,1.323a.036.036,0,0,1,0,.023.106.106,0,0,1-.04-.021l-4.561-2.75c-.225-.136-.451-.272-.676-.409a.058.058,0,0,0-.07,0l-2.747,1.657-2.5,1.506C1459.69,226.771,1459.681,226.78,1459.668,226.78Z" transform="translate(-1456.373 -210.442)" fill="currentColor"></path>
-                              </g>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17.2" height="16.339" viewBox="0 0 17.2 16.339">
-                              <g id="Group_209" data-name="Group 209" transform="translate(0 0)">
-                                <path id="Path_46" data-name="Path 46" d="M1459.668,226.78a.053.053,0,0,1,0-.032l.327-1.4q.173-.745.346-1.49.18-.77.359-1.539t.359-1.544a.047.047,0,0,0-.019-.054l-1.824-1.58-1.417-1.229-1.359-1.177-.069-.061.125-.01c.126-.012.253-.021.379-.031l.484-.043.379-.031.373-.034.374-.031.378-.033.258-.022.387-.033.258-.022.392-.034.364-.031.392-.034.365-.031.391-.034.36-.031.4-.034c.032,0,.064-.006.1-.007a.054.054,0,0,0,.053-.04c.094-.226.19-.451.286-.677l2.094-4.942.02-.043c.007.014.012.024.016.034l1.619,3.819q.383.9.763,1.8a.065.065,0,0,0,.064.046c.086.006.172.014.258.021l.392.034.359.031.4.034.374.031.378.033.263.022.387.034.263.022.383.033.263.022.387.034.369.031.388.034.258.022.387.033.254.022.365.03s0,0,.008.005-.015.021-.025.029l-1.9,1.647-1.841,1.6q-.434.376-.869.751a.086.086,0,0,0-.034.1c.117.5.232.993.348,1.49s.233,1,.349,1.5q.191.824.383,1.647l.309,1.323a.036.036,0,0,1,0,.023.106.106,0,0,1-.04-.021l-4.561-2.75c-.225-.136-.451-.272-.676-.409a.058.058,0,0,0-.07,0l-2.747,1.657-2.5,1.506C1459.69,226.771,1459.681,226.78,1459.668,226.78Z" transform="translate(-1456.373 -210.442)" fill="currentColor"></path>
-                              </g>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17.2" height="16.339" viewBox="0 0 17.2 16.339">
-                              <g id="Group_209" data-name="Group 209" transform="translate(0 0)">
-                                <path id="Path_46" data-name="Path 46" d="M1459.668,226.78a.053.053,0,0,1,0-.032l.327-1.4q.173-.745.346-1.49.18-.77.359-1.539t.359-1.544a.047.047,0,0,0-.019-.054l-1.824-1.58-1.417-1.229-1.359-1.177-.069-.061.125-.01c.126-.012.253-.021.379-.031l.484-.043.379-.031.373-.034.374-.031.378-.033.258-.022.387-.033.258-.022.392-.034.364-.031.392-.034.365-.031.391-.034.36-.031.4-.034c.032,0,.064-.006.1-.007a.054.054,0,0,0,.053-.04c.094-.226.19-.451.286-.677l2.094-4.942.02-.043c.007.014.012.024.016.034l1.619,3.819q.383.9.763,1.8a.065.065,0,0,0,.064.046c.086.006.172.014.258.021l.392.034.359.031.4.034.374.031.378.033.263.022.387.034.263.022.383.033.263.022.387.034.369.031.388.034.258.022.387.033.254.022.365.03s0,0,.008.005-.015.021-.025.029l-1.9,1.647-1.841,1.6q-.434.376-.869.751a.086.086,0,0,0-.034.1c.117.5.232.993.348,1.49s.233,1,.349,1.5q.191.824.383,1.647l.309,1.323a.036.036,0,0,1,0,.023.106.106,0,0,1-.04-.021l-4.561-2.75c-.225-.136-.451-.272-.676-.409a.058.058,0,0,0-.07,0l-2.747,1.657-2.5,1.506C1459.69,226.771,1459.681,226.78,1459.668,226.78Z" transform="translate(-1456.373 -210.442)" fill="currentColor"></path>
-                              </g>
-                            </svg>
+                            @include('home.parts.rate',['rate'=>$travel->host->rates()])
 
                         </span>
                     </div>
@@ -94,58 +78,62 @@
                 </ul>
             </div>
         </div>
-        <div class="make-offer-content-msg">
-            <div class="title">
-                <h3>پیام های دریافتی</h3>
-            </div>
-           @foreach ($travel->chats()->latest()->get() as $chat)
-           <div class="offer-content-msg">
+    @if ($travel->host_accept)
+
+    <div class="make-offer-content-msg">
+        <div class="title">
+            <h3>پیام های دریافتی</h3>
+        </div>
+
+
+
+        @foreach ($travel->chats()->latest()->get() as $chatys )
+        <div class="offer-content-msg {{$chatys->to->id==$user->id ? '':'rev'}}">
+
+
             <div class="img">
-                <img src="{{$chat->from->avatar()}}" alt="">
+                <img src="{{$chatys->to->id==$user->id ? $chatys->from->avatar():$user->avatar()}}" alt="">
+               {{-- <img src="/media/avatar/{{$chatys->to->id==$user->id ?$chatys->to->avatar:$chatys->from->avatar}}" alt="{{$chatys->to->id==$user->id ?$chatys->to->name:$chatys->from->name}}"> --}}
             </div>
             <div class="left">
                 <div class="msg">
-                    {!!  $chat->chat !!}
+                  {{ $chatys->chat}}
+
                 </div>
                 <div class="msg-time">
-                    <span>
-                        {{$chat->created_at->diffForHumans()}}
-                    </span>
+                    <span>             {{ $chatys->created_at->diffForHumans() }}</span>
                 </div>
             </div>
         </div>
-           @endforeach
+        @endforeach
 
-        </div>
-        <div class="guide-notifs">
-            <ul>
-                <li>
-                    <div class="guide-notif">
-                        <p>راهنما پیشنهاد مسافر را پذیرفت</p>
-                        <span class="date">
-                            11:30
-                              -  ق. ظ
-                              6 اردیبهشت
-                              1401
-                        </span>
-                    </div>
-                </li>
-                <li>
-                    <div class="guide-notif">
-                        <p>پرداخت امن به مبلغ   20000        ریال توسط  مسافرپرداخت شد</p>
-                        <span class="date">
-                            11:30
-                              -  ق. ظ
-                              6 اردیبهشت
-                              1401
-                        </span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="make-offer-content exp">
+
+
+
+
+    </div>
+        @else
+        <div class="make-offer-content">
             <div class="mtitle">
-                <h3>حسین، مشهد را به شما نشان می دهد</h3>
+                <h3>
+
+
+
+
+                     @if ($travel->host->id==auth()->user()->id)
+                     {{$travel->user->name}}
+                     {{$travel->user->family}}
+                    درخواست سفر در
+                    {{$travel->city?$travel->city->name:''}}
+
+                    را دارد
+                    @else
+                    {{$travel->host->name}}
+                    {{$travel->city?$travel->city->name:''}}
+
+                    @endif
+
+                    </h3>
             </div>
             <div class="timing">
                 <div class="top">
@@ -165,10 +153,10 @@
                         </svg>
 
                         <span>
-                            20 خرداد 1401
+                          {{Morilog\Jalali\Jalalian::forge($travel->start)->format('%B %d، %Y')}}
                         </span>
                         <span>-</span>
-                        <span>25 خرداد 1401</span>
+                        <span>      {{Morilog\Jalali\Jalalian::forge($travel->start)->format('%B %d، %Y')}}    </span>
 
                     </div>
                     <div class="price">
@@ -185,32 +173,58 @@
                     <ul>
                         <li>
                             <span class="title">تعداد افراد :</span>
-                            <span>خودم</span>
+                            <span>
+                                {{$travel->count==1 ? 'خودم':$travel->count}}
+                            </span>
                         </li>
                         <li>
                             <span class="title">زمان ملاقات :</span>
-                            <span>عصر</span>
+                            <span>
+
+                            {{__('arr.'.$travel->visit)}}
+                            </span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="texte">
                 <div class="img">
-                    <img src="images/mijoorban1.png" alt="">
+                    @if ($travel->host->id==auth()->user()->id)
+                    @else
+                    @endif
+                    @if ($travel->host->id==auth()->user()->id)
+                    <img src="{{$travel->user->avatar() }}" alt="">
+
+                    @else
+                    <img src="{{$travel->host->avatar() }}" alt="">
+                    @endif
                 </div>
                 <div class="text">
                     <p>
-                        حسین، مشهد را به شما نشان می دهد  حسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهدحسین، مشهد را به شما نشان می دهد
+                        @php
+                            $ch=$travel->chats()->oldest()->first()
+                        @endphp
+
+                        {{$ch?$ch->chat:''}}
                     </p>
                 </div>
             </div>
 
             <div class="buttons">
-                <button class="violet">متن</button>
-                <button class="gray">متن</button>
+               <form action="{{route('related.chat',$travel->id)}}" method="post">
+                @csrf
+                @method('post')
+                <input name="accept" type="submit" class="violet btt" value="قبول">
+                <input name="reject" type="submit" class="gray btt" value="رد">
+               </form>
             </div>
 
         </div>
+
+        @endif
+
+
     </div>
 </div>
+
    @endsection

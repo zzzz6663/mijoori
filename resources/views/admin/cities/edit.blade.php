@@ -38,6 +38,21 @@
                                 </div><!-- /.input-group -->
                                 <div class="help-block"></div>
                             </div>
+
+                            <div class="form-group relative">
+                                <input type="file"  accept="image/*" name="banner" class="form-control">
+                                <label>آپلود بنر</label>
+                                <div class="input-group round">
+                                    <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info">
+                                            <i class="icon-picture"></i>
+                                            آپلود بنر
+                                        <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div></button>
+                                    </span>
+                                </div><!-- /.input-group -->
+                                <div class="help-block"></div>
+                            </div>
                             <div class="form-group relative">
                                 <button type="submit" class="btn btn-info curve">
                                     ذخیره

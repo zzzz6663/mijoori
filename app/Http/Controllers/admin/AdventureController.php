@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\City;
-use App\Models\adventure;
+use App\Models\Adventure;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class ADventureController extends Controller
+class AdventureController extends Controller
 {
     /**
      * Display a listing of the resource.

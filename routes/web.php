@@ -22,6 +22,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::post('/be_guid_form_2', 'UserController@be_guid_form_2')->name('user.be.guid.form.2');
     Route::post('/be_guid_form_3', 'UserController@be_guid_form_3')->name('user.be.guid.form.3');
     Route::post('/new_travel', 'UserController@new_travel')->name('user.new.travel');
+    Route::post('/private_travel', 'UserController@private_travel')->name('user.private.travel');
     // Route::post('/new_adventure', 'UserController@new_adventure')->name('user.new.adventure');
 });
 
@@ -56,9 +57,18 @@ Route::get('/clear', 'HomeController@clear')->name('clear');
 //صفحات وب سایت
 Route::get('/', 'HomeController@index')->name('login');
 Route::get('/guides', 'HomeController@guides')->name('guides');
+Route::get('/profile/{user}', 'HomeController@profile')->name('profile');
 Route::get('/related_travel', 'HomeController@related_travel')->name('related.travel');
-Route::get('/travel_chat/{travel}', 'HomeController@travel_chat')->name('related.chat');
+Route::any('/travel_chat/{travel}', 'HomeController@travel_chat')->name('related.chat');
+Route::get('/all_cities', 'HomeController@all_cities')->name('all.cities');
+Route::get('/single_city/{city}', 'HomeController@single_city')->name('single.city');
 Route::post('/send_chat', 'HomeController@send_chat')->name('send.chat');
+Route::get('/custom_travel', 'HomeController@custom_travel')->name('custom.travel');
+
+Route::middleware(['auth'])->group(function () {
+Route::get('/submit_rate/{travel}', 'HomeController@submit_rate')->name('submit.rate');
+Route::get('/edit_profile/{user}', 'HomeController@edit_profile')->name('edit.profile');
+});
 
 
 //ثبت اطلاعات ماجراجویی جدید

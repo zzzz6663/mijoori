@@ -11,12 +11,145 @@
 
 window.onload = function() {
     if (window.jQuery) {
+
+
+        $('#private_travel').click(function(){
+            $("#private_form").validate({
+                rules: {
+                    start: {
+                        required: true,
+                    },
+                    end: {
+                        required: true,
+                    },
+                    duration: {
+                        required: true,
+                    },
+
+                    visit: {
+                        required: true,
+                    },
+                    message: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    start:'لطفا زمان شروع سفر را انتخاب کنید ',
+                    end:'لطفا زمان پایان سفر را انتخاب کنید ',
+                    duration:'مدت زمان را انتخاب  کنید ',
+                    visit:'زمان ملاقات را انتخاب کنید ',
+                    message:'لطفا پیام خود را برای میزان بنویسید ',
+                }
+            });
+
+            if(!$("#private_form").valid()){   // test for validity
+                noty('       همه ورودی ها را به درستی وارد کنید   ', 'red', '');
+              return false;
+            }
+
+
+
+
+            var form_data = new FormData($('#private_form')[0]);
+            console.log(form_data);
+            load_animation()
+            $.ajax('/admin/private_travel',{
+                headers:{
+                    'X-CSRF-TOKEN':document.head.querySelector('meta[name="csrf-token"]').content,
+                    // 'Content-Type':'application/json,charset=utf-8'
+                },
+                type:'post',
+                data:  form_data,
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false,
+                datatype:'json',
+                success:function (data) {
+                    stop_animation()
+
+                    console.log(data);
+                    if(data.status=='ok'){
+                        noty('    اطلاعات با موفقیت ثبت شد', 'green', '');
+                        setTimeout(
+                            function()
+                            {
+                                window.open("/my_travels","_self")
+
+                            }, 2000);
+                    }else{
+                        for (const item in  data) {
+                            noty(   data[item], 'red', '');
+                            break;
+                        }
+                    }
+
+                },
+                error: function (request, status, error) {
+                      console.log(request);
+                    console.log(status);
+                    console.log(status);
+                    stop_animation()
+                    noty('       مشکلی ایجاد شده     ', 'red', '');
+                }
+          })
+
+
+          });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if ($('#er').length) {
 
  $('html, body').animate({
         scrollTop: $("#er").offset().top-200
     }, 1000);
         }
+
+
+        $('.offer-me').click(function(){
+        let  id= $(this).data('id')
+        let  name= $(this).data('name')
+        let  family= $(this).data('family')
+        let  city= $(this).data('city')
+        $('.uname').text(name)
+        $('.ufamily').text(family)
+        $('.ucity').text(city)
+        $('#host_id').val(id)
+
+        $('#make-offer').show()
+        })
         $('#new_travel').click(function(){
             $(".error").html('');
             $(".error").removeClass("error");

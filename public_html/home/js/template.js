@@ -150,19 +150,85 @@ $('.guide-pic ul').owlCarousel({
 });
 
 
-  $('.inline-example').persianDatepicker({
+
+let click=1
+let to=$('.inline-example').persianDatepicker({
+    // minDate: new persianDate().unix(),
     inline: true,
-    altField: '#inlineExampleAlt',
-    altFormat: 'LLLL',
-    maxDate: new persianDate().add('month', 3).valueOf(),
-    minDate: new persianDate().subtract('month', 3).valueOf(),
-    timePicker: {
-        enabled: true,
-        meridiem: {
-            enabled: true
+    toolbox:{
+        calendarSwitch:{
+            enabled: false
         }
+    },
+    // altField: '#inlineExampleAlt',
+    minDate:new persianDate(),
+    onShow: function(unix){
+        $('.selected ').removeClass('selected')
+
+    },
+    onSelect: function(unix){
+        if(click==1){
+            to.options = {minDate: unix};
+            let mydate = new Date(unix);
+let mypersiandate = mydate.toLocaleDateString('fa-IR');
+// var date = moment.unix(unix).format("MM/DD/YYYY");
+
+            $('.start').text( mypersiandate)
+            // .unix(unix).format(" MMMM DD YYYY") )
+            console.log( mypersiandate)
+            // console.log( new persianDate().unix(unix))
+            $('#start').val(mypersiandate)
+        }
+        if(click==2){
+            console.log(click)
+            to.options = {maxDate: unix};
+            let mydate = new Date(unix);
+            let mypersiandate = mydate.toLocaleDateString('fa-IR');
+            $('#re_select').css('display','block')
+            $('.end').text( mypersiandate )
+            $('#end').val(mypersiandate)
+        }
+        click++
+
+        console.log(8000000)
+
+
+        $('#re_select').click(function(){
+            // to.hide()
+            to.options = {maxDate: null};
+            to.options = {minDate: null};
+            $(this).hide(200)
+$('.start').text('')
+$('.end').text('')
+$('#start').val('')
+$('#end').val('')
+            click=1
+            // setTimeout(function(){
+            //     to.show()
+            // }, 2000);
+          })
+
+        // console.log(new persianDate().unix(unix));
+        // to.options = {maxDate: unix};
+        // to.maxDate=new persianDate().unix(unix)d
+
+
     }
 });
+
+//   let to=$('.inline-example').persianDatepicker({
+//     inline: true,
+//     altField: '#inlineExampleAlt',
+//     // altFormat:  'YYYY/MM/DD',
+//     minDate: new persianDate().unix(),
+//     // maxDate: new persianDate().add('month', 3).valueOf(),
+//     // minDate: new persianDate().subtract('month', 3).valueOf(),
+//     onSelect: function(unix){
+//         console.log('datepicker select : ' + unix);
+//         console.log('datepicker select : ' +  new persianDate(unix));
+//         // to.maxDate= new persianDate().unix( unix)
+//     }
+// });
 
 
   $('#header form input.se').click(function(){
@@ -214,9 +280,9 @@ $('.more-class-pop').click(function(){
 
 
 
-$('.pop').click(function(){
-    $('.pop').fadeOut();
-})
+// $('.pop').click(function(){
+//     $('.pop').fadeOut();
+// })
 
 
 $('.pop-content').click(function(event){

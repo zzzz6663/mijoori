@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Travel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -160,6 +161,11 @@ return redirect()->route('user.index');
             $avatar = $request->file('avatar');
             $name_img = 'avatar_' . $user->id . '.' . $avatar->getClientOriginalExtension();
             $avatar->move(public_path('/media/avatar/'), $name_img);
+            $path = public_path('/media/avatar/' . $name_img);
+            if (file_exists($path)) {
+                Image::make($path)->fit(353, 468)->save(public_path('/media/avatar/' . $name_img));
+                Image::make($path)->fit(300, 300)->save(public_path('/media/avatar/square' . $name_img));
+            }
             $data['avatar'] = $name_img;
         }
         $data['complete_register'] = '1';
@@ -252,6 +258,52 @@ return redirect()->route('user.index');
             'status' => 'ok',
         ]);
     }
+    public function private_travel(Request $request)
+    {
+        $user = auth()->user();
+
+        $validator = Validator::make($request->all(), [
+            'start' => 'required',
+            'end' => 'required',
+            'count' => 'required',
+            'duration' => 'required',
+            'host_id' => 'required',
+            'visit' => 'required',
+            'message' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        $data = $validator->safe()->all();
+
+        $host=User::find($data['host_id']);
+
+        $data['province_id']=$host->province->id;
+        $data['type']='private';
+        $data['gender']=$host->gender;
+        $data['city_id']=$host->city->id;
+
+        $data['start'] = $user->convert_date($data['start'],'/');
+
+        $data['end'] = $user->convert_date($data['end'],'/');
+
+        $travel=$user->travels()->create($data);
+
+        Chat::create(
+            [
+                'from_id'=>$user->id,
+                'type' => 'text',
+                'to_id' => $host->id,
+                'chat' =>  $request->message,
+                'travel_id' => $travel->id,
+            ]
+            );
+        return response()->json([
+            'all' => $request->all(),
+            'status' => 'ok',
+        ]);
+    }
     public function new_travel(Request $request)
     {
         $user = auth()->user();
@@ -273,6 +325,7 @@ return redirect()->route('user.index');
         $data['city_id']=City::whereName( $data['city_id'] )->first()->id;
         $data['start'] = $user->convert_date($data['start']);
         $data['end'] = $user->convert_date($data['end']);
+        $data['type']='public';
         $user->travels()->create($data);
         return response()->json([
             'all' => $request->all(),

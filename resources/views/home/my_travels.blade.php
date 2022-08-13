@@ -42,7 +42,7 @@
                     <div class="single-my-trip">
                         <div class="img">
                             <a href="#">
-                                <img src="{{$travel->city->province->image()}}" alt="">
+                                <img src="{{$travel->city->image()}}" alt="">
                             </a>
                             <div class="cap">
                                 <h4>سفر به
@@ -87,18 +87,22 @@
 
                                     {{$user->fdate($travel->start)->format('%A, %d %B %Y')}} -
                                     {{$user->fdate($travel->end)->format('%A, %d %B %Y')}}
-
                                     <span style="display:inline-block; margin-left:10px; color:{{$travel->active?"green":'red'}}">
                                     ({{$travel->active?"فعال":'غیرفعال'}})
                                     </span>
+
                                 </div>
 
                                 <div class="actions">
+
+                                    @if ( !$travel->confirm)
 
                                     <a href="{{route('user.travel.destroy',$travel->id)}}">حذف</a>
                                     <span>/</span>
 
                                     <a href="{{route('user.travel.active',$travel->id)}}">{{$travel->active?"غیرفعال":'فعال'}}</a>
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="numbers">
@@ -126,7 +130,7 @@
     </div>
 </div>
 
-<div id="myexps" class="rows">
+{{-- <div id="myexps" class="rows">
     <div class="fullcontainer">
         <div class="row">
             <div class="col-lg-12">
@@ -234,5 +238,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
    @endsection

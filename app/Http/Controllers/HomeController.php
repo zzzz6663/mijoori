@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Chat;
 use App\Models\City;
 use App\Models\User;
@@ -18,11 +19,13 @@ class HomeController extends Controller
     public  function  clear()
     {
    Artisan::call('cache:clear');
-        Artisan::call('config:cache');
-        Artisan::call('view:clear');
-        Artisan::call('optimize:clear');
-        Artisan::call('config:clear');
-        Artisan::call('optimize');
+        // Artisan::call('config:cache');
+        // Artisan::call('view:clear');
+        // Artisan::call('optimize:clear');
+        // Artisan::call('config:clear');
+        // Artisan::call('optimize');
+
+        return 20;
     }
     public  function  logout()
     {
@@ -57,13 +60,16 @@ class HomeController extends Controller
         // $invitedUser->notify(new SendKaveCode( '09373699317','login','1212','','','',''));
 $guids=User::whereLevel('customer')->where('guid','1')->where('active','1')->latest()->get();
 $provinces=Province::all();
+$cities=City::all();
 // $provinces=Province::whereHas('users',function($query) {
 //     $query->where('guid','1')->where('active','1');
 
 // })->get();
         $user= auth()->user();
 
-        return view('home.index',compact('user','guids','provinces'));
+        $last_travels=Travel::whereActive('1')->whereConfirm('1')->where('host_accept','1')->latest()->get();
+
+        return view('home.index',compact('user','guids','provinces','cities','last_travels'));
     }
     public function send_verify_code (Request $request){
         //            ارسال پیامک
@@ -219,11 +225,37 @@ $provinces=Province::all();
 
     public function related_travel(Request $request){
         $user=auth()->user();
-        $travels=$user->related_travel();
-        return view('home.related_travel',compact(['travels','user']));
+        $related_travel=Travel::where('city_id',$user->city->id)->whereGender($user->gender)->where('start','>',Carbon::now())->latest()->get();
+        $chats=Chat::where('to_id',$user->id)->latest()->get();
+        return view('home.related_travel',compact(['chats','user','related_travel']));
     }
     public function travel_chat(Request $request ,Travel $travel){
         $user=auth()->user();
+        if($travel->host_accept=='0'){
+            alert()->warning('سفر   توسط میجوری بان رد شده است ');
+            return redirect()->route('related.travel');
+        }
+        if($request->method()=='POST'){
+            if($request->accept){
+                $travel->update(['host_accept'=>1]);
+                alert()->success('سفر با موفقیت تایید شد');
+            }else{
+                Chat::create(
+                    [
+                        'from_id'=>$user->id,
+                        'type' => 'text',
+                        'to_id' => $travel->user->id,
+                        'chat' =>  "درخواست شما برای سفر توسط میزبان رد شد ",
+                        'travel_id' => $travel->id,
+                        'seen' => 1,
+                    ]
+                    );
+                $travel->update(['host_accept'=>0]);
+                alert()->success('سفر با موفقیت رد شد');
+
+            }
+            return redirect()->route('related.chat',$travel->id);
+        }
         return view('home.travel_chat',compact(['travel','user']));
     }
     public function my_adventures(Request $request){
@@ -231,7 +263,45 @@ $provinces=Province::all();
         $adventures=$user->adventures()->latest()->get();
         return view('home.my_adventures',compact(['adventures','user']));
     }
+    public function all_cities(Request $request){
+        $user=auth()->user();
+        return view('home.all_cities',compact(['user']));
+    }
+    public function single_city(Request $request, City $city){
+        $target_city=$city;
+        $user=auth()->user();
+        return view('home.single_city',compact(['user','target_city']));
+    }
+    public function custom_travel(Request $request){
+        $user=auth()->user();
+        $custom_travel=true;
+        return view('home.custom_travel',compact(['user','custom_travel']));
+    }
+    public function profile(Request $request ,User $user){
+        $travel=null;
+        $comments=null;
+        $agent=auth()->user();
+        if($agent){
+            $travel= $user->host_travels()->where('user_id',$agent->id)->where('host_accept','1')->first();
+        }
+        $comments=$user->comments_count();
 
+        return view('home.profile',compact(['user','agent','travel','comments']));
+    }
+
+    public function submit_rate(Request $request,Travel $travel )
+    {
+        $agent=auth()->user();
+
+        $data=$request->validate([
+            'comment'=>'required',
+            'rate'=>'nullable'
+        ]);
+        $data['time_comment']=Carbon::now();
+        $travel ->update($data);
+        alert()->success('نظر با موفقیت ثبت شد ');
+        return back();
+    }
     public function send_chat(Request $request)
     {
         $user = auth()->user();

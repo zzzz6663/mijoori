@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class CityController extends Controller
 {
@@ -85,14 +86,31 @@ class CityController extends Controller
     public function update(Request $request, City $city)
     {
         $data=$request->validate([
-            'image'=>'required|max:2048',
+            'image'=>'nullable|max:3048',
+            'banner'=>'nullable|max:3048',
         ]);
 
         if ($request->hasFile('image')) {
           $image = $request->file('image');
           $name_img = 'image_' . $city->id . '.' . $image->getClientOriginalExtension();
           $image->move(public_path('/media/city/'), $name_img);
+          $path = public_path('/media/city/' . $name_img);
+          if (file_exists($path)) {
+            Image::make($path)->fit(667, 389)->save(public_path('/media/city/large' . $name_img));
+            Image::make($path)->fit(362, 353)->save(public_path('/media/city/small' . $name_img));
+              Image::make($path)->fit(356, 468)->save(public_path('/media/city/normal' . $name_img));
+          }
           $data['image'] = $name_img;
+        }
+        if ($request->hasFile('banner')) {
+          $banner = $request->file('banner');
+          $name_img = 'banner_' . $city->id . '.' . $banner->getClientOriginalExtension();
+          $banner->move(public_path('/media/city/'), $name_img);
+          $path = public_path('/media/city/' . $name_img);
+          if (file_exists($path)) {
+              Image::make($path)->fit(1920, 520)->save(public_path('/media/city/' . $name_img));
+          }
+          $data['banner'] = $name_img;
         }
         $city->update($data);
         alert()->success('عکس با موفقیت به روز شد ');

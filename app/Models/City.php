@@ -11,6 +11,7 @@ class City extends Model
     public $timestamps = false;
     protected $fillable = [
         'image',
+        'banner',
     ];
     public function province(){
         return $this->belongsTo(Province::class);
@@ -24,9 +25,15 @@ class City extends Model
     public function adventure(){
         return $this->hasOne(Adventure::class);
     }
-    public function image(){
+    public function image($type=null){
         if($this->image){
-            return asset('/media/city/'.$this->image);
+            return asset('/media/city/'.$type.$this->image);
+        }
+        return false;
+    }
+    public function banner($type=null){
+        if($this->banner){
+            return asset('/media/city/'.$type.$this->banner);
         }
         return false;
     }

@@ -18,8 +18,15 @@ class Travel extends Model
         'end',//تاریخ پایان  سفر
         'gender',// جنسیت همراهان
         'count',// تعداد همراهان
+        'duration',// مدت زمان :
+        'visit',// مدت زمان :
         'active',// فعال
         'confirm',// تایید توسط ادمین
+        'type',// نوع سفر:مستقیم :یا عمومی
+        'host_accept',//تایید سفر توسط میزبان
+        'comment',// نظر نهایی میهمان
+        'rate',//امتیاز میمان
+        'time_comment',//  زمان ثبت نظر
     ];
     public function user(){
         return $this->belongsTo(User::class);

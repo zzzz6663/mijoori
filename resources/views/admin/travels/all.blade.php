@@ -49,6 +49,8 @@
                             <th>شروع </th>
                             <th>پایان </th>
                             <th>تعداد </th>
+                            <th>نوع </th>
+                            <th>تایید میجوری بان  </th>
                             <th>جنسیت </th>
                             <th>وضعیت </th>
                             <th>تایید</th>
@@ -80,6 +82,27 @@
                             <td>{{$user->fdate($travel->end,'Y-m-d')}}</td>
                             <td>
                                 {{$travel->count}}
+                            </td>
+                            <td>{{__('arr.'.$travel->type)}}</td>
+                            <td>
+                    @if ($travel->type=='private')
+
+                                        @switch($travel->host_accept)
+                                            @case(null)
+                                    منتظر تایید
+                                                @break
+                                            @case(1)
+                                    تایید شده
+                                                @break
+                                            @case(0)
+                                    رد شده
+                                                @break
+
+                                            @default
+
+                                        @endswitch
+                        @endif
+
                             </td>
                             <td>{{__('arr.'.$travel->gender)}}</td>
                             <td>

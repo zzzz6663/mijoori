@@ -1,6 +1,9 @@
 #envelope{
 position: relative;
 }
+.pop{
+    z-index: 99;
+}
 #envelope .cir{
  background-color: red;
  color: #fff;
@@ -43,7 +46,7 @@ font-size:14px;
     cursor: pointer;
 }
 label.error{
-    color: red;
+    color: red!important;
 }
 
 /* .square1:focus {
@@ -59,3 +62,79 @@ label.error{
       transform: scale(2);
     }
   }
+  /* #sss  td.today span{
+background: #fff!important;
+color: #333!important;
+  } */
+  #re_select{
+    display: block;
+    line-height: 36px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    background: #662683;
+    font-size: 18px;
+    transition:all .3s
+  }
+  #re_select:hover{
+    background:#eac0fd;
+  }
+  /* .single-city .img{
+    position: relative;
+    padding-top: 30%;
+
+  }
+  .single-city .img img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:  52%;
+    width: 100%;
+    min-height: 100%;
+    transform: translateY(-50%);
+  } */
+
+
+/* #trip-guides-list .single-offer .img{
+    position: relative;
+    padding-top: 30%;
+
+  }
+  #trip-guides-list .single-offer .img img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:  52%;
+    width: 100%;
+    min-height: 100%;
+    transform: translateY(-50%);
+  }
+ */
+ body{
+    padding-top:143px;
+ }
+#header2{
+    padding: 20px 0;
+}
+.btt{
+    float: right;
+    width: 40%;
+    margin: 0 5%;
+    line-height: 50px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition:all .3s;
+}
+
+.violet{
+    background: #662683;
+    color: #fff;
+}
+.gray{
+    background: #b4b4b4;
+}
+.violet:hover{background:#42075d}
+.gray:hover{background:#393939}

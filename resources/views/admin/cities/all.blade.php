@@ -81,11 +81,14 @@
 
                                 @role('admin|manager')
                                 <a class="btn btn-primary curve" href="{{route('city.edit',$city->id)}}">
-                                    عکس
+                                    تغییر عکس
                                 </a>
                                  @endrole
                                 @if ($city->image())
-                                <a  class="btn btn-secondary curve" href="{{$city->image()}}" data-lightbox="image-1" data-title="My caption">مشاهده   </a>
+                                <a  class="btn btn-secondary curve" href="{{$city->image()}}" data-lightbox="image-{{$city->image}}" data-title="My caption">مشاهده عکس   </a>
+                                @endif
+                                @if ($city->banner())
+                                <a  class="btn btn-secondary curve" href="{{$city->banner()}}" data-lightbox="image-{{$city->banner}}" data-title="My caption">مشاهده بنر   </a>
                                 @endif
 
                                 @if ($city->users()->count())
