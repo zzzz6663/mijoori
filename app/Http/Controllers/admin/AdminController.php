@@ -22,6 +22,7 @@ class AdminController extends Controller
     Auth::loginUsingId(1);
 
     $user=auth()->user();
+  
     if($user){
         alert()->success('ورود با موفقیت نجام شد ');
         return redirect()->route('user.index');

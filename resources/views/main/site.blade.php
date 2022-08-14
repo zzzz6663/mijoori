@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/css/jquery.loadingModal.css">
     {{-- <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="/css/css.css">
-
+    <link rel="shortcut icon" href="/home/images/logo.png">
+    <link rel="apple-touch-icon" href="/home/images/logo.png">
 
 </head>
 

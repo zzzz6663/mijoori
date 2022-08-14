@@ -242,8 +242,11 @@ $('#end').val('')
     var a = 300;
     if ($(window).scrollTop() > a) {
         $('#header').addClass('fixed');
+        $('.search3').show(200);
+
     } else {
         $('#header').removeClass('fixed');
+        $('.search3').hide(200);
     }
 });
   $(window).bind('scroll', function () {

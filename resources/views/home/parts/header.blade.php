@@ -1,7 +1,7 @@
 <div id="header2" style="z-index:8" class="rows " >
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <div>
 
                     @guest
@@ -159,7 +159,40 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
+<div class="col-lg-3">
+    <p>
+
+    </p>
+    <div id="search-2" style="display:none" class="search3">
+        <form action="{{route('guides')}}" autocomplete="off">
+            @csrf
+            @method('get')
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21.878" height="25.626" viewBox="0 0 21.878 25.626">
+                  <g id="Group_792" data-name="Group 792" transform="matrix(0.978, 0.208, -0.208, 0.978, 3.34, 0)">
+                    <g id="Group_4" data-name="Group 4" transform="translate(0 0)">
+                      <g id="Group_3" data-name="Group 3" transform="translate(0)">
+                        <path id="Path_1" data-name="Path 1" d="M8.032,1.007a6.985,6.985,0,0,1,3.927,1.2A7.045,7.045,0,0,1,14.5,5.3a7.014,7.014,0,0,1-.647,6.66A7.043,7.043,0,0,1,10.765,14.5,7.016,7.016,0,0,1,4.1,13.856a7.049,7.049,0,0,1-2.546-3.091A7.014,7.014,0,0,1,2.206,4.1a7.069,7.069,0,0,1,1.9-1.9,6.985,6.985,0,0,1,3.927-1.2M8.032,0a8.031,8.031,0,1,0,8.031,8.031A8.032,8.032,0,0,0,8.032,0Z" fill="#662683"></path>
+                      </g>
+                    </g>
+                    <path id="Path_2" data-name="Path 2" d="M6.094,5.938l-.157.157a.876.876,0,0,1-1.238,0L.256,1.651a.876.876,0,0,1,0-1.238L.412.257a.875.875,0,0,1,1.239,0L6.094,4.7A.876.876,0,0,1,6.094,5.938Z" transform="translate(15.82 15.136)" fill="#662683"></path>
+                    <rect id="Rectangle_2" data-name="Rectangle 2" width="0.785" height="11.541" transform="translate(13.191 13.062) rotate(-45)" fill="#662683"></rect>
+                    <path id="Path_3" data-name="Path 3" d="M4.536,4.72h0a.285.285,0,0,1-.283-.259A4.316,4.316,0,0,0,.266.569.285.285,0,0,1,0,.285H0A.285.285,0,0,1,.3,0,4.886,4.886,0,0,1,4.819,4.41.284.284,0,0,1,4.536,4.72Z" transform="translate(7.056 13.88) rotate(177)" fill="#662683"></path>
+                  </g>
+                </svg>
+
+            </span>
+      <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
+                            box-sizing: border-box;">
+                                <input type="text" name="city" id="mycity" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
+
+                            </div>
+            <button>جستجو</button>
+        </form>
+
+    </div>
+</div>
+            <div class="col-lg-3">
                 <div>
                     <div id="logo">
                         <a href="{{route('login')}}">

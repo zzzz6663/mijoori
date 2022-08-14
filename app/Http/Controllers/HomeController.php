@@ -24,13 +24,13 @@ class HomeController extends Controller
     public  function  clear()
     {
         $user=auth()->user();;
-        Mail::to("na3r.jafari@gmail.com")->send(new MessageMail($user));
-   Artisan::call('cache:clear');
-        // Artisan::call('config:cache');
-        // Artisan::call('view:clear');
-        // Artisan::call('optimize:clear');
-        // Artisan::call('config:clear');
-        // Artisan::call('optimize');
+//         Mail::to("na3r.jafari@gmail.com")->send(new MessageMail($user));
+//    Artisan::call('cache:clear');
+//         Artisan::call('config:cache');
+//         Artisan::call('view:clear');
+//         Artisan::call('optimize:clear');
+//         Artisan::call('config:clear');
+        Artisan::call('optimize');
 
         return 20;
     }
@@ -55,8 +55,9 @@ class HomeController extends Controller
             $query->where('name',$request->city);
           });
         }
+        $cities=City::all();
         $guides = $guides->whereLevel('customer')->whereGuid('1')->whereActive('1')->get();
-        return view('home.guides',compact('guides'));
+        return view('home.guides',compact(['guides','cities']));
     }
     public function index (){
 
@@ -287,13 +288,14 @@ $cities=City::all();
     public function profile(Request $request ,User $user){
         $travel=null;
         $comments=null;
+        $cities=City::all();
         $agent=auth()->user();
         if($agent){
             $travel= $user->host_travels()->where('user_id',$agent->id)->where('host_accept','1')->first();
         }
         $comments=$user->comments_count();
 
-        return view('home.profile',compact(['user','agent','travel','comments']));
+        return view('home.profile',compact(['user','agent','travel','comments','cities']));
     }
 
     public function submit_rate(Request $request,Travel $travel )
