@@ -105,6 +105,13 @@
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
+    document.body.addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+    document.getElementsByClassName("icon-input").addEventListener("click", function (e) {
+        closeAllLists(e.target);
+    });
+
   }
 
 
@@ -121,6 +128,11 @@ window.onload = function() {
         let city=$('#goal').data('city');
         console.log(city)
     autocomplete(document.getElementById("goal"), city);
+}
+if ($('#topse').length) {
+    let city=$('#topse').data('city');
+    console.log(city)
+autocomplete(document.getElementById("topse"), city);
 }
     if (window.jQuery) {
 

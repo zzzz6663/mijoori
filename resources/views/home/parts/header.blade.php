@@ -184,7 +184,7 @@
             </span>
       <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
                             box-sizing: border-box;">
-                                <input type="text" name="city" id="mycity" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
+                                <input type="text" name="city" id="topse" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
 
                             </div>
             <button>جستجو</button>
