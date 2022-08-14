@@ -9,11 +9,11 @@
                 @if($paginator->currentPage() > 1)
 
 
-                <li><a href="{{$paginator->url(1)}}" title="اول" class="btn" >
+                <li><a href="{{$paginator->url(1)}}" title="اول" class="btn din" >
                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
 
                 </a></li>
-                <li><a href="{{$paginator->url($paginator->currentPage()-1)}}" title="قبلی" class="  btn"   >
+                <li><a href="{{$paginator->url($paginator->currentPage()-1)}}" title="قبلی" class=" din  btn"   >
                     <span aria-hidden="true" class="icon-arrow-right"></span>
 
                 </a></li>
@@ -50,11 +50,11 @@
                         @endfor --}}
 
                         @if($paginator->currentPage() <$paginator->lastPage())
-                        <li><a href="{{$paginator->url($paginator->currentPage()+1)}}" title="بعدی" class=" " data-page="2">
+                        <li><a href="{{$paginator->url($paginator->currentPage()+1)}}" title="بعدی" class="din " data-page="2">
                             <span aria-hidden="true" class="icon-arrow-left btn"></span>
 
                         </a></li>
-                        <li><a href="{{$paginator->url($paginator->lastPage())}}" title="آخری" class="" data-page="10">
+                        <li><a href="{{$paginator->url($paginator->lastPage())}}" title="آخری" class="din" data-page="10">
                             <i class="fa fa-angle-double-left btn" aria-hidden="true"></i>
 
                         </a></li>

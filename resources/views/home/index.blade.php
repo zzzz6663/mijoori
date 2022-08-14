@@ -12,7 +12,7 @@
                     </h1>
 
                     <div id="search-2">
-                        <form action="{{route('guides')}}">
+                        <form action="{{route('guides')}}" autocomplete="off">
                             @csrf
                             @method('get')
                             <span class="icon">
@@ -30,9 +30,18 @@
                                 </svg>
 
                             </span>
-                            <input type="text" name="city" placeholder="مقصد شما کجاست؟">
+                            <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
+                            box-sizing: border-box;">
+                                <input type="text" name="city" id="mycity" data-city='{{json_encode($cities->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
+
+                            </div>
                             <button>جستجو</button>
+
                         </form>
+                        <script>
+
+
+                        </script>
                         <div class="caption">
                             <p>
 
@@ -152,7 +161,7 @@
             <div class="col-lg-12">
                 <div>
                     <ul class="fave-hosts-list owl-carousel owl-theme side-nav">
-                        @foreach ($cities as $city )
+                        {{-- @foreach ($cities as $city )
                         <li>
                             <div class="single-city">
                                 <div class="img">
@@ -164,7 +173,7 @@
 
                             </div>
                         </li>
-                        @endforeach
+                        @endforeach --}}
 
 
                     </ul>

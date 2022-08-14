@@ -4,6 +4,68 @@ position: relative;
 .pop{
     z-index: 99;
 }
+.sip{
+    margin:20px 0;
+}
+.sip li{
+    display: inline-block;
+    margin:0 10px;
+    background-color:#662683;
+}
+
+.sip li a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border:1px solid #000;
+    color:#fff;
+}
+.sip li .din{
+display: none;
+}
+
+.sip li a.btn-primary{
+    color:#662683;
+    background-color:#fff;
+}
+
+
+
+.edit-form2 input[type=checkbox]{
+width: auto !important;
+display: inline-block;
+margin-left: 20px;
+ /* Double-sized Checkboxes */
+ -ms-transform: scale(2); /* IE */
+ -moz-transform: scale(2); /* FF */
+ -webkit-transform: scale(2); /* Safari and Chrome */
+ -o-transform: scale(2); /* Opera */
+ transform: scale(2);
+ padding: 10px;
+}
+.inf *{
+display:inline-block;
+vertical-align: middle;
+}
+.profile-sidebar .avatar .edit input {
+    /* width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0; */
+    /* opacity: 0; */
+  }
+#goalautocomplete-list div{
+        text-align: right;
+
+}
+#goalautocomplete-list {
+    height:300px;
+    overflow: auto;
+
+}
 #envelope .cir{
  background-color: red;
  color: #fff;

@@ -33,6 +33,9 @@
 
 <div id="make-offer" class="rows">
     <div class="fullcontainer">
+        @if ($travel->host)
+        @if ($travel->host->id != auth()->user()->id )
+
         <div class="make-offer-side">
             <div class="top">
                 <div class="img">
@@ -78,6 +81,10 @@
                 </ul>
             </div>
         </div>
+        @endif
+
+        @endif
+
     @if ($travel->host_accept)
 
     <div class="make-offer-content-msg">
@@ -118,19 +125,28 @@
                 <h3>
 
 
+                    @if ($travel->host)
 
 
                      @if ($travel->host->id==auth()->user()->id)
-                     {{$travel->user->name}}
-                     {{$travel->user->family}}
+
+                     <a href="{{route('profile',$travel->user->id)}}">
+                        {{$travel->user->name}}
+                        {{$travel->user->family}}
+                    </a>
                     درخواست سفر در
                     {{$travel->city?$travel->city->name:''}}
 
                     را دارد
                     @else
-                    {{$travel->host->name}}
-                    {{$travel->city?$travel->city->name:''}}
 
+                    <a href="{{route('profile',$travel->host->id)}}">
+                        {{$travel->host->name}}
+                        {{$travel->city?$travel->city->name:''}}
+                    </a>
+
+
+                    @endif
                     @endif
 
                     </h3>
@@ -189,6 +205,8 @@
             </div>
             <div class="texte">
                 <div class="img">
+                    @if ($travel->host)
+
                     @if ($travel->host->id==auth()->user()->id)
                     @else
                     @endif
@@ -198,6 +216,8 @@
                     @else
                     <img src="{{$travel->host->avatar() }}" alt="">
                     @endif
+                    @endif
+
                 </div>
                 <div class="text">
                     <p>

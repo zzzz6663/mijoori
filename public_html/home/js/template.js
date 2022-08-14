@@ -326,11 +326,22 @@ $('.dropd .toggled').click(function(){
 })
 $('.dropd ul li').click(function(){
     $(this).addClass('active');
+    $(this).closest('.drop').find('input').val($(this).text());
     $(this).siblings().removeClass('active');
     $(this).parents('.dropd').fadeOut();
 })
 $('.input-content input').click(function(){
+    $('.input-content').removeClass('active');
+    $('.input-content input').siblings('.dropd').css('display','none');
+    $(this).parent().addClass('active').siblings('.dropd').fadeIn();
     $(this).siblings('.dropd').fadeIn();
+})
+$('body').click(function(){
+    $('.input-content').removeClass('active');
+    $('.input-content input').siblings('.dropd').css('display','none');
+})
+$('.input-content').click(function(e){
+   e.stopPropagation();
 })
 // End Form
 

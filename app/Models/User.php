@@ -43,6 +43,11 @@ class User extends Authenticatable
         'tourism',//عکس کارت گردشکری
         'p_avatar',//تصویر پرسنلی
         'active',//تایید راهنما
+        'instagram',//
+        'about',//
+        'tell',//
+        'give_sms',//
+        'give_email',//
 
     ];
 

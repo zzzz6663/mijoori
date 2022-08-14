@@ -15,10 +15,13 @@
 
             </div><!-- /.buttons-box -->
         </div><!-- /.portlet-heading -->
-        <div class="portlet-body">
-            <form action="">
+        <div class="portlet-body ">
+            <form action="{{route('user.index')}}" method="get">
+
                 <div class="row">
-                    <div class="col-lg-3">
+                    @csrf
+                    @method('get')
+                    <div class="col-lg-4">
                         <div class="form-group row">
                             <label class="col-sm-3">جست و جو</label>
                             <div class="col-sm-9">
@@ -26,15 +29,48 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{route('user.index')}}" method="get">
-                        @csrf
-                        @method('get')
+                    <div class="col-lg-4">
+                        <div class="form-group row">
+                            <label class="col-sm-3">  نوع کاربر  </label>
+                            <div class="col-sm-9">
+                                <select   class="form-control" name="guid" id="">
+                                    <option value="">لطفا یک گزینه را انتخاب کنید </option>
+                                    <option {{request('guid')=='1'?'selected':''}} value="1">میجوری بان</option>
+                                    <option {{request('guid')=='0'?'selected':''}} value="0">  مهمان     </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group row">
+                            <label class="col-sm-3">    وضعیت تایید   </label>
+                            <div class="col-sm-9">
+                                <select   class="form-control" name="active" id="">
+                                    <option value="">لطفا یک گزینه را انتخاب کنید </option>
+                                  <option {{request('active')=='1'?'selected':''}} value="1">تایید شده </option>
+                                  <option {{request('active')=='0'?'selected':''}} value="0">تایید نشده</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label>
+                                    <input type="checkbox" name="have_travel" {{request('have_travel')==1?'checked':''}} value="1" >
+                                    دارای سفر
+                                </label>
+                            </div><!-- /.input-group -->
+                        </div>
+
+                    </div>
+
                     <div class="col-lg-3">
                         <div class="form-group row">
                             <button class="btn btn-danger curve" ">ثبت</button>
                         </div>
                     </div>
-                </form>
                 </div>
 
             </form>
@@ -73,7 +109,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($user->active && $user->guid)
+                                @if ($user->active )
                                 <i class="fa fa-check-square" aria-hidden="true"></i>
                                 @else
                                 <i class="fa fa-close" aria-hidden="true"></i>

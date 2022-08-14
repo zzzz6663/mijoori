@@ -3726,6 +3726,15 @@ body{
 			}
 
 		}
+		&.circ{
+			border-radius: 50%;
+			overflow: hidden;
+			.edit{
+				left: 50px;
+				bottom: 38px;
+			}
+
+		}
 	}
 }
 .profile-info-edit{
@@ -4005,14 +4014,26 @@ body{
 	}
 	.edit-form{
 		display: none;
+		&.v2{
+		border-bottom: 1px solid #B4B4B4;
+		padding-bottom: 10px;
+		}
 	}
+	>select,
+	>input, 
 	.defult{
+		width: 100%;
+		border: none;
 		font-size: 14px;
 		color: #000000;
 		opacity: .5;
 		font-weight: bold;
 		border-bottom: 1px solid #B4B4B4;
 		padding-bottom: 15px;
+	}
+	>select,
+	>input{
+		opacity: 1;
 	}
 	&:last-child{
 		.defult{
@@ -7281,81 +7302,6 @@ textarea.sq{
 				font-weight: bold;
 				font-weight: #757575;
 			}
-		}
-	}
-}
-
-.start-rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-    position: relative;
-}
-.start-rate:not(:checked) > input {
-    position:absolute;
-    top:0px;
-    width: 0;
-    height: 0;
-    opacity: 0;
-}
-.start-rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.start-rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.start-rate > input:checked ~ label {
-    color: #662683;  
-}
-.start-rate:not(:checked) > label:hover,
-.start-rate:not(:checked) > label:hover ~ label {
-    color: #662683;  
-}
-.start-rate > input:checked + label:hover,
-.start-rate > input:checked + label:hover ~ label,
-.start-rate > input:checked ~ label:hover,
-.start-rate > input:checked ~ label:hover ~ label,
-.start-rate > label:hover ~ input:checked ~ label {
-    color: darken(#662683, 10%);
-}
-.comment-form{
-	padding: 40px 0;
-	.top{
-		display: flex;
-		align-items: center;
-			margin-bottom: 15px;
-		h3{
-			flex-grow: 1;
-			font-size: 18px;
-			color: #662683;
-			margin-bottom: 0;
-		}
-	}
-	textarea{
-		width: 100%;
-		height: 110px;
-		border: 1px solid #662683;
-		border-radius: 34px;
-		padding: 20px;
-		box-sizing: border-box;
-			margin-bottom: 15px;
-	}
-	.btn-comment{
-		float: left;
-		background: #662683;
-		padding: 0 20px;
-		line-height: 40px;
-		border-radius: 5px;
-		color: #fff;
-		border: none;
-		&:hover{
-			background: darken(#662683, 10%);
 		}
 	}
 }

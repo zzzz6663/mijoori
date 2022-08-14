@@ -101,6 +101,9 @@
                         </div>
                     </div>
                 @endforeach
+               <div class="sip">
+                {{ $chats->appends(Request::all())->links('admin.section.pagination') }}
+               </div>
             </div>
         </div>
     </div>

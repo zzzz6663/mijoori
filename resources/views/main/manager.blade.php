@@ -31,7 +31,7 @@
    <link rel="stylesheet" href="/css/persian-datepicker.css">
    <!-- END CSS -->
     {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
 
 </head>
 <body class="fix-header active-ripple theme-blue sidebar-extra">

@@ -640,7 +640,7 @@
 
                                 <div class="col-lg-6 col-xsm-12">
                                     <div>
-                                        <select class="popinput v2" name="province_id" id="province" required>
+                                        <select class="popinput v2 province" name="province_id" id="province" required>
                                             <option value="">استان </option>
                                             @foreach (App\Models\Province::all() as $province)
                                                 <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -652,7 +652,7 @@
 
                                 <div class="col-lg-6 col-xsm-12">
                                     <div>
-                                        <select class="popinput v2" name="city_id" id="city" required>
+                                        <select class="popinput v2 city" name="city_id" id="city" required>
                                             <option value="">شهر </option>
                                         </select>
                                     </div>
@@ -1297,7 +1297,11 @@
                                                 <path id="Path_3" data-name="Path 3" d="M4.536,4.72h0a.285.285,0,0,1-.283-.259A4.316,4.316,0,0,0,.266.569.285.285,0,0,1,0,.285H0A.285.285,0,0,1,.3,0,4.886,4.886,0,0,1,4.819,4.41.284.284,0,0,1,4.536,4.72Z" transform="translate(7.056 13.88) rotate(177)" fill="#b5b5b5"></path>
                                               </g>
                                             </svg>
-                                            <input class="popinput2" id="goal" name="city_id" type="text" value="{{isset($target_city)?$target_city->name:''}}"  placeholder="  به کجا می خواهید بروید؟ *">
+                                            <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
+                                            box-sizing: border-box;">
+                                                <input class="popinput2 " id="goal" name="city_id" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' type="text" value="{{isset($target_city)?$target_city->name:''}}"  placeholder="  به کجا می خواهید بروید؟ *">
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

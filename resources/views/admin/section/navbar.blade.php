@@ -1,3 +1,4 @@
+
 <div class="navbar navbar-fixed-top" id="main-navbar">
     <div class="header-right">
         <a href="dashboard.html" class="logo-con">
@@ -33,7 +34,7 @@
                     <a href="#" class="dropdown-toggle btn" data-bs-toggle="dropdown">
                         <i class="icon-envelope"></i>
                         <span class="badge badge-primary">
-                            4
+                            3
                         </span>
                     <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div></a>
                     <ul class="dropdown-menu has-scrollbar mCustomScrollbar _mCS_1 mCS-autoHide mCS-dir-rtl mCS_no_scrollbar" style="height: 300px; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 298px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="rtl">
@@ -42,82 +43,44 @@
                                 <a href="#" rel="tooltip" title="" data-placement="left" data-bs-original-title="خواندن همه">
                                     <i class="icon-eye"></i>
                                 </a>
-                                شما 4 پیام تازه دارید.
+                            سه سفر اخر
                             </span>
                         </li>
                         <li class="dropdown-body">
                             <ul class="dropdown-menu-list">
+                                @foreach ( App\Models\Travel::latest()->take(3)->get() as $travel)
+
                                 <li class="clearfix">
                                     <a href="#">
                                         <p class="clearfix">
                                             <strong class="float-start">
-                                                <img src="assets/images/user/32.png" class="img-circle mCS_img_loaded" alt="">
-                                                سهراب سپهری
+                                                <img src="{{$travel->user->avatar() }}" class="img-circle mCS_img_loaded" alt="">
+                                                  {{ $travel->user->name}}
+                                                  {{ $travel->user->family}}
                                             </strong>
                                             <small class="float-end text-muted">
                                                 <i class="icon-clock"></i>
-                                                پانزده دقیقه پیش
+                                                {{Morilog\Jalali\Jalalian::forge($travel->start)->format("Y-m-d")}}
                                             </small>
                                         </p>
-                                        <p>پیام پرمهرتان دریافت شد!</p>
+                                      <p>
+                                        {{$travel->city->name}}
+                                      </p>
                                     </a>
                                 </li>
-                                <li class="clearfix">
-                                    <a href="#">
-                                        <p class="clearfix">
-                                            <strong class="float-start">
-                                                <img src="assets/images/user/32.png" class="img-circle mCS_img_loaded" alt="">
-                                                شفیعی کدکنی
-                                            </strong>
-                                            <small class="float-end text-muted">
-                                                <i class="icon-clock"></i>
-                                                سی دقیقه پیش
-                                            </small>
-                                        </p>
-                                        <p>بسته ارسالی شما به دستم رسید.</p>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="#">
-                                        <p class="clearfix">
-                                            <strong class="float-start">
-                                                <img src="assets/images/user/32.png" class="img-circle mCS_img_loaded" alt="">
-                                                قیصر امین پور
-                                            </strong>
-                                            <small class="float-end text-muted">
-                                                <i class="icon-clock"></i>
-                                                یک ساعت پیش
-                                            </small>
-                                        </p>
-                                        <p>مجموعه آثار بنده را ببینید.</p>
-                                    </a>
-                                </li>
-                                <li class="clearfix">
-                                    <a href="#">
-                                        <p class="clearfix">
-                                            <strong class="float-start">
-                                                <img src="assets/images/user/32.png" class="img-circle mCS_img_loaded" alt="">
-                                                مهدی اخوان ثالث
-                                            </strong>
-                                            <small class="float-end text-muted">
-                                                <i class="icon-clock"></i>
-                                                دو ساعت پیش
-                                            </small>
-                                        </p>
-                                        <p>با تشکر...</p>
-                                    </a>
-                                </li>
+                                @endforeach
+
                             </ul>
                         </li>
                         <li class="dropdown-footer clearfix">
-                            <a href="#">
+                            <a href="{{route('travel.index')}}">
                                 <i class="icon-list fa-flip-horizontal"></i>
-                                مشاهده همه پیام ها
+                                مشاهده سفر ها
                             </a>
                         </li>
                     </div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></ul>
                 </li>
-                <li class="dropdown dropdown-announces">
+                {{-- <li class="dropdown dropdown-announces">
                     <a href="#" class="dropdown-toggle btn" data-bs-toggle="dropdown">
                         <i class="icon-bell"></i>
                         <span class="badge badge-warning">
@@ -207,8 +170,8 @@
                             </a>
                         </li>
                     </div></div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></ul>
-                </li>
-
+                </li> --}}
+{{--
                 <li class="dropdown dropdown-user">
                     <a href="#" class="dropdown-toggle dropdown-hover" data-bs-toggle="dropdown">
                         <img src="{{auth()->user()->avatar()}}" alt="عکس پرفایل" class="img-circle img-responsive">
@@ -257,7 +220,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul><!-- /.navbar-left -->
         </div><!-- /.top-bar -->
     </div><!-- /.header-left -->

@@ -19,10 +19,10 @@ class ProvinceController extends Controller
     {
         $filename = public_path('/media/province/lg.jpg');
 
-        $image = new ImageResize($filename);
-        $image->scale(1000);
+//         $image = new ImageResize($filename);
+//         $image->scale(1000);
 
-$image->save(public_path('/media/province/lg1.jpg'));
+// $image->save(public_path('/media/province/lg1.jpg'));
 
         return view('admin.provinces.all');
     }

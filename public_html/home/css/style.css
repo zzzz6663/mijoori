@@ -4076,6 +4076,14 @@ body {
   margin-bottom: 0;
   cursor: pointer;
 }
+.profile-sidebar .avatar.circ {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-sidebar .avatar.circ .edit {
+  left: 50px;
+  bottom: 38px;
+}
 .profile-info-edit {
   margin-right: 30%;
 }
@@ -4143,6 +4151,9 @@ body {
 .edit-form .input-content.drop {
   z-index: 5;
   background: #fff;
+}
+.edit-form .input-content.drop.active {
+  z-index: 6;
 }
 .edit-form .input-content.drop .down {
   float: left;
@@ -4343,13 +4354,25 @@ body {
 .input-value .edit-form {
   display: none;
 }
+.input-value .edit-form.v2 {
+  border-bottom: 1px solid #B4B4B4;
+  padding-bottom: 10px;
+}
+.input-value > select,
+.input-value > input,
 .input-value .defult {
+  width: 100%;
+  border: none;
   font-size: 14px;
   color: #000000;
   opacity: .5;
   font-weight: bold;
   border-bottom: 1px solid #B4B4B4;
   padding-bottom: 15px;
+}
+.input-value > select,
+.input-value > input {
+  opacity: 1;
 }
 .input-value.active .toggle {
   display: none;
@@ -7490,78 +7513,4 @@ textarea.sq.full {
   line-height: 16px;
   font-weight: bold;
   font-weight: #757575;
-}
-.start-rate {
-  float: left;
-  height: 46px;
-  padding: 0 10px;
-  position: relative;
-}
-.start-rate:not(:checked) > input {
-  position: absolute;
-  top: 0px;
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-.start-rate:not(:checked) > label {
-  float: right;
-  width: 1em;
-  overflow: hidden;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 30px;
-  color: #ccc;
-}
-.start-rate:not(:checked) > label:before {
-  content: '★ ';
-}
-.start-rate > input:checked ~ label {
-  color: #662683;
-}
-.start-rate:not(:checked) > label:hover,
-.start-rate:not(:checked) > label:hover ~ label {
-  color: #662683;
-}
-.start-rate > input:checked + label:hover,
-.start-rate > input:checked + label:hover ~ label,
-.start-rate > input:checked ~ label:hover,
-.start-rate > input:checked ~ label:hover ~ label,
-.start-rate > label:hover ~ input:checked ~ label {
-  color: #471b5b;
-}
-.comment-form {
-  padding: 40px 0;
-}
-.comment-form .top {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.comment-form .top h3 {
-  flex-grow: 1;
-  font-size: 18px;
-  color: #662683;
-  margin-bottom: 0;
-}
-.comment-form textarea {
-  width: 100%;
-  height: 110px;
-  border: 1px solid #662683;
-  border-radius: 34px;
-  padding: 20px;
-  box-sizing: border-box;
-  margin-bottom: 15px;
-}
-.comment-form .btn-comment {
-  float: left;
-  background: #662683;
-  padding: 0 20px;
-  line-height: 40px;
-  border-radius: 5px;
-  color: #fff;
-  border: none;
-}
-.comment-form .btn-comment:hover {
-  background: #471b5b;
 }

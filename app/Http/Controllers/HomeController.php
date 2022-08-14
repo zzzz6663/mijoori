@@ -10,8 +10,11 @@ use App\Models\Travel;
 use App\Models\Province;
 use App\Models\Adventure;
 use Illuminate\Http\Request;
+use Morilog\Jalali\Jalalian;
+use Morilog\Jalali\CalendarUtils;
 use App\Notifications\SendKaveCode;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
@@ -226,7 +229,7 @@ $cities=City::all();
     public function related_travel(Request $request){
         $user=auth()->user();
         $related_travel=Travel::where('city_id',$user->city->id)->whereGender($user->gender)->where('start','>',Carbon::now())->latest()->get();
-        $chats=Chat::where('to_id',$user->id)->latest()->get();
+        $chats=Chat::where('to_id',$user->id)->latest()->paginate(5);
         return view('home.related_travel',compact(['chats','user','related_travel']));
     }
     public function travel_chat(Request $request ,Travel $travel){
@@ -326,6 +329,59 @@ $cities=City::all();
         alert()->success('پیام با موفقیت ثبت شد ');
         return redirect()->route('related.chat',$request->travel);
 
+    }
+    public function edit_profile(Request $request ,User $user){
+        if($user->id!= auth()->user()->id){
+            alert()->warning('این پروفایل مربوط به شما نمی باشد ');
+            return back();
+        }
+        $month=     ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند',];
+
+        if($request->method() =='POST'){
+            $data=$request->validate([
+                'name'=>'required',
+                'family'=>'required',
+                'day'=>'required',
+                'month'=>'required',
+                'year'=>'required',
+                'gender'=>'required',
+                'province_id'=>'required',
+                'city_id'=>'required',
+                'address'=>'required',
+                'email'=>'required',
+                'mobile'=>'required',
+                'tell'=>'required',
+                'code'=>'nullable',
+                'about'=>'nullable',
+                'instagram'=>'nullable',
+                'give_email'=>'nullable',
+                'give_sms'=>'nullable',
+            ]);
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $name_img = 'avatar_' . $user->id . '.' . $avatar->getClientOriginalExtension();
+                $avatar->move(public_path('/media/avatar/'), $name_img);
+                $path = public_path('/media/avatar/' . $name_img);
+                if (file_exists($path)) {
+                    Image::make($path)->fit(353, 468)->save(public_path('/media/avatar/' . $name_img));
+                    Image::make($path)->fit(300, 300)->save(public_path('/media/avatar/square' . $name_img));
+                }
+                $data['avatar'] = $name_img;
+            }
+            // dd($data);
+            $month=array_search($data['month'],$month )+1;
+            // $Jalalian=$data['year'].'-'.$month.'-'.$data['day']." 00:00:00";
+            // $Jalalian = Jalalian::fromFormat('Y-m-d', $Jalalian)->toCarbon();
+           $geo= CalendarUtils::toGregorian($data['year'], $month, $data['day']);
+            // $persian=CalendarUtils::createDatetimeFromFormat('Y/m/d H:i:s', $Jalalian);
+            // $persian=CalendarUtils::toGregorian($data['year'], array_search($data['month'],$month )+1, $data['day']);
+            // dd( $persian);
+            $data['b_date']=$geo[0].'-'.$geo[1].'-'.$geo[2].' 00:00:00';
+            $user->update($data);
+            alert()->success('اطلاعات با موفقیت به روز شد ');
+            return redirect()->route('profile',$user->id);
+        }
+        return view('home.edit_profile',compact(['user','month']));
     }
 
 }

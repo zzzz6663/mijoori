@@ -23,7 +23,8 @@ class UserController extends Controller
         $users = User::query();
         if ($request->search) {
             $search = $request->search;
-            $users->where('name', 'LIKE', "%{$search}%")
+           $users->where(function ($query) use ($search, $users) {
+                $users->where('name', 'LIKE', "%{$search}%")
                 ->orWhere('family', 'LIKE', "%{$search}%")
                 ->orWhere('code', 'LIKE', "%{$search}%")
                 ->orWhere('mobile', 'LIKE', "%{$search}%")
@@ -35,6 +36,18 @@ class UserController extends Controller
                 ->orWhereHas('city', function ($query) use ($search) {
                     $query->where('name', 'LIKE', "%{$search}%");
                 });
+           });
+        }
+        if(isset($request->guid) ){
+            $users->where('guid',$request->guid);
+        }
+        if(isset($request->active) ){
+            $users->where('active',$request->active);
+        }
+        if(isset($request->have_travel)){
+            $users->whereHas('travels',function ($query) {
+
+            });
         }
         $users = $users->whereIn('level', ['customer'])->latest()->paginate(10);
         return view('admin.users.all', compact(['users']));

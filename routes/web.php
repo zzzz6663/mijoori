@@ -67,7 +67,7 @@ Route::get('/custom_travel', 'HomeController@custom_travel')->name('custom.trave
 
 Route::middleware(['auth'])->group(function () {
 Route::get('/submit_rate/{travel}', 'HomeController@submit_rate')->name('submit.rate');
-Route::get('/edit_profile/{user}', 'HomeController@edit_profile')->name('edit.profile');
+Route::any('/edit_profile/{user}', 'HomeController@edit_profile')->name('edit.profile');
 });
 
 
