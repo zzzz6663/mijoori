@@ -2,7 +2,21 @@
    @section('content')
 
    <div id="top-banner" class="rows">
+    @if ($travels->count()>0)
+
+    <ul class="my_travel owl-carousel owl-theme side-nav">
+        @foreach ( $travels  as $travel)
+             <li>
+                <img src="{{$travel->city->banner()}}" alt="">
+             </li>
+        @endforeach
+
+        </ul>
+        @else
+
     <img src="/home/images/travel.jpg" alt="">
+
+    @endif
 </div>
 
 

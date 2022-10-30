@@ -19,6 +19,14 @@ class TravelController extends Controller
     {
         $user= auth()->user();
         $travels = Travel::query();
+        if ($request->mobile) {
+            $mob=$request->mobile;
+            $travels->whereHas('user',function ($query) use ($mob){
+                $query->where('name', 'LIKE', "%{$mob}%")
+                ->orWhere('family', 'LIKE', "%{$mob}%")
+                ->orWhere('mobile', 'LIKE', "%{$mob}%");
+            });
+        }
         if ($request->search) {
             $search = $request->search;
             $travels->whereHas('user',function ($query) use ($search){

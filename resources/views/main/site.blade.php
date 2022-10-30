@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/css/persian-datepicker.min.css">
     <link rel="stylesheet" href="/css/jquery.loadingModal.css">
     {{-- <link href="/admin/assets/css/lightbox.min.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <link rel="stylesheet" href="/css/css3.css">
     <link rel="shortcut icon" href="/home/images/logo.png">
     <link rel="apple-touch-icon" href="/home/images/logo.png">
 
@@ -46,7 +47,8 @@
 <script src="/js/fun.js"></script>
 <script src="/js/simpleupload.js"></script>
 <script src="/js/jquery.validate.min.js"></script>
-<script src="/js/js1.js"></script>
+<script src="/js/select2.full.min.js"></script>
+<script src="/js/js5.js"></script>
 
 
 {{-- {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!} --}}

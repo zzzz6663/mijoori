@@ -25,7 +25,7 @@
             <textarea  id="" cols="30" rows="10" name="chat" placeholder="پیام شخصی"></textarea>
             <input type="text" name="to" value="{{$to}}" hidden>
             <input type="text" name="travel" value="{{$travel->id}}" hidden>
-            <button class="btn">ارسال پیام</button>
+            <button class="btn" style="float:none">ارسال پیام</button>
         </form>
         @endif
     </div>

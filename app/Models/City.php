@@ -12,6 +12,8 @@ class City extends Model
     protected $fillable = [
         'image',
         'banner',
+        'info',
+        'count',//تعداد بازدید  از این شهر
     ];
     public function province(){
         return $this->belongsTo(Province::class);

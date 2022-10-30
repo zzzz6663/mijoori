@@ -106,19 +106,21 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $data=$request->validate([
-            'name' => 'required',
-            'family' => 'required',
-            'mobile' => 'required|unique:users,mobile,' . $user->id,
-            'email' => 'required|unique:users,email,' . $user->id,
-            'gender' => 'required',
-            'b_date' => 'required',
-            'province_id' => 'required',
-            'city_id' => 'required',
-            'code' => 'required|min:10|max:10|unique:users,code,' . $user->id,
-            'shaba' => 'required|min:24|max:24|unique:users,code,' . $user->id,
-            'address' => 'required|min:20|max:1500',
+            'name' => 'nullable',
+            'family' => 'nullable',
+            'mobile' => 'nullable|unique:users,mobile,' . $user->id,
+            'email' => 'nullable|unique:users,email,' . $user->id,
+            'gender' => 'nullable',
+            'b_date' => 'nullable',
+            'province_id' => 'nullable',
+            'city_id' => 'nullable',
+            'code' => 'nullable|min:10|max:10|unique:users,code,' . $user->id,
+            'shaba' => 'nullable|min:24|max:24|unique:users,code,' . $user->id,
+            'address' => 'nullable|min:20|max:1500',
         ]);
-        $data['b_date'] = $user->convert_date($data['b_date']);
+        if($request->b_date){
+            $data['b_date'] = $user->convert_date($data['b_date']);
+        }
         $user->update($data);
         alert()->success();
 return redirect()->route('user.index');
@@ -161,6 +163,7 @@ return redirect()->route('user.index');
             'province_id' => 'required',
             'b_date' => 'required',
             'city_id' => 'required',
+            'password' => 'required|digits:4',
             'avatar' => 'required',
         ]);
 
@@ -193,10 +196,10 @@ return redirect()->route('user.index');
     {
         $user = auth()->user();
         $validator = Validator::make($request->all(), [
-            'address' => 'required|min:20|max:1500',
-            'code' => 'required|min:10|max:10|unique:users,code,' . $user->id,
-            'shaba' => 'required|min:24|max:24|unique:users,code,' . $user->id,
-            'p_avatar' => 'required',
+            'address' => 'nullable|min:20|max:1500',
+            'code' => 'nullable|min:10|max:10|unique:users,code,' . $user->id,
+            'shaba' => 'nullable|min:24|max:24|unique:users,code,' . $user->id,
+            'p_avatar' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -219,8 +222,8 @@ return redirect()->route('user.index');
     {
         $user = auth()->user();
         $validator = Validator::make($request->all(), [
-            'melli_front' => 'required',
-            'melli_back' => 'required',
+            'melli_front' => 'nullable',
+            'melli_back' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -251,7 +254,7 @@ return redirect()->route('user.index');
     {
         $user = auth()->user();
         $validator = Validator::make($request->all(), [
-            'tourism' => 'required',
+            'tourism' => 'nullable',
         ]);
 
         if ($validator->fails()) {

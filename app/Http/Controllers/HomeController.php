@@ -18,19 +18,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Artisan;
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class HomeController extends Controller
 {
     public  function  clear()
     {
-        $user=auth()->user();;
-//         Mail::to("na3r.jafari@gmail.com")->send(new MessageMail($user));
-//    Artisan::call('cache:clear');
-//         Artisan::call('config:cache');
-//         Artisan::call('view:clear');
-//         Artisan::call('optimize:clear');
-//         Artisan::call('config:clear');
         Artisan::call('optimize');
+        Mail::to( 'na3r.jafari@gmail.com')->send(new MessageMail("slam"));
+
+        $user=auth()->user();;
+        $invitedUser = new User;
+        // $invitedUser->notify(new SendKaveCode( '09373699317','login','2121','','','',''));
+   Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('optimize:clear');
+        Artisan::call('config:clear');
+// $city=City::find(1);
+// $path = public_path('/media/city/' . $city->image);
+// ImageOptimizer::optimize($path,public_path('/media/city/2222.jpg'));
+
+// $img =  Image::make($path );
+// $img->resize(100, 100, function ($constraint) {
+//     $constraint->aspectRatio();
+// })->save(public_path('/media/city/1111.jpg'));
+// $img->save(public_path('/media/city/1111.jpg'));
+// dd($city);
+
+        // $cities=City::all();
 
         return 20;
     }
@@ -40,7 +56,27 @@ class HomeController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+    public function laws  (Request $request){
+        return view('home.laws',compact([]));
+    }
+    public function faqs  (Request $request){
+        return view('home.faqs',compact([]));
+    }
+    public function how  (Request $request){
+        return view('home.how',compact([]));
+    }
+    public function about  (Request $request){
+        return view('home.about',compact([]));
+    }
+    public function privacy  (Request $request){
+        return view('home.privacy',compact([]));
+    }
     public function guides (Request $request){
+        $user=auth()->user();
+
+        if($request->related){
+            $related_travel=Travel::where('city_id',$user->city->id)->whereGender($user->gender)->where('start','>',Carbon::now())->latest()->get();
+        }
         $guides = User::query();
         if ($request->guid) {
             $search = $request->search;
@@ -54,6 +90,10 @@ class HomeController extends Controller
           $guides->whereHas('city', function ($query) use ($request) {
             $query->where('name',$request->city);
           });
+          $city=City::where('name',$request->city)->first();
+          if($city){
+            $city->update(['count'=>$city->count+1]);
+          }
         }
         $cities=City::all();
         $guides = $guides->whereLevel('customer')->whereGuid('1')->whereActive('1')->get();
@@ -107,6 +147,23 @@ $cities=City::all();
         ]);
     }
 
+    public function check_pass(Request $request){
+        $user=User::whereMobile($request->mobile)->first();
+        if(!$user){
+            return response()->json([
+                'status' => 'new',
+            ]);
+        }
+        if( $user->password==$request->password){
+            Auth::login($user,true);
+            return response()->json([
+                'status' => 'login',
+            ]);
+        }
+        return response()->json([
+            'status' => 'failed',
+        ]);
+    }
     public function get_city(Province $province){
         return response()->json([
             'body' => view('home.parts.get_city',compact('province'))->render(),
@@ -194,7 +251,7 @@ $cities=City::all();
         if ( $request->isMethod('post')) {
            $data=$request->validate([
                     'count'=>"required|max:256",
-                    'price'=>"required|integer|between:50000,5000000",
+                    'price'=>"required|integer|between:0,5000000",
                     'facility'=>"nullable|max:500",
                     'benefit'=>"nullable|max:500",
                     'info'=>"nullable",
@@ -244,8 +301,20 @@ $cities=City::all();
             return redirect()->route('related.travel');
         }
         if($request->method()=='POST'){
+$name=     $travel->host->name .' ' .     $travel->host->family;
+$city_name=$travel->city->name;
             if($request->accept){
+                $message="
+                میزبان
+                $name
+                سفر شما شما را به شهر
+                $city_name
+                را قبول کرد
+                ";
+                Mail::to( $travel->user->email)->send(new MessageMail($message));
                 $travel->update(['host_accept'=>1]);
+
+
                 alert()->success('سفر با موفقیت تایید شد');
             }else{
                 Chat::create(
@@ -258,6 +327,15 @@ $cities=City::all();
                         'seen' => 1,
                     ]
                     );
+                    $message="
+                    میزبان
+                    $name
+                    سفر شما شما را به شهر
+                    $city_name
+                    را رد کرد
+                    ";
+                    Mail::to( $travel->user->email)->send(new MessageMail($message));
+
                 $travel->update(['host_accept'=>0]);
                 alert()->success('سفر با موفقیت رد شد');
 
@@ -353,15 +431,18 @@ $cities=City::all();
                 'gender'=>'required',
                 'province_id'=>'required',
                 'city_id'=>'required',
-                'address'=>'required',
+                'address'=>'required|string|min:20',
                 'email'=>'required',
+                'languages'=>'present|array',
                 'mobile'=>'required',
                 'tell'=>'required',
+                'password'=>'required',
                 'code'=>'nullable',
-                'about'=>'nullable',
+                'about'=>'nullable|string|min:20',
                 'instagram'=>'nullable',
                 'give_email'=>'nullable',
                 'give_sms'=>'nullable',
+                'bio'=>'nullable|string|min:20',
             ]);
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
@@ -384,10 +465,16 @@ $cities=City::all();
             // dd( $persian);
             $data['b_date']=$geo[0].'-'.$geo[1].'-'.$geo[2].' 00:00:00';
             $user->update($data);
+            $user->languages()->sync($data['languages']);
             alert()->success('اطلاعات با موفقیت به روز شد ');
             return redirect()->route('profile',$user->id);
         }
         return view('home.edit_profile',compact(['user','month']));
     }
+
+
+
+
+  
 
 }

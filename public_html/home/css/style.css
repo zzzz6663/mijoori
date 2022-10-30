@@ -7,6 +7,246 @@
 @import "owl.carousel.min.css";
 @import "jquery.mmenu.all.css";
 @import "jquery.mmenu.positioning.css";
+#header2 form {
+	padding-right: 28px;
+	position: relative;
+	max-width: 345px;
+	border: 1px solid #B4B4B4;
+	border-radius: 28px;
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form {
+		max-width: unset;
+		width: auto;
+	}
+}
+
+#header2 form input.se {
+	font-size: 20px;
+	line-height: 53px;
+	color: #000000;
+	font-weight: 700;
+	border: none;
+	background: none;
+}
+
+#header2 form button.se {
+	position: absolute;
+	left: 14px;
+	top: 7px;
+	width: 42px;
+	height: 42px;
+	background: #662683;
+	border-radius: 50%;
+	border: none;
+}
+
+#header2 form .searchpop {
+	position: absolute;
+	width: 814px;
+	height: 94px;
+	background: #F1F1F1;
+	border-radius: 48px;
+	border: 1px solid #B4B4B4;
+	top: 90px;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .3s;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#header2 form .searchpop span.close {
+	position: absolute;
+	right: 50%;
+	margin-right: -20px;
+	top: -35px;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+	#header2 form .searchpop {
+		width: 700px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop {
+		width: 100%;
+		height: 74px;
+	}
+}
+
+#header2 form .searchpop .button {
+	float: right;
+	width: 25%;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+#header2 form .searchpop .button button {
+	line-height: 72px;
+	width: 100%;
+	padding: 0;
+	background: #662683;
+	border-radius: 37px;
+	color: #fff;
+	text-align: center;
+	border: none;
+	box-shadow: 0 2px 4px rgba(180, 180, 180, 0.4);
+}
+
+#header2 form .searchpop .button button span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 20px;
+	margin: 0 7px;
+}
+
+#header2 form .searchpop .button button:hover {
+	background: #471b5b;
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop .button {
+		padding: 10px 5px;
+	}
+
+	#header2 form .searchpop .button button {
+		line-height: 52px;
+	}
+
+	#header2 form .searchpop .button button span {
+		font-size: 14px;
+	}
+
+	#header2 form .searchpop .button button span.icon {
+		display: none;
+	}
+}
+
+#header2 form .searchpop .date {
+	float: right;
+	width: 37%;
+	box-sizing: border-box;
+	padding: 10px;
+	border-radius: 48px;
+}
+
+#header2 form .searchpop .date input {
+	border-radius: 48px;
+	width: 100%;
+	text-align: center;
+	line-height: 72px;
+	border: none;
+	background: none;
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop .date {
+		padding: 10px 5px;
+	}
+
+	#header2 form .searchpop .date input {
+		line-height: 52px;
+		font-size: 14px;
+	}
+}
+
+#header2 form .searchpop .date.active {
+	background: #fff;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+#header2 form .searchpop .stat {
+	float: right;
+	width: 38%;
+	box-sizing: border-box;
+	padding: 10px;
+	text-align: center;
+	line-height: 74px;
+	border-radius: 48px;
+}
+
+#header2 form .searchpop .stat.active {
+	background: #fff;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop .stat {
+		padding: 10px 5px;
+		line-height: 52px;
+	}
+}
+
+#header2 form .searchpop .stat .toggle {
+	position: relative;
+	display: inline-block;
+	width: 40%;
+	vertical-align: middle;
+}
+
+#header2 form .searchpop .stat .toggle input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+#header2 form .searchpop .stat .toggle label {
+	cursor: pointer;
+	margin-bottom: 0;
+}
+
+#header2 form .searchpop .stat .devide {
+	display: inline-block;
+	width: 1px;
+	height: 64px;
+	background: #000000;
+	vertical-align: middle;
+}
+#search-2 form .icon{
+    line-height:44px!important;
+    height:0!important;
+}
+#search-2 form{
+    padding:0 10px 0 50px!important;
+    overflow: hidden;
+}
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop .stat .devide {
+		height: 44px;
+	}
+}
+
+#header2 form .searchpop .stat span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 17px;
+	font-weight: bold;
+	color: #000000;
+	opacity: .6;
+}
+
+@media only screen and (max-width: 800px) {
+	#header2 form .searchpop .stat span {
+		font-size: 12px;
+	}
+}
+
+#header2 form .searchpop .stat input:checked ~ label span {
+	opacity: 1;
+}
+
+#header2 form.active .searchpop {
+	opacity: 1;
+	top: 70px;
+	visibility: visible;
+}
 body {
   color: #697289;
   direction: rtl;

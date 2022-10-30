@@ -1,35 +1,16 @@
 <div id="header2" style="z-index:8" class="rows " >
-    <div class="container">
+    <div class="fullcontainer">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5 col-sm-12">
                 <div>
-
                     @guest
 
-                    <div class="urusea">
-                        <a href="#">
-                            <span class="menu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12">
-                                    <g id="Group_79" data-name="Group 79" transform="translate(-180 -55.306)">
-                                        <rect id="Rectangle_75" data-name="Rectangle 75" width="21" height="2"
-                                            rx="1" transform="translate(180 55.306)" fill="#b4b4b4" />
-                                        <rect id="Rectangle_76" data-name="Rectangle 76" width="21" height="2"
-                                            rx="1" transform="translate(180 60.306)" fill="#b4b4b4" />
-                                        <rect id="Rectangle_77" data-name="Rectangle 77" width="21" height="2"
-                                            rx="1" transform="translate(180 65.306)" fill="#b4b4b4" />
-                                    </g>
-                                </svg>
-                            </span>
-                            <span class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.15" height="19.399"
-                                    viewBox="0 0 15.15 19.399">
-                                    <path id="Path_4" data-name="Path 4"
-                                        d="M130.506,109.293a3.989,3.989,0,1,0-3.989-3.989A3.994,3.994,0,0,0,130.506,109.293Zm6.015,2.6a5.31,5.31,0,0,0-3.767-1.56h-4.5a5.326,5.326,0,0,0-5.326,5.326v3.7a21.812,21.812,0,0,0,15.15,0v-3.7A5.309,5.309,0,0,0,136.521,111.891Z"
-                                        transform="translate(-122.931 -101.316)" fill="#fff" />
-                                </svg>
-                            </span>
-                        </a>
-                        <div class="drop">
+                    <div class="urusea lh60" style=" padding:10px 10px; margin-top:20px" >
+                        <a   class="active register " href="#" >
+                            ثبت نام/ ورود
+
+                                                    </a>
+                        {{-- <div class="drop">
                             <div class="drop-container">
 
                                 <ul>
@@ -40,23 +21,22 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     @endguest
 
                     @auth
-                    <div class="msg">
+                    {{-- <div class="msg">
                         <a href="{{route('related.travel')}}" id="envelope">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25.026" height="17.083" viewBox="0 0 25.026 17.083">
                               <path id="Path_212" data-name="Path 212" d="M672.726,436.316V420.284s0,0,0,0a.328.328,0,0,0-.019-.109l-.006-.01a.27.27,0,0,0-.018-.033.328.328,0,0,0-.048-.07.292.292,0,0,0-.03-.029.361.361,0,0,0-.07-.046c-.012-.006-.023-.013-.035-.017a.357.357,0,0,0-.124-.024H648.351a.357.357,0,0,0-.124.024c-.013,0-.023.011-.035.017a.36.36,0,0,0-.07.046.316.316,0,0,0-.031.029.327.327,0,0,0-.048.069.264.264,0,0,0-.018.033s0,.006-.006.01a.326.326,0,0,0-.019.109s0,0,0,0v16.1a.346.346,0,0,0,.351.342h24.023a.346.346,0,0,0,.351-.342v-.068Zm-10.08-7.986,8.807,7.63H649.272l8.807-7.63,2.063,1.614a.359.359,0,0,0,.44,0ZM648.7,435.539V421l8.822,6.9Zm14.5-7.643,8.822-6.9v14.542Zm8.176-7.271-11.015,8.614-11.015-8.614Z" transform="translate(-647.85 -419.792)" fill="#757575" stroke="#707070" stroke-width="0.3"></path>
                             </svg>
-                            {{-- @if (auth()->user()->related_travel() && auth()->user()->related_travel()->count()>0) --}}
                             @if (auth()->user()->related_travel() && auth()->user()->related_travel()->count()>0)
                                 <span   class="cir">1</span>
                             @endif
                         </a>
-                    </div>
-                        <div class="urusea v2">
+                    </div> --}}
+                        <div class="urusea lh60 v2">
                             <a href="#">
                                 <span class="icon">
                                     <img src="{{ auth()->user()->avatar('small') }}" alt="">
@@ -79,6 +59,11 @@
                                         <li>
                                             <a href="{{ route('user.my.travels') }}">
                                                 <span class="text">  سفرهای من </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('related.travel')}}">
+                                                <span class="text">    پیام های من  </span>
                                             </a>
                                         </li>
                                         <li>
@@ -122,7 +107,7 @@
                         </a>
                     </div>
 
-                    <div class="mainmenu">
+                    <div class="mainmenu lh76">
                         <ul>
 
                             @auth
@@ -140,12 +125,12 @@
 
 
                         @guest
-                     <li>
+                     {{-- <li>
                         <a   class="active register " href="#">
 ثبت نام/ ورود
 
                         </a>
-                     </li>
+                     </li> --}}
                         @endguest
 
 
@@ -159,44 +144,47 @@
                     </div>
                 </div>
             </div>
-<div class="col-lg-3">
+<div class="col-lg-5 col-sm-12">
     <p>
 
     </p>
     <div id="search-2" style="display:none" class="search3">
         <form action="{{route('guides')}}" autocomplete="off">
+
             @csrf
             @method('get')
-            <span class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="21.878" height="25.626" viewBox="0 0 21.878 25.626">
-                  <g id="Group_792" data-name="Group 792" transform="matrix(0.978, 0.208, -0.208, 0.978, 3.34, 0)">
-                    <g id="Group_4" data-name="Group 4" transform="translate(0 0)">
-                      <g id="Group_3" data-name="Group 3" transform="translate(0)">
-                        <path id="Path_1" data-name="Path 1" d="M8.032,1.007a6.985,6.985,0,0,1,3.927,1.2A7.045,7.045,0,0,1,14.5,5.3a7.014,7.014,0,0,1-.647,6.66A7.043,7.043,0,0,1,10.765,14.5,7.016,7.016,0,0,1,4.1,13.856a7.049,7.049,0,0,1-2.546-3.091A7.014,7.014,0,0,1,2.206,4.1a7.069,7.069,0,0,1,1.9-1.9,6.985,6.985,0,0,1,3.927-1.2M8.032,0a8.031,8.031,0,1,0,8.031,8.031A8.032,8.032,0,0,0,8.032,0Z" fill="#662683"></path>
-                      </g>
-                    </g>
-                    <path id="Path_2" data-name="Path 2" d="M6.094,5.938l-.157.157a.876.876,0,0,1-1.238,0L.256,1.651a.876.876,0,0,1,0-1.238L.412.257a.875.875,0,0,1,1.239,0L6.094,4.7A.876.876,0,0,1,6.094,5.938Z" transform="translate(15.82 15.136)" fill="#662683"></path>
-                    <rect id="Rectangle_2" data-name="Rectangle 2" width="0.785" height="11.541" transform="translate(13.191 13.062) rotate(-45)" fill="#662683"></rect>
-                    <path id="Path_3" data-name="Path 3" d="M4.536,4.72h0a.285.285,0,0,1-.283-.259A4.316,4.316,0,0,0,.266.569.285.285,0,0,1,0,.285H0A.285.285,0,0,1,.3,0,4.886,4.886,0,0,1,4.819,4.41.284.284,0,0,1,4.536,4.72Z" transform="translate(7.056 13.88) rotate(177)" fill="#662683"></path>
-                  </g>
-                </svg>
 
-            </span>
-      <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
+            <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
                             box-sizing: border-box;">
-                                <input type="text" name="city" id="topse" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
+                                <input type="text"  value="{{request('city')}}" name="city" id="topse" data-city='{{json_encode(App\Models\City::all()->pluck('name')->toArray())}}' placeholder="مقصد شما کجاست؟">
 
                             </div>
-            <button>جستجو</button>
+            <button class="se">
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18.341" height="21.483" viewBox="0 0 18.341 21.483">
+                    <g id="Group_5" data-name="Group 5" transform="matrix(0.978, 0.208, -0.208, 0.978, -600.495, -977.251)">
+                        <g id="Group_4" data-name="Group 4" transform="translate(793.293 830.464)">
+                            <g id="Group_3" data-name="Group 3" transform="translate(0)">
+                                <path id="Path_1" data-name="Path 1" d="M800.026,831.308a5.856,5.856,0,0,1,3.292,1.005,5.907,5.907,0,0,1,2.134,2.591,5.88,5.88,0,0,1-.543,5.584,5.9,5.9,0,0,1-2.592,2.134,5.881,5.881,0,0,1-5.583-.543,5.908,5.908,0,0,1-2.134-2.592,5.88,5.88,0,0,1,.543-5.584,5.928,5.928,0,0,1,1.592-1.592,5.856,5.856,0,0,1,3.292-1.005m0-.844a6.733,6.733,0,1,0,6.733,6.733,6.733,6.733,0,0,0-6.733-6.733Z" transform="translate(-793.293 -830.464)" fill="#fff"></path>
+                            </g>
+                        </g>
+                        <path id="Path_2" data-name="Path 2" d="M2520.49,2483.189l-.131.131a.734.734,0,0,1-1.038,0l-3.725-3.725a.734.734,0,0,1,0-1.038l.131-.131a.734.734,0,0,1,1.038,0l3.725,3.725A.734.734,0,0,1,2520.49,2483.189Z" transform="translate(-1708.827 -1635.059)" fill="#fff"></path>
+                        <rect id="Rectangle_2" data-name="Rectangle 2" width="0.658" height="9.675" transform="matrix(0.707, -0.707, 0.707, 0.707, 804.351, 841.415)" fill="#fff"></rect>
+                        <path id="Path_3" data-name="Path 3" d="M1738.522,1115.407h0a.239.239,0,0,1-.238-.217,3.618,3.618,0,0,0-3.342-3.263.239.239,0,0,1-.223-.238h0a.239.239,0,0,1,.254-.238,4.1,4.1,0,0,1,3.786,3.7A.238.238,0,0,1,1738.522,1115.407Z" transform="translate(-934.177 -278.823)" fill="#fff"></path>
+                    </g>
+                </svg>
+            </span>
+            </button>
+
         </form>
 
     </div>
 </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <div>
                     <div id="logo">
                         <a href="{{route('login')}}">
-                            <span class="icon">
+                            {{-- <span class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="179.639" height="75.429"
                                     viewBox="0 0 179.639 75.429">
                                     <g id="Component_27_1" data-name="Component 27 – 1" transform="translate(1)">
@@ -346,7 +334,8 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </span>
+                            </span> --}}
+                            <img src="/home/images/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -463,9 +452,18 @@
                                         <div class="top98">
                                             <input class="along" type="tell" id="mobile"
                                                 placeholder=" شماره همراه *  ">
-                                            <span class="plus98">98+</span>
+                                            {{-- <span class="plus98">98+</span> --}}
                                         </div>
                                         <br>
+                                        <div class="top98">
+                                            <input class="along" type="tell" id="upass"
+                                                placeholder="رمز عبور  ">
+                                            {{-- <span class="plus98">98+</span> --}}
+                                        </div>
+                                        <br>
+                                        <span id="go_sms" class="pointer">
+                                            ورود با پیامک
+                                        </span>
                                         {{-- <ul id="code_box" class="square v2" style="display: none">
                                             <li>
                                                 <input class="square1 v2" type="text" pattern="[0-9]" value="" maxlength="1">
@@ -499,7 +497,8 @@
                                 <div class="col-lg-12">
                                     <div>
                                         <div class="popbottom">
-                                            <span class="poprecord bbt" id="send_code">دریافت کد تأیید</span>
+                                            <span class="poprecord bbt" id="send_code" style="display: none">دریافت کد تأیید</span>
+                                            <span class="poprecord bbt" id="check_pass">  ورود</span>
                                             <span class="poprecord bbt" id="check_code" style="display: none"> بررسی
                                                 کد</span>
                                         </div>
@@ -682,6 +681,12 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-xsm-12">
+                                    <div>
+                                        <input class="popinput v2" type="tell" id="password" name="password"
+                                            placeholder=" رمز عبور *" required>
+                                    </div>
+                                </div>
 
                                 <div class="col-lg-6 col-xsm-12">
                                     <div>
@@ -825,13 +830,13 @@
                                 <div class="col-lg-6 col-xsm-12">
                                     <div>
                                         <input class="popinput" type="number" name="code"
-                                            placeholder=" کد ملی  *">
+                                            placeholder=" کد ملی  ">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xsm-12">
                                     <div>
                                         <input class="popinput" type="number" name="shaba"
-                                            placeholder="  شماره شبا * ">
+                                            placeholder="  شماره شبا  ">
                                     </div>
                                 </div>
                             </div>
@@ -853,7 +858,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 col-xsm-12">
+                                    <div class="col-lg-5 col-sm-12 col-xsm-12">
                                         <div>
                                             <div class="avatar-pop">
                                                 <label for="p_avatar">

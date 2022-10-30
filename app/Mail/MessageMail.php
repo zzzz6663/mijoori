@@ -17,11 +17,11 @@ class MessageMail extends Mailable
      *
      * @return void
      */
-    public $user;
+    public $message;
     public $subject='    میجوری ';
-    public function __construct($user)
+    public function __construct($message)
     {
-          $this->user=$user;
+          $this->message=$message;
     }
 
     /**
@@ -31,9 +31,8 @@ class MessageMail extends Mailable
      */
     public function build()
     {
-        $user=$this->user;
-        $message="password";
+        $me=$this->message;
         // $password=Crypt::decryptString($usere->password);
-        return $this->view('home.email.message',compact('message'))->subject('        پیام جدید از میجوری');
+        return $this->view('home.email.message',compact('me'))->subject('        پیام جدید از میجوری');
     }
 }

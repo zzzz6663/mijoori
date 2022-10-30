@@ -48,6 +48,7 @@ class User extends Authenticatable
         'tell',//
         'give_sms',//
         'give_email',//
+        'bio',//
 
     ];
 
@@ -97,7 +98,9 @@ class User extends Authenticatable
     public function images(){
         return $this->hasMany(Image::class);
     }
-
+    public function languages(){
+        return $this->belongsToMany(Language::class);
+    }
 
     public function avatar($type=null){
         if($this->avatar){

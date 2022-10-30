@@ -61,6 +61,7 @@
                                 <th>نام</th>
                                 <th>     نام استان </th>
                                 <th>   تعداد اشخاص </th>
+                                <th>   تعداد بازدید </th>
                                 <th>  اقدام </th>
                             </tr>
                         </thead>
@@ -77,11 +78,14 @@
                             <td>{{$city->users()->count()}}
                             مشتری
                             </td>
+                            <td>{{$city->count}}
+
+                            </td>
                             <td>
 
                                 @role('admin|manager')
                                 <a class="btn btn-primary curve" href="{{route('city.edit',$city->id)}}">
-                                    تغییر عکس
+                                     ویرایش
                                 </a>
                                  @endrole
                                 @if ($city->image())

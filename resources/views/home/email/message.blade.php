@@ -11,6 +11,8 @@
 </head>
 <body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #fdf1da;">
 میجوری:
+
+{!!$me!!}
 </body>
 </html>
 

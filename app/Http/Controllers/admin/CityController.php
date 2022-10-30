@@ -19,10 +19,10 @@ class CityController extends Controller
         $cities = City::query();
         if ($request->search) {
             $search = $request->search;
-            $cities->where('name', 'LIKE', "%{$search}%")
-                ->orWhereHas('province', function ($query) use ($search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
-                });
+            $cities->where('name', 'LIKE', "%{$search}%");
+                // ->orWhereHas('province', function ($query) use ($search) {
+                //     $query->where('name', 'LIKE', "%{$search}%");
+                // });
 
         }
         // if($request->province){
@@ -88,6 +88,7 @@ class CityController extends Controller
         $data=$request->validate([
             'image'=>'nullable|max:3048',
             'banner'=>'nullable|max:3048',
+            'info'=>'nullable',
         ]);
 
         if ($request->hasFile('image')) {
@@ -127,4 +128,19 @@ class CityController extends Controller
     {
         //
     }
+      public function upload_image_tiny_mc(Request $request)
+    {
+        // $fileName=$request->file('file')->getClientOriginalName();
+        // $path=$request->file('file')->storeAs('uploads', $fileName, 'public');
+        if ($request->hasFile('file')) {
+            $tiny = $request->file('file');
+            $fileName = $request->file('file')->getClientOriginalName();
+            $tiny->move(public_path('/media/tiny/'), $fileName);
+        }
+        return response()->json(['location' => '/media/tiny/' . $fileName]);
+
+        /*$imgpath = request()->file('file')->store('uploads', 'public');
+        return response()->json(['location' => "/storage/$imgpath"]);*/
+    }
+
 }

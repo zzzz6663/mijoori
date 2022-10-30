@@ -136,6 +136,9 @@
 
                     </tbody>
                 </table>
+                <div class="pagi">
+                    {{ $users->appends(Request::all())->links('admin.section.pagination') }}
+                </div>
             </div><!-- /.table-responsive -->
         </div><!-- /.portlet-body -->
     </div><!-- /.portlet -->

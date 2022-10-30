@@ -53,6 +53,12 @@
                                 </div><!-- /.input-group -->
                                 <div class="help-block"></div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3">توضیحات </label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control edit_area" name="info" rows="5" placeholder="info">{{ old('info',$city->info) }}</textarea>
+                                </div>
+                            </div>
                             <div class="form-group relative">
                                 <button type="submit" class="btn btn-info curve">
                                     ذخیره

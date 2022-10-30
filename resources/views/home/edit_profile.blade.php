@@ -231,6 +231,33 @@
                                 </div>
                                 <button class="btn">ذخیره</button>
                         </div>
+                        <div class="edit-form2 ">
+
+                            <label for="languages">    زبان های </label>
+
+                            <div class="input-content">
+
+
+                                <select name="languages[]" id="languages" multiple="multiple" class="select2 popinput v2 city">
+                                    <option value="">یک مورد را انتخاب کنید </option>
+                                    @foreach (App\Models\Language::all() as $language )
+                                    <option {{in_array($language->id,old('language',$user->languages()->pluck('id')->toArray()))?'selected':''}} value="{{$language->id}}">{{ $language->name }}</option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="edit-form2">
+                            <label for="">  زندگی نامه</label>
+                        <div class="input-content">
+                            <span class="error">این فیلد الزامی است</span>
+                            <textarea class="about" name="bio" id="" cols="30" rows="10">{{old('bio',$user->bio)}}</textarea>
+                        </div>
+                        <button class="btn">ذخیره</button>
+                </div>
+
 
                     </div>
                 </div>
@@ -263,6 +290,14 @@
                                 </div>
                                 <button class="btn">ذخیره</button>
                         </div>
+                        <div class="edit-form2">
+                                    <label for="">  رمز عبور </label>
+                                <div class="input-content">
+                                    <span class="error">این فیلد الزامی است</span>
+                                    <input type="tell" name="password"  value="{{old('password',$user->password)}}">
+                                </div>
+                                <button class="btn">ذخیره</button>
+                        </div>
 
                         <div class="edit-form2">
                                     <label for="">درباره من</label>
@@ -275,6 +310,7 @@
 
 
 
+
                         <div class="edit-form2">
                             <label for="">  اینستاگرام</label>
                                 <div class="input-content">
@@ -282,6 +318,7 @@
                                 </div>
                         </div>
                         <div class="edit-form2 inf">
+                            <input type="text" name="give_email"  class="disnon" value="0" >
                             <input type="checkbox" name="give_email"  value="1" {{old('give_email',$user->give_email)=="1"?'checked':''}}  >
 
                             <label for="">  دریافت ایمیل </label>
@@ -289,7 +326,9 @@
                                 <div class="input-content">
                                 </div>
                         </div>
+
                         <div class="edit-form2 inf">
+                            <input type="text" name="give_sms"   class="disnon"  value="0"   >
                             <input type="checkbox" name="give_sms"  value="1" {{old('give_sms',$user->give_sms)=="1"?'checked':''}}  >
 
                             <label for="">  دریافت پیامک </label>
@@ -298,9 +337,12 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-12">
-                    <div class="popbottom">
-                        <button id="" class="bbt btn-violet">ذخیره اطلاعات       </button>
+                    <div>
+                        <div class="text-center">
+                            <button class="next">ذخیره اطلاعات </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -39,6 +39,7 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::get('/active_guid/{user}', 'UserController@active_guid')->name('user.active.guid')->middleware(['role:admin|manager|analyzer']);
     Route::resource('user', 'UserController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('province', 'ProvinceController')->middleware(['role:admin|manager|analyzer']);
+    Route::any('/upload_image_tiny_mc', 'CityController@upload_image_tiny_mc');;
 
     Route::get('/adventure_confirm/{adventure}', 'AdventureController@adventure_confirm')->name('adventure.confirm')->middleware(['role:admin|manager']);
     Route::resource('adventure', 'AdventureController')->middleware(['role:admin|manager|analyzer']);
@@ -48,6 +49,7 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::get('/travel_confirm/{travel}', 'TravelController@travel_confirm')->name('travel.confirm')->middleware(['role:admin|manager']);
     Route::resource('travel', 'TravelController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('chat', 'ChatController')->middleware(['role:admin|manager|analyzer']);
+    Route::resource('language', 'LanguageController')->middleware(['role:admin|manager|analyzer']);
 });
 
 
@@ -57,6 +59,11 @@ Route::get('/clear', 'HomeController@clear')->name('clear');
 //صفحات وب سایت
 Route::get('/', 'HomeController@index')->name('login');
 Route::get('/guides', 'HomeController@guides')->name('guides');
+Route::get('/laws', 'HomeController@laws')->name('laws');
+Route::get('/faqs', 'HomeController@faqs')->name('faqs');
+Route::get('/how', 'HomeController@how')->name('how');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/profile/{user}', 'HomeController@profile')->name('profile');
 Route::get('/related_travel', 'HomeController@related_travel')->name('related.travel');
 Route::any('/travel_chat/{travel}', 'HomeController@travel_chat')->name('related.chat');
@@ -64,11 +71,16 @@ Route::get('/all_cities', 'HomeController@all_cities')->name('all.cities');
 Route::get('/single_city/{city}', 'HomeController@single_city')->name('single.city');
 Route::post('/send_chat', 'HomeController@send_chat')->name('send.chat');
 Route::get('/custom_travel', 'HomeController@custom_travel')->name('custom.travel');
+  // اپلود عکس
+
 
 Route::middleware(['auth'])->group(function () {
+
 Route::get('/submit_rate/{travel}', 'HomeController@submit_rate')->name('submit.rate');
 Route::any('/edit_profile/{user}', 'HomeController@edit_profile')->name('edit.profile');
 });
+
+
 
 
 //ثبت اطلاعات ماجراجویی جدید
@@ -80,6 +92,7 @@ Route::get('/my_adventures', 'HomeController@my_adventures')->name('my.adventure
 
 // ورود و خروج
 Route::post('/send_verify_code', 'HomeController@send_verify_code');
+Route::post('/check_pass', 'HomeController@check_pass');
 Route::post('/auth_login', 'HomeController@auth_login');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 

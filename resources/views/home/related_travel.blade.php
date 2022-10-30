@@ -57,7 +57,7 @@
 
                     </ul>
                 </div>
-                <a href="{{route('guides')}}" class="view-all">مشاهده همه</a>
+                <a href="{{route('guides',['related'=>true])}}" class="view-all">مشاهده همه</a>
             </div>
         </div>
     </div>

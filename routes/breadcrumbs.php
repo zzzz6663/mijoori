@@ -9,6 +9,7 @@ use App\Models\Travel;
 
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
 //  with `$trail`. This is nice for IDE type checking and completion.
+use App\Models\Language;
 use App\Models\Province;
 use App\Models\Adventure;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -25,6 +26,22 @@ Breadcrumbs::for('agent.create', function (BreadcrumbTrail $trail ) {
 Breadcrumbs::for('agent.edit', function (BreadcrumbTrail $trail,User $user) {
     $trail->parent('agent.index');
     $trail->push('ویرایش همکار  ', route('agent.edit',$user->id));
+});
+
+
+
+
+Breadcrumbs::for('language.index', function (BreadcrumbTrail $trail) {
+    // $trail->parent('admin.provinces');
+    $trail->push('لیست زبان ها ', route('language.index'));
+});
+Breadcrumbs::for('language.create', function (BreadcrumbTrail $trail ) {
+    $trail->parent('language.index');
+    $trail->push('تعرفه زبان  جدید ', route('language.create'));
+});
+Breadcrumbs::for('language.edit', function (BreadcrumbTrail $trail,Language $language) {
+    $trail->parent('language.index');
+    $trail->push('ویرایش زبان   ', route('language.edit',$language->id));
 });
 
 // Home

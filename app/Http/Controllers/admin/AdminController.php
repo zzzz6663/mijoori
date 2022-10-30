@@ -19,10 +19,10 @@ class AdminController extends Controller
         return view('admin.provinces.all');
     }
    public function login(){
-    Auth::loginUsingId(1);
+    // Auth::loginUsingId(1);
 
     $user=auth()->user();
-  
+
     if($user){
         alert()->success('ورود با موفقیت نجام شد ');
         return redirect()->route('user.index');

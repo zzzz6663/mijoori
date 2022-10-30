@@ -92,8 +92,14 @@
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span>  سفر </span>
                 </a>
-
             </li>
+        </li>
+        <li>
+            <a href="{{route('language.index')}}" class="{{Request::url()== route( 'language.index')?'current':''}}">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>  زبان ها  </span>
+            </a>
+        </li>
             <li>
                 <a href="{{route('adventure.index')}}" class="{{Request::url()== route( 'adventure.index')?'current':''}}">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>

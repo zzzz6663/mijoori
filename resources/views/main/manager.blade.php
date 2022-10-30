@@ -76,11 +76,12 @@
 <script src="/admin/assets/plugins/switchery/dist/switchery.js"></script>
 <script src="/admin/assets/js/core.js"></script>
 <script src="/admin/assets/js/lightbox.min.js"></script>
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
 <script src="/js/persian-date.min.js"></script>
 <script src="/js/persian-datepicker.min.js"></script>
   <script src="/admin/assets/js/pages/login.js"></script>
   <script src="/js/fun.js"></script>
-  <script src="/js/js1.js"></script>
+  <script src="/js/js5.js"></script>
 
   @include('sweetalert::alert')
 @yield('script')

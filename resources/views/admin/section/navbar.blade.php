@@ -51,10 +51,10 @@
                                 @foreach ( App\Models\Travel::latest()->take(3)->get() as $travel)
 
                                 <li class="clearfix">
-                                    <a href="#">
+                                    <a href="{{ route('user.show',$travel->user->id) }}">
                                         <p class="clearfix">
                                             <strong class="float-start">
-                                                <img src="{{$travel->user->avatar() }}" class="img-circle mCS_img_loaded" alt="">
+                                                <img  width="20px" height="20px" src="{{$travel->user->avatar() }}" class="img-circle mCS_img_loaded" alt="">
                                                   {{ $travel->user->name}}
                                                   {{ $travel->user->family}}
                                             </strong>
@@ -68,7 +68,9 @@
                                       </p>
                                     </a>
                                 </li>
-                                @endforeach
+          @env ('staging')
+
+          @endenv                      @endforeach
 
                             </ul>
                         </li>

@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        '/admin/upload_image_tiny_mc',
     ];
 }

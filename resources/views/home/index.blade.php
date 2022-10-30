@@ -16,7 +16,7 @@
                             @csrf
                             @method('get')
                             <span class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21.878" height="25.626" viewBox="0 0 21.878 25.626">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="21.878" height="25.626" viewBox="0 0 21.878 25.626">
                                   <g id="Group_792" data-name="Group 792" transform="matrix(0.978, 0.208, -0.208, 0.978, 3.34, 0)">
                                     <g id="Group_4" data-name="Group 4" transform="translate(0 0)">
                                       <g id="Group_3" data-name="Group 3" transform="translate(0)">
@@ -27,7 +27,7 @@
                                     <rect id="Rectangle_2" data-name="Rectangle 2" width="0.785" height="11.541" transform="translate(13.191 13.062) rotate(-45)" fill="#662683"/>
                                     <path id="Path_3" data-name="Path 3" d="M4.536,4.72h0a.285.285,0,0,1-.283-.259A4.316,4.316,0,0,0,.266.569.285.285,0,0,1,0,.285H0A.285.285,0,0,1,.3,0,4.886,4.886,0,0,1,4.819,4.41.284.284,0,0,1,4.536,4.72Z" transform="translate(7.056 13.88) rotate(177)" fill="#662683"/>
                                   </g>
-                                </svg>
+                                </svg> --}}
 
                             </span>
                             <div class="autocomplete" style="width:100%;background: #fff; padding: 0 10px;
@@ -46,7 +46,16 @@
                             <p>
 
                                 پربازدیدترین مقصدها:
-                                <span>تهران، اصفهان، شیراز، مشهد، کیش</span>
+                                @php
+                                    $seens=App\Models\City::orderBy('count','desc')->take(5)->get();
+                                @endphp
+                            <span>
+                                @foreach (  $seens as $seen )
+                                {{$seen->name}} ,
+                                @endforeach
+                            ....
+
+                            </span>
                             </p>
                         </div>
                     </div>
@@ -96,6 +105,9 @@
                                                         <h4><a href="{{route('profile',$guid->id)}}">    {{$guid->name}} {{$guid->family}}</a></h4>
                                                         <span class="city">{{$guid->province?$guid->province->name:''}}</span>
                                                     </div>
+                                                    <div class="top">
+                                                        <span class="lig"  style="">{{$guid->about}}       </span>
+                                                    </div>
                                                     <ul>
                                                         <li>
                                                             <span class="right">
@@ -123,9 +135,11 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="text">
-                                                <p>این مجموعه پس از سال ها جمع آوری و کنار هم قراردادن از بهترین ها، ایجاد شده است</p>
-                                            </div>
+                                            {{-- <div class="text">
+                                                <p>
+                                                    {{$guid->about }}
+                                                </p>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +175,10 @@
             <div class="col-lg-12">
                 <div>
                     <ul class="fave-hosts-list owl-carousel owl-theme side-nav">
-                        {{-- @foreach ($cities as $city )
+                        @foreach (App\Models\City::take(10)->get() as $city )
+                        @if(!file_exists(public_path('/media/city/small'.$city->image)))
+                        @continue
+                        @endif
                         <li>
                             <div class="single-city">
                                 <div class="img">
@@ -173,7 +190,7 @@
 
                             </div>
                         </li>
-                        @endforeach --}}
+                        @endforeach
 
 
                     </ul>
