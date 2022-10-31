@@ -45,11 +45,13 @@ Route::prefix('admin')->namespace('admin')->middleware(['auth'])->group(function
     Route::resource('adventure', 'AdventureController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('city', 'CityController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('agent', 'AgentController')->middleware(['role:admin|manager|analyzer']);
+    Route::any('/option_edit', 'OptionController@option_edit')->name('option.edit2')->middleware(['role:admin|manager|analyzer']);
 
     Route::get('/travel_confirm/{travel}', 'TravelController@travel_confirm')->name('travel.confirm')->middleware(['role:admin|manager']);
     Route::resource('travel', 'TravelController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('chat', 'ChatController')->middleware(['role:admin|manager|analyzer']);
     Route::resource('language', 'LanguageController')->middleware(['role:admin|manager|analyzer']);
+    Route::resource('option', 'OptionController')->middleware(['role:admin|manager|analyzer']);
 });
 
 

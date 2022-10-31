@@ -910,6 +910,11 @@ autocomplete(document.getElementById("topse"), city);
 
 
             $('#go_sms').click(function(){
+                let mobile=$('#mobile').val();
+                if(mobile.length !=11){
+                    noty('        شماره همراه را به درستی وارد کنید  ', 'red', '');
+                    return
+                }
                 $('#go_sms').hide(100)
                 $('#check_pass').hide(100)
                 $('#upass').hide(500)

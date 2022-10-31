@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Chat;
 use App\Models\City;
 use App\Models\User;
+use App\Models\Option;
 use App\Models\Travel;
 use App\Models\Province;
 use App\Mail\MessageMail;
@@ -57,20 +58,26 @@ class HomeController extends Controller
         return redirect()->route('login');
     }
     public function laws  (Request $request){
-        return view('home.laws',compact([]));
+        $content=Option::whereName( 'laws')->where('optionable_type',null)->first();
+        return view('home.lawws',compact(['content']));
     }
     public function faqs  (Request $request){
-        return view('home.faqs',compact([]));
+        $content=Option::whereName( 'faqs')->where('optionable_type',null)->first();
+        return view('home.faqs',compact(['content']));
     }
     public function how  (Request $request){
-        return view('home.how',compact([]));
+        $content=Option::whereName( 'how')->where('optionable_type',null)->first();
+        return view('home.how',compact(['content']));
     }
     public function about  (Request $request){
-        return view('home.about',compact([]));
+        $content=Option::whereName( 'about')->where('optionable_type',null)->first();
+        return view('home.about',compact(['content']));
     }
     public function privacy  (Request $request){
-        return view('home.privacy',compact([]));
+        $content=Option::whereName( 'privacy')->where('optionable_type',null)->first();
+        return view('home.privacy',compact(['content']));
     }
+
     public function guides (Request $request){
         $user=auth()->user();
 
@@ -475,6 +482,6 @@ $city_name=$travel->city->name;
 
 
 
-  
+
 
 }
