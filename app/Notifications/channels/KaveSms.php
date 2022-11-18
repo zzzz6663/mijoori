@@ -18,6 +18,7 @@ class KaveSms
 
 
     public function send($notifiable,Notification $notification){
+
         if (!method_exists($notification,'to_kave_sms')){
             throw  new \Exception('sms not found!!!!');
         }
@@ -25,10 +26,12 @@ class KaveSms
         $mobile=$notification->to_kave_sms()['mobile'];
         try{
             $user=User::whereMobile($mobile)->first();
-//            $messagey=str_replace('فلانی',$user->name ,$messagey);
+           $messagey=str_replace('فلانی',$user->name ,$messagey);
             $sender = "1000596446";
             $message = $messagey;
             $receptor = $mobile;
+            dd(  $receptor );
+
             $result = Kavenegar::Send($sender,$receptor,$message);
 
 
@@ -50,9 +53,9 @@ class KaveSms
         }
         catch(ApiException $e){
             // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            throw $e ;
         }
         catch(HttpException $e){
+
             // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
             throw $e ;
         }

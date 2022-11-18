@@ -116,7 +116,7 @@ class UserController extends Controller
             'city_id' => 'nullable',
             'code' => 'nullable|min:10|max:10|unique:users,code,' . $user->id,
             'shaba' => 'nullable|min:24|max:24|unique:users,code,' . $user->id,
-            'address' => 'nullable|min:20|max:1500',
+            'address' => 'nullable',
         ]);
         if($request->b_date){
             $data['b_date'] = $user->convert_date($data['b_date']);

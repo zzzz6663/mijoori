@@ -192,7 +192,12 @@
                                     <select class="popinput v2 province" name="province_id" id="province" required>
                                         <option value="">استان </option>
                                         @foreach (App\Models\Province::all() as $province)
-                                            <option  {{ old('province_id',$user->province->id)==$province->id?'selected':'' }}  value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @if ($user->province)
+                                        <option  {{ old('province_id',$user->province->id)==$province->id?'selected':'' }}  value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @else
+                                                <option  {{ old('province_id')==$province->id?'selected':'' }}  value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endif
+
                                         @endforeach
 
                                     </select>
@@ -204,8 +209,14 @@
                                 <div class="input-content">
                                     <select class="popinput v2 city" name="city_id" id="city" required>
                                         <option value="">استان </option>
+
                                         @foreach (App\Models\City::all() as $city)
+
+
+                                            @if ($user->province)
                                             <option  {{ old('city_id',$user->city->id)==$city->id?'selected':'' }} value="{{$city->id}}">{{ $city->name }}</option>
+                                                    <option  {{ old('city_id')==$city->id?'selected':'' }} value="{{$city->id}}">{{ $city->name }}</option>
+                                            @endif
                                         @endforeach
 
                                     </select>

@@ -50,10 +50,10 @@ class KaveCode
         $receptor=$notification->to_kave_code()['mobile'];
         $admin=auth()->user();
         try{
-//            $sender = "10008663";
-//            $message = $messagey;
-//            $receptor = $mobile;
-//            $result = Kavenegar::Send($sender,$receptor,$message);
+           $sender = "10008663";
+        //    $message = $messagey;
+        //    $receptor = $mobile;
+        //    $result = Kavenegar::Send($sender,$receptor,$message);
 
 
 //            $receptor =  "";
@@ -63,7 +63,7 @@ class KaveCode
 //            $token2 =  "";
 //            $token3 =  "";
             $result = Kavenegar::VerifyLookup($receptor,trim($token),$token2,$token3,$template,$type,$token4,$token5);
-            $this->format($result);
+            // $this->format($result);
 
 
 

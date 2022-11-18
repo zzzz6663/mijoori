@@ -12,7 +12,9 @@ yarn-error.log
 /.idea
 /.vscode
 /.env
+/.zip
 /.git
 /.cloud/
 .cloud/
 /.cloud
+mijoori.zip

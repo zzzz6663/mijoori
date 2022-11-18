@@ -4,6 +4,37 @@ cursor: pointer;
 #envelope{
 position: relative;
 }
+#city_search .se{
+    position: absolute;
+    left: 5px;
+    top: 7px;;
+    position: absolute;
+    background: #662683;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all .3s;
+    border: none;
+    border-radius:50%;
+    height: 30px;
+}
+#city_search {
+    position: relative;
+    border:none;
+
+}
+#city_search{
+    border: 1px solid #000;
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding:10px 20px;
+}
+#city_search input{
+    border : none;
+    width: 100%;
+
+}
+
 #laws  {
     padding:50px 0;
 }
@@ -40,6 +71,13 @@ position: relative;
 #header2 *{
     /* vertical-align: middle; */
 }
+
+.side-nav .owl-nav {
+    position: absolute;
+    left: -14px;
+    right: -14px;
+    top: 35%;
+}
 .single-host-det .img .info .top{
     line-height: 22px;
    margin-bottom: 10px;
@@ -50,7 +88,7 @@ position: relative;
 .autocomplete{
     margin: 0 10px!important;
 }
-@media screen and (max-width: 1500px){
+@media screen and (min-width: 1500px){
     .fullcontainer {
         margin: 0 140px;
     }

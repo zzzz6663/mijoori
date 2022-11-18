@@ -4,6 +4,7 @@
 <div id="laws" class="rows">
     <div class="fullcontainer">
         <div class="row">
+            
             {{-- <div class="col-lg-12">
                 <h1>
                     میجوری چگونه کار می کند

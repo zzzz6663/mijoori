@@ -917,6 +917,7 @@ autocomplete(document.getElementById("topse"), city);
                 }
                 $('#go_sms').hide(100)
                 $('#check_pass').hide(100)
+                $('#wrong_mobile').show(500)
                 $('#upass').hide(500)
                 $("#send_code").trigger("click");
              });
@@ -1179,6 +1180,25 @@ $(document).on("keyup", '.square1', function(e) {
         })
 
 
+        $('.reset_close').click(function(){
+            $('#code_box').hide(400)
+            $('#check_code').hide(400)
+            $('#upass').show(400)
+            $('#go_sms').show(400)
+            $('#check_pass').show(400)
+            $('#mobile').val('')
+        })
+
+        $('#wrong_mobile').click(function(){
+            $('#wrong_mobile').hide(400)
+            $('#code_box').hide(400)
+            $('#check_code').hide(400)
+            $('#upass').show(400)
+            $('#go_sms').show(400)
+            $('#check_pass').show(400)
+            $('#mobile').val('')
+
+        })
         $('.pop-close').click(function(){
             $(this).closest('.pop').fadeOut();
 

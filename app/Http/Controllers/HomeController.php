@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Carbon\Carbon;
 use App\Models\Chat;
 use App\Models\City;
@@ -13,6 +14,7 @@ use App\Mail\MessageMail;
 use App\Models\Adventure;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
+use PhpParser\Node\Stmt\Catch_;
 use Morilog\Jalali\CalendarUtils;
 use App\Notifications\SendKaveCode;
 use Illuminate\Support\Facades\Auth;
@@ -26,10 +28,11 @@ class HomeController extends Controller
     public  function  clear()
     {
         Artisan::call('optimize');
-        Mail::to( 'na3r.jafari@gmail.com')->send(new MessageMail("slam"));
-
+        // Mail::to( 'na3r.jafari@gmail.com')->send(new MessageMail("slam"));
         $user=auth()->user();;
         $invitedUser = new User;
+        $invitedUser->notify(new SendKaveCode( '09373699317','login','1212','','','',''));
+
         // $invitedUser->notify(new SendKaveCode( '09373699317','login','2121','','','',''));
    Artisan::call('cache:clear');
         Artisan::call('config:cache');
@@ -59,7 +62,7 @@ class HomeController extends Controller
     }
     public function laws  (Request $request){
         $content=Option::whereName( 'laws')->where('optionable_type',null)->first();
-        return view('home.lawws',compact(['content']));
+        return view('home.laws',compact(['content']));
     }
     public function faqs  (Request $request){
         $content=Option::whereName( 'faqs')->where('optionable_type',null)->first();
@@ -318,7 +321,11 @@ $city_name=$travel->city->name;
                 $city_name
                 را قبول کرد
                 ";
+              try{
                 Mail::to( $travel->user->email)->send(new MessageMail($message));
+              }catch(Exception $e){
+
+              }
                 $travel->update(['host_accept'=>1]);
 
 
@@ -358,7 +365,13 @@ $city_name=$travel->city->name;
     }
     public function all_cities(Request $request){
         $user=auth()->user();
-        return view('home.all_cities',compact(['user']));
+        $cities=City::query();
+
+        if($request->city){
+            $cities->where('name',$request->city);
+        }
+        $cities=$cities->get();
+        return view('home.all_cities',compact(['user','cities']));
     }
     public function single_city(Request $request, City $city){
         $target_city=$city;

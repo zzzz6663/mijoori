@@ -4,14 +4,17 @@
 <div id="laws" class="rows">
     <div class="fullcontainer">
         <div class="row">
+            <div class="col-lg-12">
+                {!!$content->val  !!}
+            </div>
             {{-- <div class="col-lg-12">
                 <h1>
                     سوالات متداول
                 </h1>
 
-            </div> --}}
+            </div>
             <div class="col-lg-12">
-                {{-- <div class="ubox">
+                <div class="ubox">
 
                     <ul>
                         <li>
@@ -104,10 +107,9 @@
                         </li>
 
                     </ul>
-                </div> --}}
+                </div>
 
-                {!!$content->val  !!}
-            </div>
+            </div> --}}
 
         </div>
     </div>
